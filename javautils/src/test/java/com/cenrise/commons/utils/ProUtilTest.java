@@ -28,7 +28,7 @@ public class ProUtilTest {
 
     @Test
     public void testPro() throws Exception {
-        String path = ProUtil.key("user.dir") + "/Junit/Resource/Test.properties";
+        String path = ProUtil.key("user.dir") + "/src/test/resources/Test.properties";
         System.out.println(ProUtil.key("user.dir"));
         System.out.println(ProUtil.GetValueByKey(path, "test"));
         System.out.println(ProUtil.GetAllProperties(path));

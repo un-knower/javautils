@@ -19,7 +19,7 @@ public class SecUtilTest {
 
     @Test
     public void testFileMD5() {
-        String file = System.getProperty("user.dir") + "/Junit/Resource/cmdexe";
+        String file = System.getProperty("user.dir") + "/src/test/resources/cmdexe";
         assertEquals("ad7b9c14083b52bc532fba5948342b98", SecUtil.FileMD5(new File(file)));
     }
 }

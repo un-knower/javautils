@@ -11,7 +11,7 @@ public class FileTypeImplTest extends TestCase {
     @Test
     public void testFileType() {
 
-        String path = System.getProperty("user.dir") + "/Junit/Resource";
+        String path = System.getProperty("user.dir") + "/src/test/resources";
         assertEquals("gif", FileTypeImpl.getFileType(new File(path + "/ali.gif")));
         assertEquals("png", FileTypeImpl.getFileType(new File(path + "/tgepng")));
     }

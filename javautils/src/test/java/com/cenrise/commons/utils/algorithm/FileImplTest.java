@@ -8,7 +8,7 @@ public class FileImplTest {
 
     @Test
     public void TestCpdetector() throws Exception {
-        String path = System.getProperty("user.dir") + "/Junit/Resource";
+        String path = System.getProperty("user.dir") + "/src/test/resources";
         System.out.println(FileImpl.simpleEncoding(path + "/GBK.txt"));
         System.out.println(FileImpl.cpdetector((new File(path + "/GBK.txt")).toURL()));
         System.out.println(new FileImpl().guestFileEncoding(path + "/GBK.txt"));
