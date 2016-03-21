@@ -43,9 +43,9 @@ public class InsertOracle {
 			// inputStream = new FileInputStream(image);
 			connection = DBUtil.openConnection();
 			ps = connection.prepareStatement(sql);
-			final int batchSize = 1000;// 批处理数
+			final int batchSize = 2000;// 批处理数
 			int count = 0;// 记数器
-			for (int i = 42001; i < 100000; i++) {
+			for (int i = 100001; i < 200001; i++) {
 				ps.setInt(1, i/* RandomUtil.getNum(1, 10000) */);// id
 				ps.setInt(2, RandomUtil.getNum(1, 10000));// numbertype
 				ps.setLong(3, RandomUtil.getNum(1, 10000));// varchar

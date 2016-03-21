@@ -43,7 +43,7 @@ public class InsertMysql {
 			connection = DBUtil.openConnection();
 			ps = connection.prepareStatement(sql);
 
-			for (int i = 1; i < 5; i++) {
+			for (int i = 1; i < 20; i++) {
 				ps.setInt(1, RandomUtil.getNum(1, 10000));// id
 				ps.setString(2, RandomUtil.getCharAndNumr(10));// varchar
 				Time time = new Time(System.currentTimeMillis());
