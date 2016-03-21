@@ -6,6 +6,28 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>CenriseJavaUtil</name>
 	<description>Java related tools</description>
+	
+	<properties>
+		<!-- Set default encoding to UTF-8 to remove maven complaints -->
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+		<!-- Java compiler configuration -->
+		<sourceJavaVersion>1.6</sourceJavaVersion>
+		<targetJavaVersion>1.6</targetJavaVersion>
+
+		<!-- defaults for flaky test and focused test exclusions -->
+		<test.exclude.pattern>$</test.exclude.pattern> <!-- junk pattern -->
+		<test.include.pattern>**/Test*.java</test.include.pattern>
+
+		<avro.version>1.7.3</avro.version>
+		<elasticsearch.version>0.90.1</elasticsearch.version>
+
+		<thrift.version>0.7.0</thrift.version>
+		<kite.version>0.12.0</kite.version>
+		<tlq.version>8.0</tlq.version>
+		<!-- <spring-version>3.1.2.RELEASE</spring-version> -->
+	</properties>
+	
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
