@@ -13,7 +13,7 @@ import com.cenrise.commons.utils.FileUtil;
 public class FileTest {
     @Test
     public void testListLine() throws ParseException {
-        File file = new File(System.getProperty("user.dir") + "/src/test/resources/time.txt");
+        File file = new File(System.getProperty("user.dir") + "/Junit/Resource/time.txt");
         List<String> lines = FileUtil.lines(file);
         int count=0;
 

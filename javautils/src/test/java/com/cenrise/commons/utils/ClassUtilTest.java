@@ -14,7 +14,7 @@ public class ClassUtilTest {
     @Test
     public void testField() throws ClassNotFoundException, InvocationTargetException, IllegalAccessException {
         System.out.println("=============所有字段===============");
-        String[] fields = ClassUtil.getField("com.cenrise.commons.utils.RegUtil");
+        String[] fields = ClassUtil.getField("evilp0s.RegUtil");
         for (String f : fields) {
             System.out.println(f);
         }
@@ -23,7 +23,7 @@ public class ClassUtilTest {
     @Test
     public void testMetod() throws ClassNotFoundException, InvocationTargetException, IllegalAccessException {
         System.out.println("============所有方法================");
-        String[] methods = ClassUtil.getMethod("com.cenrise.commons.utils.StringUtil");
+        String[] methods = ClassUtil.getMethod("evilp0s.StringUtil");
         for (String m : methods) {
             System.out.println(m);
         }
@@ -32,7 +32,7 @@ public class ClassUtilTest {
     @Test
     public void testGetClass() {
         System.out.println("============所有类================");
-        List<String> classNames = ClassUtil.getClassName("com.cenrise.commons.utils", true);
+        List<String> classNames = ClassUtil.getClassName("evilp0s", true);
         for (String str : classNames) {
             System.out.println(str);
         }
