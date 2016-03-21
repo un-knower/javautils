@@ -45,7 +45,7 @@ public class InsertOracle {
 			ps = connection.prepareStatement(sql);
 			final int batchSize = 2000;// 批处理数
 			int count = 0;// 记数器
-			for (int i = 100001; i < 200001; i++) {
+			for (int i = 108001; i < 200001; i++) {
 				ps.setInt(1, i/* RandomUtil.getNum(1, 10000) */);// id
 				ps.setInt(2, RandomUtil.getNum(1, 10000));// numbertype
 				ps.setLong(3, RandomUtil.getNum(1, 10000));// varchar
