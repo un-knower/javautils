@@ -74,11 +74,11 @@
 			<artifactId>javax.servlet-api</artifactId>
 			<version>3.1.0</version>
 		</dependency>
-		<dependency>
+		<!-- <dependency>
 			<groupId>cpdetector</groupId>
 			<artifactId>cpdetector</artifactId>
 			<version>1.0.7</version>
-		</dependency>
+		</dependency> -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
