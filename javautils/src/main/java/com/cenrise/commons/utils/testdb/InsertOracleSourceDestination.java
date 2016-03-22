@@ -33,7 +33,7 @@ public class InsertOracleSourceDestination {
 			int count = 0;// 记数器
 			startTime = System.currentTimeMillis();
 			logger.info("数据库查询组件开始！");
-			for (int i = 5000; i < 200000; i++) {
+			for (int i = 200000; i < 200001; i++) {
 				ps.setInt(1, i);// INTEGER
 				ps.setString(2, RandomUtil.getRandomChar(20));// CHAR(20)
 				ps.setFloat(3, RandomUtil.getFloat());// FLOAT
@@ -72,7 +72,7 @@ public class InsertOracleSourceDestination {
 	 */
 	@Test
 	public void insertSource10() {
-		String sql = "INSERT INTO SOURCE10_T(col1, col2, col3, col4, col5, col6, col7, col8, col9, col10) values(?,?,?,?,?,?,,?,,?,,?,,?)";
+		String sql = "INSERT INTO SOURCE10_T(col1, col2, col3, col4, col5, col6, col7, col8, col9, col10) values(?,?,?,?,?,?,?,?,?,?)";
 		Connection connection = null;
 		PreparedStatement ps = null;
 		int batchNumber = 0;// 批次处理数
@@ -83,7 +83,7 @@ public class InsertOracleSourceDestination {
 			int count = 0;// 记数器
 			startTime = System.currentTimeMillis();
 			logger.info("数据库查询组件开始！");
-			for (int i = 2; i < 5000; i++) {
+			for (int i = 1; i <200000 ; i++) {
 				ps.setInt(1, i);// INTEGER
 				ps.setString(2, RandomUtil.getRandomChar(20));// CHAR(20)
 				ps.setFloat(3, RandomUtil.getFloat());// FLOAT
