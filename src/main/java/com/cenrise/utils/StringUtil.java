@@ -33,8 +33,8 @@ import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.io.SAXReader;
 
-import com.cenrise.commons.utils.algorithm.BCConvert;
-import com.cenrise.commons.utils.algorithm.StringImpl;
+import com.cenrise.utils.algorithm.BCConvert;
+import com.cenrise.utils.algorithm.StringImpl;
 
 /**
  * 提供些常用的字符串相关的工具方法 按长度分割、字符转码、防敏感字符、防SQL注入、html标签转义、Email 数字

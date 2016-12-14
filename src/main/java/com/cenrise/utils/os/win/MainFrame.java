@@ -9,9 +9,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 
-import com.cenrise.commons.utils.os.win.gui.Messages;
-import com.cenrise.commons.utils.os.win.gui.PropertyTableModel;
-import com.cenrise.commons.utils.os.win.util.SystemInfo;
+import com.cenrise.utils.os.win.gui.Messages;
+import com.cenrise.utils.os.win.gui.PropertyTableModel;
+import com.cenrise.utils.os.win.util.SystemInfo;
 
 public class MainFrame extends JFrame
 {

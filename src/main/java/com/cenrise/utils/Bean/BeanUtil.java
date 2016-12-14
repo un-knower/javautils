@@ -7,8 +7,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-import com.cenrise.commons.utils.Collection.CollectionUtil;
 import com.cenrise.utils.ValidUtil;
+import com.cenrise.utils.Collection.CollectionUtil;
 
 /**
  * JavaBean相关的一些操作

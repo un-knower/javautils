@@ -1,251 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="44c79ba3-c07d-4cff-b10a-4e317a4409d4" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_belerweb_pinyin4j_2_5_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_guava_guava_r08.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_protobuf_protobuf_java_2_4_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_microsoft_sqlserver_sqljdbc4_4_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_beanutils_commons_beanutils_1_8_3.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_codec_commons_codec_1_8.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_collections_commons_collections_3_2_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_dbcp_commons_dbcp_1_4.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_io_commons_io_2_4.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_lang_commons_lang_2_6.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_logging_commons_logging_1_2.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_net_commons_net_3_3.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_pool_commons_pool_1_5_4.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__dom4j_dom4j_1_6_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_activation_activation_1_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_mail_mail_1_4_7.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_servlet_javax_servlet_api_3_1_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__jaxen_jaxen_1_1_6.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__junit_junit_4_12.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__log4j_log4j_1_2_16.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__net_sourceforge_jchardet_jchardet_1_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_antlr_antlr_3_0ea8.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_poi_poi_3_9.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_poi_poi_ooxml_3_9.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_poi_poi_ooxml_schemas_3_9.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_xmlbeans_xmlbeans_2_3_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_hamcrest_hamcrest_core_1_3.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_slf4j_api_1_6_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_slf4j_log4j12_1_6_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__oro_oro_2_0_8.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__stax_stax_api_1_0_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__xml_apis_xml_apis_1_0_b2.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/javautils.iml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/.classpath" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/.idea/encodings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/.idea/libraries/Maven__com_belerweb_pinyin4j_2_5_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/.idea/libraries/Maven__com_google_guava_guava_r08.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/.idea/libraries/Maven__com_google_protobuf_protobuf_java_2_4_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/.idea/libraries/Maven__com_microsoft_sqlserver_sqljdbc4_4_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/.idea/libraries/Maven__commons_beanutils_commons_beanutils_1_8_3.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/.idea/libraries/Maven__commons_codec_commons_codec_1_8.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/.idea/libraries/Maven__commons_collections_commons_collections_3_2_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/.idea/libraries/Maven__commons_dbcp_commons_dbcp_1_4.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/.idea/libraries/Maven__commons_io_commons_io_2_4.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/.idea/libraries/Maven__commons_lang_commons_lang_2_6.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/.idea/libraries/Maven__commons_logging_commons_logging_1_2.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/.idea/libraries/Maven__commons_net_commons_net_3_3.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/.idea/libraries/Maven__commons_pool_commons_pool_1_5_4.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/.idea/libraries/Maven__dom4j_dom4j_1_6_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/.idea/libraries/Maven__javax_activation_activation_1_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/.idea/libraries/Maven__javax_mail_mail_1_4_7.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/.idea/libraries/Maven__javax_servlet_javax_servlet_api_3_1_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/.idea/libraries/Maven__jaxen_jaxen_1_1_6.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/.idea/libraries/Maven__junit_junit_4_12.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/.idea/libraries/Maven__log4j_log4j_1_2_16.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/.idea/libraries/Maven__net_sourceforge_jchardet_jchardet_1_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/.idea/libraries/Maven__org_antlr_antlr_3_0ea8.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/.idea/libraries/Maven__org_apache_poi_poi_3_9.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/.idea/libraries/Maven__org_apache_poi_poi_ooxml_3_9.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/.idea/libraries/Maven__org_apache_poi_poi_ooxml_schemas_3_9.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/.idea/libraries/Maven__org_apache_xmlbeans_xmlbeans_2_3_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/.idea/libraries/Maven__org_hamcrest_hamcrest_core_1_3.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/.idea/libraries/Maven__org_slf4j_slf4j_api_1_6_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/.idea/libraries/Maven__org_slf4j_slf4j_log4j12_1_6_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/.idea/libraries/Maven__oro_oro_2_0_8.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/.idea/libraries/Maven__stax_stax_api_1_0_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/.idea/libraries/Maven__xml_apis_xml_apis_1_0_b2.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/.project" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/.settings/org.eclipse.jdt.core.prefs" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/.settings/org.eclipse.m2e.core.prefs" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/front-end/common_xzsms1qi.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/front-end/dateFormatUtil.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/jar/cpdetector-1.0.7.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/jar/ojdbc6-11.2.0.3.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/jar/opencsv-2.4.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/javautils.iml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/pom.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/java/com/cenrise/commons/log/DgfPatternLayout.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/java/com/cenrise/commons/log/DgfRollAppender.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/java/com/cenrise/commons/utils/Bean/BeanFactory.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/java/com/cenrise/commons/utils/Bean/BeanStruct.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/java/com/cenrise/commons/utils/Bean/BeanUtil.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/java/com/cenrise/commons/utils/Bean/PropertyFilter.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/java/com/cenrise/commons/utils/BrowseUtil.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/java/com/cenrise/commons/utils/CharUtil.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/java/com/cenrise/commons/utils/CharsetUtil.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/java/com/cenrise/commons/utils/ChinesUtil.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/java/com/cenrise/commons/utils/ClassUtil.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/java/com/cenrise/commons/utils/Collection/CollectionUtil.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/java/com/cenrise/commons/utils/Collection/ListFilter.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/java/com/cenrise/commons/utils/Collection/MapFilter.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/java/com/cenrise/commons/utils/Collection/MapIterators.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/java/com/cenrise/commons/utils/Collection/QueueFilter.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/java/com/cenrise/commons/utils/Collection/SetFilter.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/java/com/cenrise/commons/utils/Constant.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/java/com/cenrise/commons/utils/ConvertUtil.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/java/com/cenrise/commons/utils/DateUtil.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/java/com/cenrise/commons/utils/Dbutil.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/java/com/cenrise/commons/utils/EmailUtil.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/java/com/cenrise/commons/utils/FTP/FTPConstant.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/java/com/cenrise/commons/utils/FTP/FTPFactory.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/java/com/cenrise/commons/utils/FTP/FTPLog.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/java/com/cenrise/commons/utils/FTP/FTPUtil.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/java/com/cenrise/commons/utils/FTP/FTPUtilImpl.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/java/com/cenrise/commons/utils/FTP/FTPVo.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/java/com/cenrise/commons/utils/FTP/FileAttr.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/java/com/cenrise/commons/utils/FileUtil.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/java/com/cenrise/commons/utils/JavaJs/ExecJs.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/java/com/cenrise/commons/utils/MathUtil.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/java/com/cenrise/commons/utils/ObjectUtil.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/java/com/cenrise/commons/utils/PrintUtil.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/java/com/cenrise/commons/utils/ProUtil.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/java/com/cenrise/commons/utils/RandomUtil.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/java/com/cenrise/commons/utils/RegUtil.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/java/com/cenrise/commons/utils/SecUtil.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/java/com/cenrise/commons/utils/StreamUtil.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/java/com/cenrise/commons/utils/StringUtil.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/java/com/cenrise/commons/utils/SysUtil.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/java/com/cenrise/commons/utils/UnicodeUtil.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/java/com/cenrise/commons/utils/ValidUtil.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/java/com/cenrise/commons/utils/WEB/UrlUtil.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/java/com/cenrise/commons/utils/WEB/WebUtil.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/java/com/cenrise/commons/utils/XMLUtil.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/java/com/cenrise/commons/utils/ZIPUtil.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/java/com/cenrise/commons/utils/algorithm/BCConvert.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/java/com/cenrise/commons/utils/algorithm/FileEncodingUtil.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/java/com/cenrise/commons/utils/algorithm/FileImpl.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/java/com/cenrise/commons/utils/algorithm/FileReadImpl.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/java/com/cenrise/commons/utils/algorithm/FileTypeImpl.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/java/com/cenrise/commons/utils/algorithm/StringImpl.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/java/com/cenrise/commons/utils/algorithm/cpDetector.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/java/com/cenrise/commons/utils/common/IdcardUtil.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/java/com/cenrise/commons/utils/common/Trim.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/java/com/cenrise/commons/utils/encrypt/Base32.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/java/com/cenrise/commons/utils/encrypt/Base64.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/java/com/cenrise/commons/utils/enums/Week.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/java/com/cenrise/commons/utils/os/JDKUtil.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/java/com/cenrise/commons/utils/os/win/Main.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/java/com/cenrise/commons/utils/os/win/MainFrame.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/java/com/cenrise/commons/utils/os/win/gui/Messages.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/java/com/cenrise/commons/utils/os/win/gui/PropertyTableModel.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/java/com/cenrise/commons/utils/os/win/gui/messages.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/java/com/cenrise/commons/utils/os/win/util/SysProperty.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/java/com/cenrise/commons/utils/os/win/util/SystemInfo.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/java/com/cenrise/commons/utils/study/JavadocDemo.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/java/com/cenrise/test/DBUtil.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/java/com/cenrise/test/HoldCPUMain.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/java/com/cenrise/test/HoldIOMain.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/java/com/cenrise/test/HoldLockMain.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/java/com/cenrise/test/InsertMysql.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/java/com/cenrise/test/InsertMysql.sql" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/java/com/cenrise/test/InsertOracle.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/java/com/cenrise/test/InsertOracle.sql" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/java/com/cenrise/test/InsertOracleSourceDestination.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/java/com/cenrise/test/InsertSqlServer.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/java/com/cenrise/test/InsertSqlServer.sql" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/java/log4j.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/java/sample/csv/ParseCSVSample.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/java/sample/poi/Excel2003ParseSample.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/java/sample/poi/FileParseData.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/java/sample/poi/XSSFCellTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/resources/English.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/resources/EnglishWrite.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/resources/GBK.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/resources/GBKTOUTF8.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/resources/GBKWrite.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/resources/Test.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/resources/UTF8.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/resources/UTF8Write.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/resources/ali.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/resources/cmdexe" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/resources/config/configFTP.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/resources/config/dbcp.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/resources/config/ftp.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/resources/config/log4j.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/resources/config/mail.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/resources/indexhtml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/resources/readme/readme.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/resources/readme/utils.docx" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/resources/tge.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/resources/tgepng" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/main/resources/time.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/test/java/com/cenrise/commons/utils/Bean/BeanUtilTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/test/java/com/cenrise/commons/utils/CharUtilTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/test/java/com/cenrise/commons/utils/CharsetTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/test/java/com/cenrise/commons/utils/ChinesUtilTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/test/java/com/cenrise/commons/utils/ClassUtilTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/test/java/com/cenrise/commons/utils/Collection/CollectionUtilTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/test/java/com/cenrise/commons/utils/ConvertUtilTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/test/java/com/cenrise/commons/utils/DateUtilTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/test/java/com/cenrise/commons/utils/DateUtilThreadSafeTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/test/java/com/cenrise/commons/utils/EmailUtilTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/test/java/com/cenrise/commons/utils/FTP/FTPtest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/test/java/com/cenrise/commons/utils/FilePathUtilTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/test/java/com/cenrise/commons/utils/FileTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/test/java/com/cenrise/commons/utils/FileUtilTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/test/java/com/cenrise/commons/utils/JDK/Collection/CollectionTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/test/java/com/cenrise/commons/utils/JDK/String/StringTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/test/java/com/cenrise/commons/utils/PrintUtilTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/test/java/com/cenrise/commons/utils/ProUtilTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/test/java/com/cenrise/commons/utils/RandomUtilTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/test/java/com/cenrise/commons/utils/RegUtilTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/test/java/com/cenrise/commons/utils/SecUtilTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/test/java/com/cenrise/commons/utils/StreamUtilTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/test/java/com/cenrise/commons/utils/StringUtilTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/test/java/com/cenrise/commons/utils/SupportTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/test/java/com/cenrise/commons/utils/SysUtilTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/test/java/com/cenrise/commons/utils/ValidUtilTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/test/java/com/cenrise/commons/utils/WEB/UrlUtilTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/test/java/com/cenrise/commons/utils/WEB/WebUtilTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/test/java/com/cenrise/commons/utils/ZIPUtilTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/test/java/com/cenrise/commons/utils/algorithm/FileEncodingUtilTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/test/java/com/cenrise/commons/utils/algorithm/FileImplTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/test/java/com/cenrise/commons/utils/algorithm/FileTypeImplTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/test/java/com/cenrise/commons/utils/encrypt/Base32Test.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/test/java/com/cenrise/commons/utils/encrypt/Base64Test.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/test/java/com/cenrise/commons/utils/model/BusinessLog.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/test/java/com/cenrise/commons/utils/model/Log.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/test/java/com/cenrise/commons/utils/model/Log2.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/test/java/com/cenrise/commons/utils/model/User.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/test/resources/English.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/test/resources/EnglishWrite.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/test/resources/GBK.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/test/resources/GBKTOUTF8.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/test/resources/GBKWrite.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/test/resources/Test.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/test/resources/UTF8.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/test/resources/UTF8Write.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/test/resources/ali.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/test/resources/cmdexe" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/test/resources/indexhtml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/test/resources/tge.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/test/resources/tgepng" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/src/test/resources/time.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javautils/target/.gitignore" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+    <list default="true" id="3448f280-db30-4551-83a4-99b27659929f" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/jar.xml" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="javautils.iws" />
     <ignored path=".idea/workspace.xml" />
-    <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
-    <ignored path=".idea/dataSources.local.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -260,43 +25,12 @@
   <component name="FavoritesManager">
     <favorites_list name="javautils" />
   </component>
-  <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pom.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" column="37" selection-start-line="11" selection-start-column="37" selection-end-line="11" selection-end-column="37" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="StringUtil.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/cenrise/utils/StringUtil.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="42" column="13" selection-start-line="42" selection-start-column="13" selection-end-line="42" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GradleLocalSettings">
     <option name="externalProjectsViewState">
       <projects_view />
-    </option>
-  </component>
-  <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/pom.xml" />
-      </list>
     </option>
   </component>
   <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
@@ -308,7 +42,9 @@
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
-        <option name="mavenHome" value="Bundled (Maven 3)" />
+        <option name="localRepository" value="$USER_HOME$/programe-files/repo" />
+        <option name="mavenHome" value="$USER_HOME$/Downloads/apache-maven-3.2.5" />
+        <option name="userSettingsFile" value="$USER_HOME$/Downloads/apache-maven-3.2.5/conf/settings.xml" />
       </MavenGeneralSettings>
     </option>
   </component>
@@ -322,24 +58,6 @@
         <PATH_ELEMENT>
           <option name="myItemId" value="javautils" />
           <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$ProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="Dependencies" />
-          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$DependenciesNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="" />
-          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$RootNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="javautils" />
-          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$ProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="Plugins" />
-          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$PluginsNode" />
         </PATH_ELEMENT>
       </PATH>
       <PATH>
@@ -356,12 +74,70 @@
           <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$LifecycleNode" />
         </PATH_ELEMENT>
       </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$RootNode" />
+        </PATH_ELEMENT>
+      </PATH>
     </treeState>
   </component>
   <component name="ProjectFrameBounds">
     <option name="y" value="23" />
     <option name="width" value="1440" />
     <option name="height" value="797" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+          <State>
+            <id>Android &gt; Lint &gt; Correctness</id>
+          </State>
+          <State>
+            <id>Application Server Specific Inspections</id>
+          </State>
+          <State>
+            <id>CDI(Contexts and Dependency Injection) issues</id>
+          </State>
+          <State>
+            <id>Faces Model</id>
+          </State>
+          <State>
+            <id>JSP Inspections</id>
+          </State>
+          <State>
+            <id>Java</id>
+          </State>
+          <State>
+            <id>Java EE issues</id>
+          </State>
+          <State>
+            <id>Performance issuesJava</id>
+          </State>
+          <State>
+            <id>Portability issuesJava</id>
+          </State>
+          <State>
+            <id>Resource management issuesJava</id>
+          </State>
+          <State>
+            <id>SQL</id>
+          </State>
+          <State>
+            <id>WebSocket issues</id>
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>Android</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -388,9 +164,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="PackagesPane" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -409,126 +184,20 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="javautils" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="javautils" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="javautils" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="javautils" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="javautils" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="javautils" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="javautils" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="javautils" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cenrise" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="utils" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="javautils" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="javautils" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cenrise" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/pom.xml" />
-    <property name="settings.editor.selected.configurable" value="Errors" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../IdeaProjects" />
+    <property name="settings.editor.selected.configurable" value="MavenSettings" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.2" />
   </component>
   <component name="RunManager">
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
@@ -842,7 +511,7 @@
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="main" />
+      <module name="javautils" />
       <envs />
       <method />
     </configuration>
@@ -972,35 +641,45 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="44c79ba3-c07d-4cff-b10a-4e317a4409d4" name="Default" comment="" />
-      <created>1481703006562</created>
+      <changelist id="3448f280-db30-4551-83a4-99b27659929f" name="Default" comment="" />
+      <created>1481704099017</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1481703006562</updated>
-      <workItem from="1481703007897" duration="378000" />
+      <updated>1481704099017</updated>
+      <workItem from="1481704100408" duration="175000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="378000" />
+    <option name="totallyTimeSpent" value="175000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="797" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298969" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3295129" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3298969" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21561605" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298969" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3298969" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298969" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
@@ -1010,7 +689,6 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -1029,22 +707,92 @@
     <breakpoint-manager />
     <watches-manager />
   </component>
-  <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="37" selection-start-line="11" selection-start-column="37" selection-end-line="11" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cenrise/utils/StringUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="42" column="13" selection-start-line="42" selection-start-column="13" selection-end-line="42" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>No facets are configured</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.6</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>javautils</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.6" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.7</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>Maven: org.apache.poi:poi-ooxml-schemas:3.9</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
   </component>
 </project>

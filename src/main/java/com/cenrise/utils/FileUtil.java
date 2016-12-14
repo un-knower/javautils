@@ -30,8 +30,8 @@ import java.util.Set;
 
 import org.apache.log4j.Logger;
 
-import com.cenrise.commons.utils.algorithm.FileImpl;
-import com.cenrise.commons.utils.algorithm.FileTypeImpl;
+import com.cenrise.utils.algorithm.FileImpl;
+import com.cenrise.utils.algorithm.FileTypeImpl;
 
 /**
  * 封装了些文件相关的操作

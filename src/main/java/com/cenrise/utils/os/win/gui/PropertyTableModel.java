@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 import javax.swing.table.AbstractTableModel;
 
-import com.cenrise.commons.utils.os.win.util.SysProperty;
+import com.cenrise.utils.os.win.util.SysProperty;
 
 public class PropertyTableModel extends AbstractTableModel
 {
