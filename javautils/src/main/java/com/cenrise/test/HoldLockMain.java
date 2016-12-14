@@ -1,4 +1,4 @@
-package com.cenrise.commons.utils.test;
+package com.cenrise.test;
 
 /**
  * 自动生成锁死的文件，用于查找被锁定的线程定位代码测试

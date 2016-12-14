@@ -1,4 +1,4 @@
-package com.cenrise.commons.utils.test;
+package com.cenrise.test;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

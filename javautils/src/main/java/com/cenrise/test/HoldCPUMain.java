@@ -1,4 +1,4 @@
-package com.cenrise.commons.utils.test;
+package com.cenrise.test;
 
 
 /**

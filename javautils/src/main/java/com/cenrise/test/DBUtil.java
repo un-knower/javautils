@@ -1,4 +1,4 @@
-package com.cenrise.commons.utils.testdb;
+package com.cenrise.test;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Properties;

@@ -1,4 +1,4 @@
-package com.cenrise.commons.utils.testdb;
+package com.cenrise.test;
 
 import java.io.BufferedInputStream;
 import java.io.File;

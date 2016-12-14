@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://maven.apache.org/POM/4.0.0"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.cenrise.javautils</groupId>
@@ -6,14 +7,14 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>CenriseJavaUtil</name>
 	<description>Java related tools</description>
-	
+
 	<properties>
 		<!-- Set default encoding to UTF-8 to remove maven complaints -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
 		<!-- Java compiler configuration -->
-		<sourceJavaVersion>1.6</sourceJavaVersion>
-		<targetJavaVersion>1.6</targetJavaVersion>
+		<sourceJavaVersion>1.7</sourceJavaVersion>
+		<targetJavaVersion>1.7</targetJavaVersion>
 
 		<!-- defaults for flaky test and focused test exclusions -->
 		<test.exclude.pattern>$</test.exclude.pattern> <!-- junk pattern -->
@@ -27,13 +28,14 @@
 		<tlq.version>8.0</tlq.version>
 		<!-- <spring-version>3.1.2.RELEASE</spring-version> -->
 	</properties>
-	
+
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.12</version>
 		</dependency>
+
 		<dependency>
 			<groupId>antlr</groupId>
 			<artifactId>antlr</artifactId>
@@ -74,11 +76,8 @@
 			<artifactId>javax.servlet-api</artifactId>
 			<version>3.1.0</version>
 		</dependency>
-		<!-- <dependency>
-			<groupId>cpdetector</groupId>
-			<artifactId>cpdetector</artifactId>
-			<version>1.0.7</version>
-		</dependency> -->
+		<!-- <dependency> <groupId>cpdetector</groupId> <artifactId>cpdetector</artifactId> 
+			<version>1.0.7</version> </dependency> -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
@@ -119,7 +118,7 @@
 			<artifactId>dom4j</artifactId>
 			<version>1.6.1</version>
 		</dependency>
-		
+
 		<!-- commons -->
 		<dependency>
 			<groupId>commons-dbcp</groupId>
@@ -166,14 +165,36 @@
 			<artifactId>protobuf-java</artifactId>
 			<version>2.4.1</version>
 		</dependency>
-		
+
 		<!-- database -->
 		<dependency>
 			<groupId>com.microsoft.sqlserver</groupId>
 			<artifactId>sqljdbc4</artifactId>
 			<version>4.0</version>
 		</dependency>
-		
-		
+
+
+		<!--excel、csv解析 -->
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>3.9</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>3.9</version>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+		</dependency>
+		<!--<dependency> -->
+		<!--<groupId>net.sf.opencsv</groupId> -->
+		<!--<artifactId>opencsv</artifactId> -->
+		<!--<version>2.4</version> -->
+		<!--</dependency> -->
+
 	</dependencies>
 </project>
