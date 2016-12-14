@@ -14,3 +14,4 @@ javautils/.idea/libraries/jar.xml
 javautils/.idea/misc.xml
 
 javautils/.idea/modules.xml
+/target/

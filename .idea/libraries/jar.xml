@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="jar">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/jar/ojdbc6-11.2.0.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/jar/cpdetector-1.0.7.jar!/" />
+      <root url="jar://$PROJECT_DIR$/jar/opencsv-2.4.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
