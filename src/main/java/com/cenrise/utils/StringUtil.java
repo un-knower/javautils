@@ -1,6 +1,5 @@
 package com.cenrise.utils;
 
-import java.io.ByteArrayInputStream;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Method;
 import java.math.BigDecimal;
@@ -14,8 +13,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.MissingResourceException;
@@ -28,10 +25,8 @@ import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.oro.text.perl.Perl5Util;
-import org.dom4j.Document;
-import org.dom4j.DocumentException;
-import org.dom4j.io.SAXReader;
 
 import com.cenrise.utils.algorithm.BCConvert;
 import com.cenrise.utils.algorithm.StringImpl;
@@ -51,16 +46,13 @@ public class StringUtil {
 	public static final StringFormatConstants UPPER_CASE = StringFormatConstants.UPPER_CASE;// 大写常量
 	/** 加权因子 */
 	@SuppressWarnings("unused")
-	private static final int[] weight = new int[] { 7, 9, 10, 5, 8, 4, 2, 1, 6,
-			3, 7, 9, 10, 5, 8, 4, 2, 1 };
+	private static final int[] weight = new int[] { 7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2, 1 };
 	// 过滤通过页面表单提交的字符
-	private static String[][] FilterChars = { { "<", "&lt;" }, { ">", "&gt;" },
-			{ " ", "&nbsp;" }, { "\"", "&quot;" }, { "&", "&amp;" },
-			{ "/", "&#47;" }, { "\\", "&#92;" }, { "\n", "<br>" } };
+	private static String[][] FilterChars = { { "<", "&lt;" }, { ">", "&gt;" }, { " ", "&nbsp;" }, { "\"", "&quot;" },
+			{ "&", "&amp;" }, { "/", "&#47;" }, { "\\", "&#92;" }, { "\n", "<br>" } };
 	// 过滤通过javascript脚本处理并提交的字符
-	private static String[][] FilterScriptChars = { { "\n", "\'+\'\\n\'+\'" },
-			{ "\r", " " }, { "\\", "\'+\'\\\\\'+\'" },
-			{ "\'", "\'+\'\\\'\'+\'" } };
+	private static String[][] FilterScriptChars = { { "\n", "\'+\'\\n\'+\'" }, { "\r", " " },
+			{ "\\", "\'+\'\\\\\'+\'" }, { "\'", "\'+\'\\\'\'+\'" } };
 
 	// 字符串处理常量枚举
 	private enum StringFormatConstants {
@@ -168,7 +160,7 @@ public class StringUtil {
 	}
 
 	/**
-	 * 截取字符串　超出的字符用symbol代替
+	 * 截取字符串 超出的字符用symbol代替
 	 *
 	 * @param str
 	 *            需要处理的字符串
@@ -435,8 +427,7 @@ public class StringUtil {
 	public static String string2Unicode(String string) {
 		StringBuilder uni = new StringBuilder();
 		for (int i = 0; i < string.length(); i++) {
-			String temp = "\\u"
-					+ String.valueOf(Integer.toHexString(string.charAt(i)));
+			String temp = "\\u" + String.valueOf(Integer.toHexString(string.charAt(i)));
 			uni.append(temp);
 		}
 		return uni.toString();
@@ -530,8 +521,7 @@ public class StringUtil {
 	 *            子字符串
 	 */
 	public static int countSubStr(String string, String str) {
-		if ((str == null) || (str.length() == 0) || (string == null)
-				|| (string.length() == 0)) {
+		if ((str == null) || (str.length() == 0) || (string == null) || (string.length() == 0)) {
 			return 0;
 		}
 		int count = 0;
@@ -657,8 +647,8 @@ public class StringUtil {
 		boolean endIndexFlag = true;
 		do {
 			int beginIndex = source.indexOf(element) == 0 ? 1 : 0;
-			int endIndex = source.lastIndexOf(element) + 1 == source.length() ? source
-					.lastIndexOf(element) : source.length();
+			int endIndex = source.lastIndexOf(element) + 1 == source.length() ? source.lastIndexOf(element)
+					: source.length();
 			source = source.substring(beginIndex, endIndex);
 			beginIndexFlag = (source.indexOf(element) == 0);
 			endIndexFlag = (source.lastIndexOf(element) + 1 == source.length());
@@ -829,8 +819,7 @@ public class StringUtil {
 	 * @return
 	 */
 	public static boolean isEmail2(String str) {
-		Pattern pattern = Pattern
-				.compile("\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*");
+		Pattern pattern = Pattern.compile("\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*");
 		Matcher isNum = pattern.matcher(str);
 		if (!isNum.matches()) {
 			return false;
@@ -1224,14 +1213,11 @@ public class StringUtil {
 		if (str.length() != 11 || !validateInt(str))
 			return false;
 
-		if (includeUnicom
-				&& (str.startsWith("130") || str.startsWith("133") || str
-						.startsWith("131")))
+		if (includeUnicom && (str.startsWith("130") || str.startsWith("133") || str.startsWith("131")))
 			return true;
 
-		if (!(str.startsWith("139") || str.startsWith("138")
-				|| str.startsWith("137") || str.startsWith("136") || str
-					.startsWith("135")))
+		if (!(str.startsWith("139") || str.startsWith("138") || str.startsWith("137") || str.startsWith("136")
+				|| str.startsWith("135")))
 			return false;
 		return true;
 	}
@@ -1266,8 +1252,7 @@ public class StringUtil {
 	 * @return
 	 * @throws UnsupportedEncodingException
 	 */
-	public static String covertCode(String s, String code1, String code2)
-			throws UnsupportedEncodingException {
+	public static String covertCode(String s, String code1, String code2) throws UnsupportedEncodingException {
 		if (s == null)
 			return null;
 		else if (s.trim().equals(""))
@@ -1283,8 +1268,7 @@ public class StringUtil {
 	 * @return
 	 * @throws UnsupportedEncodingException
 	 */
-	public static String transCode(String s0)
-			throws UnsupportedEncodingException {
+	public static String transCode(String s0) throws UnsupportedEncodingException {
 		if (s0 == null || s0.trim().equals(""))
 			return null;
 		else {
@@ -1333,8 +1317,7 @@ public class StringUtil {
 	 * @return
 	 */
 	@SuppressWarnings("unused")
-	public static final String[] replaceAll(String[] obj, String oldString,
-			String newString) {
+	public static final String[] replaceAll(String[] obj, String oldString, String newString) {
 		if (obj == null) {
 			return null;
 		}
@@ -1425,8 +1408,7 @@ public class StringUtil {
 	 * @param newString
 	 * @return
 	 */
-	public static final String replaceIgnoreCase(String line, String oldString,
-			String newString) {
+	public static final String replaceIgnoreCase(String line, String oldString, String newString) {
 		if (line == null) {
 			return null;
 		}
@@ -1498,8 +1480,7 @@ public class StringUtil {
 					randGen = new Random();
 					// Also initialize the numbersAndLetters array
 					numbersAndLetters = ("0123456789abcdefghijklmnopqrstuvwxyz"
-							+ "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ")
-							.toCharArray();
+							+ "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ").toCharArray();
 				}
 			}
 		}
@@ -1570,8 +1551,7 @@ public class StringUtil {
 	 * @return
 	 * @throws ParseException
 	 */
-	public static java.sql.Date stringToDate(String strDate, String pattern)
-			throws ParseException {
+	public static java.sql.Date stringToDate(String strDate, String pattern) throws ParseException {
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 		Date date = simpleDateFormat.parse(strDate);
 		long lngTime = date.getTime();
@@ -1586,8 +1566,7 @@ public class StringUtil {
 	 * @return
 	 * @throws ParseException
 	 */
-	public static java.util.Date stringToUtilDate(String strDate, String pattern)
-			throws ParseException {
+	public static java.util.Date stringToUtilDate(String strDate, String pattern) throws ParseException {
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 		return simpleDateFormat.parse(strDate);
 	}
@@ -1667,8 +1646,8 @@ public class StringUtil {
 	 * @return
 	 */
 	public static String htmlEncode(String value) {
-		String re[][] = { { "<", "&lt;" }, { ">", "&gt;" }, { "\"", "&quot;" },
-				{ "\\′", "&acute;" }, { "&", "&amp;" } };
+		String re[][] = { { "<", "&lt;" }, { ">", "&gt;" }, { "\"", "&quot;" }, { "\\′", "&acute;" },
+				{ "&", "&amp;" } };
 
 		for (int i = 0; i < 4; i++) {
 			value = value.replaceAll(re[i][0], re[i][1]);
@@ -1739,8 +1718,7 @@ public class StringUtil {
 	 *            要去除的特殊字符
 	 * @return 去掉特殊字符后的字符串
 	 */
-	public static String trimStringWithAppointedChar(String source,
-			String beTrim) {
+	public static String trimStringWithAppointedChar(String source, String beTrim) {
 		if (!source.equalsIgnoreCase("")) {
 			// 循环去掉字符串首的beTrim字符
 			String beginChar = source.substring(0, 1);
@@ -1750,12 +1728,10 @@ public class StringUtil {
 			}
 
 			// 循环去掉字符串尾的beTrim字符
-			String endChar = source.substring(source.length() - 1,
-					source.length());
+			String endChar = source.substring(source.length() - 1, source.length());
 			while (endChar.equalsIgnoreCase(beTrim)) {
 				source = source.substring(0, source.length() - 1);
-				endChar = source
-						.substring(source.length() - 1, source.length());
+				endChar = source.substring(source.length() - 1, source.length());
 			}
 		}
 		return source;
@@ -1772,8 +1748,7 @@ public class StringUtil {
 	 *            要去的特殊字符
 	 * @return 去掉特殊字符后的字符串
 	 */
-	public static String trimStringWithAppointedChar(String source,
-			String beTrim, String endTrim) {
+	public static String trimStringWithAppointedChar(String source, String beTrim, String endTrim) {
 		if (!source.equalsIgnoreCase("")) {
 			// 循环去掉字符串首的beTrim字符
 			String beginChar = source.substring(0, 2);
@@ -1783,12 +1758,10 @@ public class StringUtil {
 			}
 
 			// 循环去掉字符串尾的beTrim字符
-			String endChar = source.substring(source.length() - 1,
-					source.length());
+			String endChar = source.substring(source.length() - 1, source.length());
 			while (endChar.equalsIgnoreCase(endTrim)) {
 				source = source.substring(0, source.length() - 1);
-				endChar = source
-						.substring(source.length() - 1, source.length());
+				endChar = source.substring(source.length() - 1, source.length());
 			}
 		}
 		return source;
@@ -1837,13 +1810,10 @@ public class StringUtil {
 		for (int i = 0; i < keysWithQuotationMark.size(); i++) {
 			String eachKey = (String) keysWithQuotationMark.get(i);
 			String key = null;
-			if (eachKey.length() != 0
-					&& eachKey.substring(0, 1).equalsIgnoreCase("\"")) {
+			if (eachKey.length() != 0 && eachKey.substring(0, 1).equalsIgnoreCase("\"")) {
 				eachKey = eachKey.substring(1, eachKey.length());
 			}
-			if (eachKey.length() != 0
-					&& eachKey.substring(eachKey.length() - 1)
-							.equalsIgnoreCase("\"")) {
+			if (eachKey.length() != 0 && eachKey.substring(eachKey.length() - 1).equalsIgnoreCase("\"")) {
 				eachKey = eachKey.substring(0, eachKey.length() - 1);
 			}
 			key = eachKey;
@@ -2203,8 +2173,7 @@ public class StringUtil {
 	 *            缺省值
 	 * @return String
 	 */
-	public static String getPROPString(PropertyResourceBundle aPROP,
-			String itemName, String sDefault) {
+	public static String getPROPString(PropertyResourceBundle aPROP, String itemName, String sDefault) {
 		String aValue = "";
 		try {
 			if (null != aPROP) {
@@ -2231,8 +2200,7 @@ public class StringUtil {
 	 *            属性名称
 	 * @return String
 	 */
-	public static String getPROPString(PropertyResourceBundle aPROP,
-			String itemName) {
+	public static String getPROPString(PropertyResourceBundle aPROP, String itemName) {
 		return getPROPString(aPROP, itemName, "");
 	}
 
@@ -2251,8 +2219,8 @@ public class StringUtil {
 	 *            目标编码
 	 * @return 编码后的字符串
 	 */
-	public static String getEXTCHARSETString(String aStr,
-			String sDefaultEncode, String srcCharSet, String destCharSet) {
+	public static String getEXTCHARSETString(String aStr, String sDefaultEncode, String srcCharSet,
+			String destCharSet) {
 		String lastDefaultEncode = sDefaultEncode;
 		String strTemp = null;
 
@@ -2268,9 +2236,7 @@ public class StringUtil {
 					if (isTrimEmpty(lastDefaultEncode)) {
 						strTemp = new String(strTemp.getBytes(), destCharSet);
 					} else {
-						strTemp = new String(
-								strTemp.getBytes(lastDefaultEncode),
-								destCharSet);
+						strTemp = new String(strTemp.getBytes(lastDefaultEncode), destCharSet);
 					}
 				}
 			}
@@ -2451,8 +2417,7 @@ public class StringUtil {
 	 *            编码
 	 * @return String
 	 */
-	public static String getDotMsubstr(String astr, int nlength, String aDot,
-			String encoding) {
+	public static String getDotMsubstr(String astr, int nlength, String aDot, String encoding) {
 		byte[] mybytes = astr.getBytes();
 
 		// if not long enough,return old string
@@ -2500,8 +2465,7 @@ public class StringUtil {
 	 *            要连接的字符串
 	 * @return String
 	 */
-	public static String link2Str(String aOriStr, String aLinkSign,
-			String aLinkStr) {
+	public static String link2Str(String aOriStr, String aLinkSign, String aLinkStr) {
 		if (isBlank(aOriStr)) {
 			return aLinkStr;
 		} else {
@@ -2811,8 +2775,8 @@ public class StringUtil {
 	 */
 	public static boolean isTrueString(String aPropString) {
 		String strTemp = aPropString.toLowerCase(Locale.US);
-		return (strTemp.startsWith("true") || strTemp.startsWith("yes")
-				|| strTemp.startsWith("1") || strTemp.startsWith("y"));
+		return (strTemp.startsWith("true") || strTemp.startsWith("yes") || strTemp.startsWith("1")
+				|| strTemp.startsWith("y"));
 	}
 
 	/**
@@ -2829,8 +2793,7 @@ public class StringUtil {
 	 * 
 	 * @return 替换后的字符串
 	 */
-	public static String stringReplace(String source, String target,
-			String replace) {
+	public static String stringReplace(String source, String target, String replace) {
 		if (source != null && target != null && replace != null) {
 			StringBuffer stringbuffer = new StringBuffer(source.length() + 256);
 
@@ -2855,21 +2818,6 @@ public class StringUtil {
 			return source;
 		}
 	}
-
-	/**
-	 * 根据键值获取资料里国际化对应的值
-	 * 
-	 * @param key
-	 *            国际化键值
-	 * 
-	 * @return 对应的国际化值
-	 */
-	/*
-	 * public static String getResourceValueByKey(String key) { ResourceBundle
-	 * RESOURCE_BUNDLE = ResourceBundle .getBundle(Global.I18N_MESSAGE_FILE);
-	 * 
-	 * return RESOURCE_BUNDLE.getString(key); }
-	 */
 
 	/**
 	 * 判断字符串是否为空
@@ -2928,88 +2876,6 @@ public class StringUtil {
 		return resultStr;
 	}
 
-	/**
-	 * 把html中的特殊字符翻译为和显示和输入的一样:原版对应toHtml_all.
-	 * 
-	 * @param astr
-	 *            String
-	 * @return String
-	 */
-	/*
-	 * public static String str2DefaultTextHtml(String astr) { if
-	 * (isBlank(astr)) { return ""; } // String result = astr; // Perl5Util util
-	 * = new Perl5Util(); // result = util.substitute("s/&/&amp;/g", result); //
-	 * result = util.substitute("s/</&lt;#g", result); // result =
-	 * util.substitute("s/>/&gt;/g", result); // result =
-	 * util.substitute("s/ /&nbsp;/g", result); // result =
-	 * util.substitute("s/\"/&quot;/g", result); // astr = str2TextHtml(astr);
-	 * String r = HtmlUtils.htmlEscape(astr); Perl5Util util = new Perl5Util();
-	 * 
-	 * r = util.substitute("s/ /&nbsp;/g", r); util = null; return r; }
-	 */
-
-	/**
-	 * 将字节进行 KB MB GB换算
-	 * 
-	 * @param size
-	 *            字节数
-	 * @return 换算后的字符串
-	 */
-	public static String changeCapacities(long size) {
-		long returns = 0;
-		String den = "B";
-		if (size < 1024) {
-			returns = size;
-		} else if (size >= 1024 && size < 1048576) {
-			returns = size / 1024;
-			den = "KB";
-		} else if (size >= 1048576 && size < 1073741824) {
-			returns = size / 1024 / 1024;
-			den = "MB";
-		} else {
-			returns = size / 1024 / 1024 / 1024;
-			den = "GB";
-		}
-		return new String(returns + den);
-	}
-
-	public static Document getDocument(String message) {
-		Document doc = null;
-		SAXReader reader = new SAXReader();
-		try {
-			doc = reader.read(new ByteArrayInputStream(message
-					.getBytes("utf-8")));
-		} catch (DocumentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return doc;
-	}
-
-	/**
-	 * 根据键值获取资料里国际化对应的值
-	 * 
-	 * @param key
-	 *            国际化键值
-	 * 
-	 * @param language
-	 *            要国际化的语言（肯据客户端浏览器的语言国际化）
-	 * 
-	 * @return 对应的国际化值
-	 */
-	/*
-	 * public static String getResourceValueByKey(String key, String language) {
-	 * 
-	 * Locale local = new Locale(language);
-	 * 
-	 * ResourceBundle RESOURCE_BUNDLE = ResourceBundle.getBundle(
-	 * Global.I18N_MESSAGE_FILE, local); return RESOURCE_BUNDLE.getString(key);
-	 * }
-	 */
-
 	public static boolean isInteger(String str) {
 		Pattern pattern = Pattern.compile("[0-9]*");
 		Matcher isNum = pattern.matcher(str);
@@ -3039,8 +2905,8 @@ public class StringUtil {
 	@Deprecated
 	public static String checkMobile(String str) {
 		if (str.length() == 11) {
-			Pattern pattern = Pattern
-					.compile("^(((134[0-9]{1})|(135[0-9]{1})|(136[0-9]{1})|(137[0-9]{1})|(138[0-9]{1})|(139[0-9]{1})|(150[0-9]{1})|(151[0-9]{1})|(152[0-9]{1})|(157[0-9]{1})|(158[0-9]{1})|(159[0-9]{1})|(188[0-9]{1}))+\\d{7})$");
+			Pattern pattern = Pattern.compile(
+					"^(((134[0-9]{1})|(135[0-9]{1})|(136[0-9]{1})|(137[0-9]{1})|(138[0-9]{1})|(139[0-9]{1})|(150[0-9]{1})|(151[0-9]{1})|(152[0-9]{1})|(157[0-9]{1})|(158[0-9]{1})|(159[0-9]{1})|(188[0-9]{1}))+\\d{7})$");
 			Matcher isNum = pattern.matcher(str);
 			if (isNum.matches()) {
 				return "";
@@ -3055,12 +2921,9 @@ public class StringUtil {
 		} else {
 			if (str.length() >= 3) {
 				String tmps = str.substring(0, 3);
-				if (tmps.equals("134") || tmps.equals("135")
-						|| tmps.equals("136") || tmps.equals("137")
-						|| tmps.equals("138") || tmps.equals("139")
-						|| tmps.equals("150") || tmps.equals("151")
-						|| tmps.equals("152") || tmps.equals("157")
-						|| tmps.equals("158") || tmps.equals("159")) {
+				if (tmps.equals("134") || tmps.equals("135") || tmps.equals("136") || tmps.equals("137")
+						|| tmps.equals("138") || tmps.equals("139") || tmps.equals("150") || tmps.equals("151")
+						|| tmps.equals("152") || tmps.equals("157") || tmps.equals("158") || tmps.equals("159")) {
 					return "1";
 				} else {
 					if (str.length() >= 5) {
@@ -3112,8 +2975,7 @@ public class StringUtil {
 	 *            ：插入方向
 	 * @return
 	 */
-	public static String padString(String oldStr, int strLen, char padChar,
-			char direction) {
+	public static String padString(String oldStr, int strLen, char padChar, char direction) {
 		String newStr = oldStr;
 		try {
 			if (oldStr.length() >= strLen) {
@@ -3282,8 +3144,7 @@ public class StringUtil {
 	/** 字符串相除，如果产生异常，返回"-" * */
 	public static String Divide(String a, String b) {
 		try {
-			return String.valueOf(Double.valueOf(a).doubleValue()
-					/ Double.valueOf(b).doubleValue());
+			return String.valueOf(Double.valueOf(a).doubleValue() / Double.valueOf(b).doubleValue());
 		} catch (Exception e) {
 			return "-";
 		}
@@ -3292,8 +3153,7 @@ public class StringUtil {
 	/** 字符串相除 如果产生异常，返回re * */
 	public static String Divide(String a, String b, String re) {
 		try {
-			return String.valueOf(Double.valueOf(a).doubleValue()
-					/ Double.valueOf(b).doubleValue());
+			return String.valueOf(Double.valueOf(a).doubleValue() / Double.valueOf(b).doubleValue());
 		} catch (Exception e) {
 			return re;
 		}
@@ -3302,8 +3162,7 @@ public class StringUtil {
 	/** 字符串相减，如果产生异常，返回re * */
 	public static String decrease(String a, String b, String re) {
 		try {
-			return String.valueOf(Double.valueOf(a).doubleValue()
-					- Double.valueOf(b).doubleValue());
+			return String.valueOf(Double.valueOf(a).doubleValue() - Double.valueOf(b).doubleValue());
 		} catch (Exception e) {
 			return re;
 		}
@@ -3312,8 +3171,7 @@ public class StringUtil {
 	/** 字符串相减，如果产生异常，返回a * */
 	public static String decrease(String a, int b) {
 		try {
-			return String.valueOf(Integer.valueOf(a).intValue()
-					- Integer.valueOf(b).intValue());
+			return String.valueOf(Integer.valueOf(a).intValue() - Integer.valueOf(b).intValue());
 		} catch (Exception e) {
 			return a;
 		}
@@ -3322,8 +3180,7 @@ public class StringUtil {
 	/** 字符串相减，如果产生异常，返回a * */
 	public static String decrease(String a, String b) {
 		try {
-			return String.valueOf(Double.valueOf(a).doubleValue()
-					- Double.valueOf(b).doubleValue());
+			return String.valueOf(Double.valueOf(a).doubleValue() - Double.valueOf(b).doubleValue());
 		} catch (Exception e) {
 			return a;
 		}
@@ -3341,8 +3198,7 @@ public class StringUtil {
 	/** 字符串相加 如果产生异常，返回re * */
 	public static String adding(String a, String b, String re) {
 		try {
-			return String.valueOf(Double.valueOf(a).doubleValue()
-					+ Double.valueOf(b).doubleValue());
+			return String.valueOf(Double.valueOf(a).doubleValue() + Double.valueOf(b).doubleValue());
 		} catch (Exception e) {
 			return re;
 		}
@@ -3351,8 +3207,7 @@ public class StringUtil {
 	/** 字符串相加 如果产生异常，返回a * */
 	public static String adding(String a, String b) {
 		try {
-			return String.valueOf(Double.valueOf(a).doubleValue()
-					+ Double.valueOf(b).doubleValue());
+			return String.valueOf(Double.valueOf(a).doubleValue() + Double.valueOf(b).doubleValue());
 		} catch (Exception e) {
 			return a;
 		}
@@ -3370,8 +3225,7 @@ public class StringUtil {
 	/** 字符串相乘 如果产生异常，返回re * */
 	public static String multiply(String a, String b, String re) {
 		try {
-			return String.valueOf(Double.valueOf(a).doubleValue()
-					* Double.valueOf(b).doubleValue());
+			return String.valueOf(Double.valueOf(a).doubleValue() * Double.valueOf(b).doubleValue());
 		} catch (Exception e) {
 			return re;
 		}
@@ -3380,8 +3234,7 @@ public class StringUtil {
 	/** 字符串相乘 如果产生异常，返回a * */
 	public static String multiply(String a, String b) {
 		try {
-			return String.valueOf(Double.valueOf(a).doubleValue()
-					* Double.valueOf(b).doubleValue());
+			return String.valueOf(Double.valueOf(a).doubleValue() * Double.valueOf(b).doubleValue());
 		} catch (Exception e) {
 			return a;
 		}
@@ -3390,8 +3243,7 @@ public class StringUtil {
 	/** 字符串(a-b)/b 如果产生异常，返回re * */
 	public static String Tqb(String a, String b, String re) {
 		try {
-			return String.valueOf((Double.valueOf(a).doubleValue() - Double
-					.valueOf(b).doubleValue())
+			return String.valueOf((Double.valueOf(a).doubleValue() - Double.valueOf(b).doubleValue())
 					/ (Double.valueOf(b).doubleValue()));
 		} catch (Exception e) {
 			return re;
@@ -3401,8 +3253,7 @@ public class StringUtil {
 	/** 字符串(a-b)/b 如果产生异常，返回"-" * */
 	public static String Tqb(String a, String b) {
 		try {
-			return String.valueOf((Double.valueOf(a).doubleValue() - Double
-					.valueOf(b).doubleValue())
+			return String.valueOf((Double.valueOf(a).doubleValue() - Double.valueOf(b).doubleValue())
 					/ (Double.valueOf(b).doubleValue()));
 		} catch (Exception e) {
 			return "-";
@@ -3490,8 +3341,7 @@ public class StringUtil {
 	public static java.sql.Date str2SqlDate(String str, String formatStr) {
 		java.sql.Date sqlDate = new java.sql.Date(0);// 默认获得当前时间
 		try {
-			sqlDate = new java.sql.Date(new java.text.SimpleDateFormat(
-					formatStr).parse(str).getTime());
+			sqlDate = new java.sql.Date(new java.text.SimpleDateFormat(formatStr).parse(str).getTime());
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
@@ -3841,7 +3691,8 @@ public class StringUtil {
 	 * @param str
 	 *            ：true表示是，false表示否
 	 * @return：是或否
-	 * @exception: null 空指针异常
+	 * @exception: null
+	 *                 空指针异常
 	 */
 	public static boolean IsNumber(String str) {
 		Pattern pattern = Pattern.compile("[0-9]*");
@@ -3854,7 +3705,8 @@ public class StringUtil {
 	 * @param str
 	 *            ：true表示是，false表示否
 	 * @return：是或否
-	 * @exception: null 空指针异常
+	 * @exception: null
+	 *                 空指针异常
 	 */
 	public static boolean IsFloat(String str) {
 		Pattern pattern = Pattern.compile("\\d+[.]?\\d*");
@@ -3884,9 +3736,8 @@ public class StringUtil {
 	public static String replace4XML(String str) {
 		if (str == null)
 			return "";
-		return str.replace("<", "&lt;").replace(">", "&gt;")
-				.replace("'", "&apos;").replace("\"", "&quot;")
-				.replace("&", "&amp;");
+		return str.replace("<", "&lt;").replace(">", "&gt;").replace("'", "&apos;").replace("\"", "&quot;").replace("&",
+				"&amp;");
 	}
 
 	/**
@@ -3900,8 +3751,7 @@ public class StringUtil {
 	 */
 	public static String HtmlTag2String(String temp) {
 		temp = temp == null ? "" : temp;
-		return temp.replace("-lt;", "<").replace("-gt;", ">")
-				.replace("-amp;", "&");
+		return temp.replace("-lt;", "<").replace("-gt;", ">").replace("-amp;", "&");
 	}
 
 	/**
@@ -3929,9 +3779,8 @@ public class StringUtil {
 	 */
 	public static String String2HtmlTag(String temp) {
 		temp = temp == null ? "" : temp;
-		return temp.replace("&", "&amp;").replace("<", "&lt;")
-				.replace(">", "&gt;").replace("\"", "&quot;")
-				.replace("'", "&acute;");
+		return temp.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace("\"", "&quot;").replace("'",
+				"&acute;");
 	}
 
 	/**
@@ -4057,12 +3906,10 @@ public class StringUtil {
 	 * @param context
 	 * @version 1.0
 	 */
-	public static Object invokeMethod(Object owner, String methodName,
-			Object[] args) throws Exception {
+	public static Object invokeMethod(Object owner, String methodName, Object[] args) throws Exception {
 		Class ownerClass = owner.getClass();
 		System.out.println("Method=" + methodName);
-		methodName = methodName.substring(0, 1).toUpperCase()
-				+ methodName.substring(1);
+		methodName = methodName.substring(0, 1).toUpperCase() + methodName.substring(1);
 		Method method = null;
 		try {
 			method = ownerClass.getMethod("get" + methodName);
@@ -4253,8 +4100,7 @@ public class StringUtil {
 	 * @param length
 	 * @return
 	 */
-	public static String fillStringBefore(String source, String fillSeperator,
-			int length) {
+	public static String fillStringBefore(String source, String fillSeperator, int length) {
 		String dest = "";
 		if (source == null) {
 			source = "";
@@ -4290,355 +4136,18 @@ public class StringUtil {
 		content = replace(content, "'", "''");
 		return content;
 	}
-
-	public static String filter(String content) {
-		if (content == null) {
-			/* 153 */return "";
-		}
-		/* 155 */content = (content == null) ? " " : content;
-		/* 156 */content = replace(content, "<", "<");
-		/* 157 */content = replace(content, ">", ">");
-		/* 158 */content = replace(content, " ", " ");
-		/* 159 */content = replace(content, "\n", "<BR>");
-		/* 160 */return content;
-	}
-
-	public static String filter(Object content) {
-		return filter((String) content);
-	}
-
+	
 	/**
-	 * 字符双数组解析
+	 * 转换字段串中的中文为英文
 	 * 
-	 * @param data
+	 * @param str
 	 * @return
 	 */
-	public static String parseInsertStr(String[][] data) {
-		/* 214 */StringBuffer sb1 = new StringBuffer();
-		/* 215 */sb1.append(" (");
-		/* 216 */StringBuffer sb2 = new StringBuffer();
-		/* 217 */sb2.append(" values(");
-		/* 218 */for (int i = 0; i < data.length; ++i) {
-			/* 219 */sb1.append(data[i][0]);
-			/* 220 */switch (data[i][2].charAt(0)) {
-			case '1':
-				/* 222 */sb2.append("'" + data[i][1] + "'");
-				/* 223 */break;
-			case '2':
-				/* 225 */sb2.append(data[i][1]);
-			}
-
-			/* 228 */if (i < data.length - 1) {
-				/* 229 */sb1.append(",");
-				/* 230 */sb2.append(",");
-			} else {
-				/* 233 */sb1.append(")");
-				/* 234 */sb2.append(")");
-			}
+	public String replaceChineseDot(String str) {
+		if (StringUtils.isBlank(str)) {
+			return str;
 		}
-		/* 237 */sb1.append(sb2.toString());
-		/* 238 */return sb1.toString();
-	}
-
-	public static String parseUpdateStr(String[][] data) {
-		/* 247 */StringBuffer sb1 = new StringBuffer();
-		/* 248 */sb1.append(" ");
-		/* 249 */for (int i = 0; i < data.length; ++i) {
-			/* 250 */sb1.append(data[i][0]);
-			/* 251 */sb1.append("=");
-			/* 252 */switch (data[i][2].charAt(0)) {
-			case '1':
-				/* 254 */sb1.append("'" + data[i][1] + "'");
-				/* 255 */break;
-			case '2':
-				/* 257 */sb1.append(data[i][1]);
-			}
-
-			/* 260 */if (i < data.length - 1) {
-				/* 261 */sb1.append(",");
-			}
-		}
-		/* 264 */return sb1.toString();
-	}
-
-	public static String encodeBase64(byte[] abyte0) {
-		/* 383 */int l = abyte0.length;
-		/* 384 */StringBuffer stringbuffer = new StringBuffer((l / 3 + 1) * 4);
-		/* 385 */for (int i1 = 0; i1 < l; ++i1) {
-			/* 386 */int i = abyte0[i1] >> 2 & 0x3F;
-			/* 387 */stringbuffer
-					.append(
-					/* 388 */"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
-					/* 389 */.charAt(i));
-			/* 390 */i = abyte0[i1] << 4 & 0x3F;
-			/* 391 */if (++i1 < l) {
-				/* 392 */i |= abyte0[i1] >> 4 & 0xF;
-			}
-			/* 394 */stringbuffer
-					.append(
-					/* 395 */"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
-					/* 396 */.charAt(i));
-			/* 397 */if (i1 < l) {
-				/* 398 */int j = abyte0[i1] << 2 & 0x3F;
-				/* 399 */if (++i1 < l) {
-					/* 400 */j |= abyte0[i1] >> 6 & 0x3;
-				}
-				/* 402 */stringbuffer
-						.append(
-						/* 403 */"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
-						/* 404 */.charAt(j));
-			} else {
-				/* 407 */++i1;
-				/* 408 */stringbuffer.append('=');
-			}
-			/* 410 */if (i1 < l) {
-				/* 411 */int k = abyte0[i1] & 0x3F;
-				/* 412 */stringbuffer
-						.append(
-						/* 413 */"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
-						/* 414 */.charAt(k));
-			} else {
-				/* 417 */stringbuffer.append('=');
-			}
-		}
-		/* 420 */return stringbuffer.toString();
-	}
-
-	public static String encodeBase64(String s) {
-		/* 429 */return encodeBase64(s.getBytes());
-	}
-
-	public static String decodeBase64(byte[] abyte0) {
-		/* 438 */int k = abyte0.length;
-		/* 439 */StringBuffer stringbuffer = new StringBuffer(k * 3 / 4);
-		/* 440 */for (int l = 0; l < k; ++l) {
-			/* 441 */int i =
-			/* 442 */"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
-			/* 443 */.indexOf(abyte0[l]);
-			/* 444 */++l;
-			/* 445 */int j =
-			/* 446 */"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
-			/* 447 */.indexOf(abyte0[l]);
-			/* 448 */i = i << 2 | j >> 4 & 0x3;
-			/* 449 */stringbuffer.append((char) i);
-			/* 450 */if (++l < k) {
-				/* 451 */i = abyte0[l];
-				/* 452 */if (i == 61) {
-					break;
-				}
-				/* 455 */i =
-				/* 456 */"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
-				/* 457 */.indexOf((char) i);
-				/* 458 */j = j << 4 & 0xF0 | i >> 2 & 0xF;
-				/* 459 */stringbuffer.append((char) j);
-			}
-			/* 461 */if (++l >= k) {
-				continue;
-			}
-			/* 464 */j = abyte0[l];
-			/* 465 */if (j == 61) {
-				break;
-			}
-			/* 468 */j =
-			/* 469 */"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
-			/* 470 */.indexOf((char) j);
-			/* 471 */i = i << 6 & 0xC0 | j;
-			/* 472 */stringbuffer.append((char) i);
-		}
-		/* 474 */return stringbuffer.toString();
-	}
-
-	public static String decodeBase64(String s) {
-		/* 483 */return decodeBase64(s.getBytes());
-	}
-
-	public static String doubleToCurrency(double f, String moneyUnit,
-			String digit) {
-		/* 556 */NumberFormat nf = NumberFormat.getIntegerInstance();
-		/* 557 */if (moneyUnit == null) {
-			/* 558 */return "空";
-		}
-		/* 560 */if ((moneyUnit.equals("万元")) || (moneyUnit.equals("2"))) {
-			/* 561 */f /= 10000.0D;
-		}
-		/* 563 */if ((moneyUnit.equals("亿元")) || (moneyUnit.equals("3"))) {
-			/* 564 */f /= 100000000.0D;
-		}
-		/* 566 */if (digit == null) {
-			/* 567 */nf.setMinimumFractionDigits(2);
-			/* 568 */nf.setMaximumFractionDigits(2);
-		} else {
-			/* 571 */nf.setMinimumFractionDigits(Integer.parseInt(digit));
-			/* 572 */nf.setMaximumFractionDigits(Integer.parseInt(digit));
-		}
-		/* 574 */return nf.format(f);
-	}
-
-	public static String doubleToCurrency1(double f, Locale l) {
-		/* 628 */NumberFormat nf = (l == null) ? NumberFormat
-				.getCurrencyInstance() :
-		/* 629 */NumberFormat.getCurrencyInstance(l);
-		/* 630 */return nf.format(f);
-	}
-
-	public static String doubleToCurrency2(double f, Locale l) {
-		/* 642 */NumberFormat nf = (l == null) ? NumberFormat
-				.getCurrencyInstance() :
-		/* 643 */NumberFormat.getCurrencyInstance(l);
-		/* 644 */String temp = nf.format(f);
-		/* 645 */int i = temp.indexOf(nf.getCurrency().getSymbol());
-		/* 646 */if (i > 0) {
-			/* 647 */return temp.substring(0, i) + temp.substring(i + 1);
-		}
-
-		/* 650 */return temp.substring(1);
-	}
-
-	public static String doubleToCurrency3(double f, Locale l) {
-		/* 661 */String currency = doubleToCurrency2(f, l);
-		/* 662 */return replace(currency, ",", "");
-	}
-
-	public static String floatToCurrency1(float f, Locale l) {
-		/* 673 */NumberFormat nf = (l == null) ? NumberFormat
-				.getCurrencyInstance() :
-		/* 674 */NumberFormat.getCurrencyInstance(l);
-		/* 675 */return nf.format(f);
-	}
-
-	public static String floatToCurrency3(float f, Locale l) {
-		/* 686 */NumberFormat nf = (l == null) ? NumberFormat
-				.getCurrencyInstance() :
-		/* 687 */NumberFormat.getCurrencyInstance(l);
-		/* 688 */String currency = nf.format(f).substring(1);
-		/* 689 */return replace(currency, ",", "");
-	}
-
-	public static String floatToCurrency2(float f, Locale l) {
-		/* 702 */NumberFormat nf = (l == null) ? NumberFormat
-				.getCurrencyInstance() :
-		/* 703 */NumberFormat.getCurrencyInstance(l);
-		/* 704 */return nf.format(f).substring(1);
-	}
-
-	public static String stringToCurrency1(String str, Locale l) {
-		/* 715 */if ((str == null) || (str.equals(""))) {
-			/* 716 */return "";
-		}
-
-		/* 719 */double f = 0.0D;
-		try {
-			/* 721 */f = Double.parseDouble(str);
-		} catch (Exception ex) {
-			/* 724 */return "";
-		}
-
-		/* 727 */return doubleToCurrency1(f, l);
-	}
-
-	public static String makeRightConditionStr(HashSet set, String column) {
-		/* 1005 */if (set.contains("*")) {
-			/* 1006 */return "";
-		}
-		/* 1008 */if ((set == null) || (set.size() == 0)) {
-			/* 1009 */return column + " in ('')";
-		}
-		/* 1011 */if ((set != null) && (set.size() > 0)) {
-			/* 1012 */Iterator it = set.iterator();
-			/* 1013 */String temp = "";
-			/* 1014 */while (it.hasNext()) {
-				/* 1015 */String temp1 = (String) it.next();
-				/* 1016 */temp = temp + "'" + temp1 + "',";
-			}
-			/* 1018 */temp = temp.substring(0, temp.length() - 1);
-			/* 1019 */return column + " in (" + temp + ")";
-		}
-
-		/* 1022 */return "";
-	}
-
-	public static String makeRightConditionS(HashSet set, String column) {
-		/* 1035 */if (set.contains("*")) {
-			/* 1036 */return "";
-		}
-		/* 1038 */if ((set == null) || (set.size() == 0)) {
-			/* 1039 */return " AND " + column + " IN ('')";
-		}
-		/* 1041 */if ((set != null) && (set.size() > 0)) {
-			/* 1042 */Iterator it = set.iterator();
-			/* 1043 */String temp = "";
-			/* 1044 */while (it.hasNext()) {
-				/* 1045 */String temp1 = (String) it.next();
-				/* 1046 */temp = temp + "'" + temp1 + "',";
-			}
-			/* 1048 */temp = temp.substring(0, temp.length() - 1);
-			/* 1049 */return " AND " + column + " IN (" + temp + ")";
-		}
-
-		/* 1052 */return "";
-	}
-
-	private static String getPass(String psPass) throws Exception {
-		/* 1185 */psPass = psPass.trim();
-		/* 1186 */if (psPass.length() < 3) {
-			/* 1187 */throw new Exception("密码长度必须大于等于3");
-		}
-		/* 1189 */if (psPass.length() > 30) {
-			/* 1190 */throw new Exception("密码长度必须小于等于30");
-		}
-		/* 1192 */int viTemp = psPass.charAt(0);
-		/* 1193 */int viAscSum = 0;
-		/* 1194 */for (int j = 0; j < psPass.length(); ++j) {
-			/* 1195 */char vcChar = psPass.substring(j, j + 1).charAt(0);
-			/* 1196 */viTemp = vcChar;
-			/* 1197 */viAscSum += viTemp;
-		}
-		/* 1199 */int viSumMod = viAscSum % 26;
-		/* 1200 */int viMaxMod = viSumMod;
-		/* 1201 */String vsModStr = "";
-		/* 1202 */String vsDevStr = "";
-		/* 1203 */for (int k = 0; k < psPass.length(); ++k) {
-			/* 1204 */char vcChar = psPass.substring(k, k + 1).charAt(0);
-			/* 1205 */viTemp = vcChar + viSumMod;
-			/* 1206 */int viDev = viTemp / 26;
-			/* 1207 */int viMod = viTemp - (viDev * 26);
-			/* 1208 */if (viDev > viMaxMod) {
-				/* 1209 */viMaxMod = viDev;
-			}
-			/* 1211 */vsModStr = vsModStr + "," + (char) (viMod + 97);
-			/* 1212 */vsDevStr = vsDevStr + "," + String.valueOf(viDev);
-		}
-		/* 1214 */vsModStr = vsModStr.substring(1);
-		/* 1215 */vsDevStr = vsDevStr.substring(1);
-		/* 1216 */String vsTemp = "";
-		/* 1217 */StringTokenizer st = new StringTokenizer(vsDevStr,
-		/* 1218 */",");
-		do {
-			/* 1220 */char vcChar = st.nextToken().charAt(0);
-			/* 1221 */viTemp = Integer.parseInt(String.valueOf(vcChar));
-			/* 1222 */vsTemp = vsTemp + "," + (char) viTemp;
-		}
-		/* 1219 */while (
-		/* 1224 */st.hasMoreTokens());
-		/* 1225 */vsDevStr = vsTemp.substring(1);
-
-		/* 1227 */psPass = "";
-		/* 1228 */int i = 0;
-		/* 1229 */StringTokenizer st2 = new StringTokenizer(vsDevStr,
-		/* 1230 */",");
-		/* 1231 */StringTokenizer st3 = new StringTokenizer(vsModStr,
-		/* 1232 */",");
-		do {
-			/* 1234 */++i;
-			/* 1235 */if (i % 2 == 1) {
-				/* 1236 */psPass = st2.nextToken() + st3.nextToken() + psPass;
-			} else {
-				/* 1239 */psPass = st3.nextToken() + st2.nextToken() + psPass;
-			}
-		}
-		/* 1242 */while ((st2.hasMoreTokens()) && (
-		/* 1242 */st3.hasMoreTokens()));
-		/* 1243 */return psPass;
+		return str.replace("，", ",");
 	}
 
 	public static void main(String[] args) {
