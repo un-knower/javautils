@@ -1,10 +1,12 @@
 package com.cenrise.utils;
 
 import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -24,11 +26,15 @@ import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Enumeration;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.zip.ZipException;
 
 import org.apache.log4j.Logger;
+import org.apache.tools.zip.ZipEntry;
+import org.apache.tools.zip.ZipFile;
 
 import com.cenrise.utils.algorithm.FileImpl;
 import com.cenrise.utils.algorithm.FileTypeImpl;
@@ -98,8 +104,7 @@ public class FileUtil {
 	 */
 	public static List<String> lines(File file, String encoding) {
 		List<String> list = new ArrayList<>();
-		try (BufferedReader reader = new BufferedReader(new InputStreamReader(
-				new FileInputStream(file), encoding))) {
+		try (BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(file), encoding))) {
 			String line;
 			while ((line = reader.readLine()) != null) {
 				list.add(line);
@@ -148,8 +153,7 @@ public class FileUtil {
 	 */
 	public static List<String> lines(File file, int lines, String encoding) {
 		List<String> list = new ArrayList<>();
-		try (BufferedReader reader = new BufferedReader(new InputStreamReader(
-				new FileInputStream(file), encoding))) {
+		try (BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(file), encoding))) {
 			String line;
 			while ((line = reader.readLine()) != null) {
 				list.add(line);
@@ -171,8 +175,7 @@ public class FileUtil {
 	 */
 	public static byte[] readAsByte(File file) {
 		byte[] res = new byte[0];
-		try (FileInputStream fs = new FileInputStream(file);
-				FileChannel channel = fs.getChannel()) {
+		try (FileInputStream fs = new FileInputStream(file); FileChannel channel = fs.getChannel()) {
 			ByteBuffer byteBuffer = ByteBuffer.allocate((int) channel.size());
 			while ((channel.read(byteBuffer)) > 0) {
 				// do nothing
@@ -193,8 +196,7 @@ public class FileUtil {
 	public static byte[] readAsByteWithBigFile(File file) {
 		byte[] res = new byte[0];
 		try (FileChannel fc = new RandomAccessFile(file, "r").getChannel();) {
-			MappedByteBuffer byteBuffer = fc.map(FileChannel.MapMode.READ_ONLY,
-					0, fc.size()).load();
+			MappedByteBuffer byteBuffer = fc.map(FileChannel.MapMode.READ_ONLY, 0, fc.size()).load();
 			res = new byte[(int) fc.size()];
 			if (byteBuffer.remaining() > 0) {
 				// System.out.println("remain");
@@ -291,8 +293,7 @@ public class FileUtil {
 	 * @return
 	 * @throws IOException
 	 */
-	public static boolean appendLineFromToOneLine(File file, String str,
-			String encoding) throws IOException {
+	public static boolean appendLineFromToOneLine(File file, String str, String encoding) throws IOException {
 		List<String> oneLineDatas = lines(file, "GBK");
 		String lineSeparator = System.getProperty("line.separator", "\n");
 		RandomAccessFile randomFile = new RandomAccessFile(file, "rw");
@@ -322,8 +323,7 @@ public class FileUtil {
 	 */
 	private void StudyForappendLine(File file, String str, String encoding) {
 		try {
-			FileOutputStream fos = new FileOutputStream(
-					new File("d:\\abc.txt"), true);
+			FileOutputStream fos = new FileOutputStream(new File("d:\\abc.txt"), true);
 			String str2 = "ABC \n"; // 字符串末尾需要换行符
 			fos.write(str2.getBytes());
 			fos.close();
@@ -497,8 +497,7 @@ public class FileUtil {
 	 */
 	public static boolean copy(File file, String targetFile) {
 		try (FileInputStream fin = new FileInputStream(file);
-				FileOutputStream fout = new FileOutputStream(new File(
-						targetFile))) {
+				FileOutputStream fout = new FileOutputStream(new File(targetFile))) {
 			FileChannel in = fin.getChannel();
 			FileChannel out = fout.getChannel();
 			// 设定缓冲区
@@ -1003,8 +1002,7 @@ public class FileUtil {
 	 * @return
 	 * @throws Exception
 	 */
-	public static String readData(InputStream inSream, String charsetName)
-			throws Exception {
+	public static String readData(InputStream inSream, String charsetName) throws Exception {
 		ByteArrayOutputStream outStream = new ByteArrayOutputStream();
 		byte[] buffer = new byte[1024];
 		int len = -1;
@@ -1049,6 +1047,165 @@ public class FileUtil {
 		// String regex
 		// ="^([a-zA-z]:)|(^\\.{0,2}/)|(^\\w*)\\w([^:?*\"><|]){0,250}";
 		return RegUtil.isMatche(commandPath(path), regex);
+	}
+
+	/**
+	 * 传入压缩包路径，已传入字符集解压文件到相应文件目录(zip)
+	 * 
+	 * @param packagePath
+	 * @param outPath
+	 * @param characterSet
+	 * @return
+	 */
+	public static boolean unzip(String packagePath, String outPath, String characterSet)
+			throws IOException, FileNotFoundException, ZipException {
+		try {
+			BufferedInputStream bi;
+
+			if (characterSet == null) {
+				characterSet = "GBK"; // 默认GBK
+			}
+
+			ZipFile zf = new ZipFile(packagePath, characterSet); // 支持中文
+
+			Enumeration e = zf.getEntries();
+			while (e.hasMoreElements()) {
+				ZipEntry ze2 = (ZipEntry) e.nextElement();
+				String entryName = ze2.getName();
+				String path = outPath + "/" + entryName;
+				if (ze2.isDirectory()) {
+					System.out.println("正在创建解压目录 - " + entryName);
+					File decompressDirFile = new File(path);
+					if (!decompressDirFile.exists()) {
+						decompressDirFile.mkdirs();
+					}
+				} else {
+					System.out.println("正在创建解压文件 - " + entryName);
+					String fileDir = path.substring(0, path.lastIndexOf("/"));
+					File fileDirFile = new File(fileDir);
+					if (!fileDirFile.exists()) {
+						fileDirFile.mkdirs();
+					}
+					BufferedOutputStream bos = new BufferedOutputStream(
+							new FileOutputStream(outPath + "/" + entryName));
+
+					bi = new BufferedInputStream(zf.getInputStream(ze2));
+					byte[] readContent = new byte[1024];
+					int readCount = bi.read(readContent);
+					while (readCount != -1) {
+						bos.write(readContent, 0, readCount);
+						readCount = bi.read(readContent);
+					}
+					bos.close();
+				}
+			}
+			zf.close();
+
+			// 删除过滤所有 以__MACOSX,.DS_Store文件目录
+			File outFile = new File(outPath);
+			File[] inner1Files = outFile.listFiles();
+			if (inner1Files.length > 0) {
+				for (File inner1File : inner1Files) {
+					if (inner1File.getName().startsWith("__MACOSX") || inner1File.getName().startsWith(".DS_Store")) {
+						deleteDir(inner1File);
+					}
+
+					if (inner1File.isDirectory()) {
+						File[] inner2Files = inner1File.listFiles();
+						if (inner2Files.length > 0) {
+							for (File inner2File : inner2Files) {
+								if (inner2File.getName().startsWith("__MACOSX")
+										|| inner2File.getName().startsWith(".DS_Store")) {
+									deleteDir(inner1File);
+								}
+							}
+						}
+					}
+				}
+			}
+
+			return true;
+		} catch (Exception e) {
+			System.out.println("zip解压失败！characterSet[" + characterSet + "]");
+			e.printStackTrace();
+			return false;
+		} finally {
+			// 东航压缩包内直接是各地区压缩包，解决方法，如果解压后0.7都为压缩包则将压缩包放入新建的文件夹内，模拟国航的目录结构
+			File[] afterUpZipFile = new File(outPath).listFiles(); // 最外层压缩包内文件，国航为一个文件夹，通用为csv文件，东航为各地区压缩包
+			int total = afterUpZipFile.length;
+			int zipNum = 0;
+			for (File file : afterUpZipFile) {
+				if (file.getName().endsWith(".zip")) {
+					zipNum++;
+				}
+			}
+			if ((zipNum / total) > 0.7) {
+				String newFilePath = outPath + File.separator + new File(packagePath).getName();
+				File newFile = new File(newFilePath);
+				newFile.mkdir();
+
+				for (File file : afterUpZipFile) {
+					file.renameTo(new File(newFile.getPath() + File.separator + file.getName()));
+				}
+			}
+
+			deleteDir(new File(packagePath)); // 删除压缩包
+		}
+	}
+
+	/**
+	 * 传入压缩包路径，已传入字符集解压文件到相应文件目录(rar)
+	 * 
+	 * @param packagePath
+	 * @param outPath
+	 * @param characterSet
+	 * @return
+	 */
+	public boolean unrar(String packagePath, String outPath, String characterSet) {
+
+		return false;
+	}
+
+	/**
+	 * 判断压缩包文件名字符集
+	 * 
+	 * @param str
+	 * @return
+	 */
+	public static String getEncoding(String str) {
+		String encode = "GB2312";
+		try {
+			if (str.equals(new String(str.getBytes(encode), encode))) {
+				String s = encode;
+				return s;
+			}
+		} catch (Exception exception) {
+		}
+		encode = "ISO-8859-1";
+		try {
+			if (str.equals(new String(str.getBytes(encode), encode))) {
+				String s1 = encode;
+				return s1;
+			}
+		} catch (Exception exception1) {
+		}
+		encode = "UTF-8";
+		try {
+			if (str.equals(new String(str.getBytes(encode), encode))) {
+				String s2 = encode;
+				return s2;
+			}
+		} catch (Exception exception2) {
+		}
+		encode = "GBK";
+		try {
+			if (str.equals(new String(str.getBytes(encode), encode))) {
+				String s3 = encode;
+				return s3;
+			}
+		} catch (Exception exception3) {
+		}
+		return "";
 	}
 
 	/**

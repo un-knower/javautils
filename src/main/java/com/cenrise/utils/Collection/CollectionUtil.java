@@ -241,4 +241,26 @@ public class CollectionUtil {
 		}
 		return newList;
 	}
+
+    /**
+     * 把list<String>转换成以逗号分开的字符串
+     * @param stringList
+     * @return
+     */
+    public static String listToString(List<String> stringList){
+        if (stringList==null) {
+            return null;
+        }
+        StringBuilder result=new StringBuilder();
+        boolean flag=false;
+        for (String string : stringList) {
+            if (flag) {
+                result.append(",");
+            }else {
+                flag=true;
+            }
+            result.append(string);
+        }
+        return result.toString();
+    }
 }

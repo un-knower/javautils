@@ -1,13 +1,99 @@
 package com.cenrise.test;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.zip.ZipException;
+
 import org.apache.commons.lang.StringUtils;
 import org.junit.Test;
 
+import com.cenrise.utils.FileUtil;
+
 public class TestCommon {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws FileNotFoundException, ZipException, IOException {
 		TestCommon test = new TestCommon();
-		test.tesString();
+		test.testDot();
+	}
+
+	@Test
+	public void testDot() {
+		String BOCOSaleSwitch = "1006166|10040007799";
+		BOCOSaleSwitch = BOCOSaleSwitch.replace("，", ",");// 中文逗号支持
+		String[] dotArrays = BOCOSaleSwitch.split(",");
+		if (dotArrays == null || dotArrays.length == 0) {
+			System.out.println("没有参数配置项！");
+		}
+		System.out.println("值1：" + dotArrays.length + dotArrays[0]);
+		for (int j = 0; j < dotArrays.length; j++) {
+			String[] args = dotArrays[j].split("\\|");
+			if (args == null || args.length == 0) {
+				System.out.println("此项参数配置为空跳过！");
+			}
+			System.out.println("结束！ 值1：" + args.length + args[0] + "  值2：" + args[1]);
+		}
+
+	}
+
+	@Test
+	public void testZip() throws FileNotFoundException, ZipException, IOException {
+		String outFilePath = "Users/yp-tc-m-2684/jiadp/携程对账/TempOutFile1481609695062636.82382397984031.4816096970952566E12东航团卡散客0901-04/20160905142049IndividualSale.csv";
+		File files = new File(outFilePath); // 如果压缩包内还有压缩包则解压内层压缩包
+		for (File file : files.listFiles()) {
+			if (file.isDirectory()) {
+				File[] zipFiles = file.listFiles();
+				for (File zip : zipFiles) {
+					String zipName = zip.getPath().substring(0, zip.getPath().lastIndexOf(".zip"));
+					FileUtil.unzip(zip.getPath(), zipName, "GBK");
+				}
+			}
+		}
+	}
+
+	public void testCatch2() {
+		testCatch();
+	}
+
+	@Test
+	public void testMap() {
+		Map<String, String> _tmpMap = new HashMap<String, String>();
+		_tmpMap.put("zha", "23");
+		_tmpMap.put("zha", _tmpMap.get("zha") + "98");
+		for (String key : _tmpMap.keySet()) {
+			System.out.println("key= " + key + " and value= " + _tmpMap.get(key));
+		}
+	}
+
+	@Test
+	public boolean testCatch() {
+		try {
+			int i = 10 / 0; // 抛出 Exception，后续处理被拒绝
+			System.out.println("i vaule is : " + i);
+			return true; // Exception 已经抛出，没有获得被执行的机会
+		} catch (Exception e) {
+			System.out.println(" -- Exception --");
+			return catchMethod(); // Exception 抛出，获得了调用方法的机会，但方法值在 finally
+									// 执行完后才返回
+		} finally {
+			finallyMethod(); // Exception 抛出，finally 代码块将在 catch 执行 return 之前被执行
+		}
+	}
+
+	// catch 后续处理工作
+	public static boolean catchMethod() {
+		System.out.print("call catchMethod and return  --->>  ");
+		return false;
+	}
+
+	// finally后续处理工作
+	public static void finallyMethod() {
+		System.out.println();
+		System.out.print("call finallyMethod and do something  --->>  ");
 	}
 
 	@Test
@@ -35,8 +121,7 @@ public class TestCommon {
 		}
 
 	}
-	
-	
+
 	@Test
 	public void sendMessageValidation2() {
 		try {
@@ -83,7 +168,7 @@ public class TestCommon {
 			System.out.println("............商户下发短信验证结束............");
 		}
 	}
-	
+
 	@Test
 	public void sendMessageValidation() {
 		try {
@@ -129,6 +214,34 @@ public class TestCommon {
 		} finally {
 			System.out.println("............商户下发短信验证结束............");
 		}
+	}
+
+	private static Pattern SMS_CODE_PATTERN = Pattern.compile("\\d\\d\\d");
+
+	@Test
+	public void testPattern627() {
+		Matcher m = SMS_CODE_PATTERN.matcher("6278");
+		if (!m.find()) {
+			System.out.println("上行信息中不包含验证码：6278");
+			return;
+		} else {
+			System.out.println("匹配之后的数字" + m.group(0));
+		}
+		System.out.println("over!");
+	}
+
+	private static Pattern SMS_CODE_PATTERN_Number = Pattern.compile("^[0-9]{3,8}$");
+
+	@Test
+	public void testPatternNumber() {
+		Matcher m = SMS_CODE_PATTERN_Number.matcher("601");
+		if (!m.find()) {
+			System.out.println("不匹配");
+			return;
+		} else {
+			System.out.println("匹配" + m.group(0));
+		}
+		System.out.println("over!");
 	}
 
 }
