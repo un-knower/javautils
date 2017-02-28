@@ -40,7 +40,7 @@ public class TestCommon {
 
 	}
 
-	@Test
+	/*@Test
 	public void testZip() throws FileNotFoundException, ZipException, IOException {
 		String outFilePath = "Users/yp-tc-m-2684/jiadp/携程对账/TempOutFile1481609695062636.82382397984031.4816096970952566E12东航团卡散客0901-04/20160905142049IndividualSale.csv";
 		File files = new File(outFilePath); // 如果压缩包内还有压缩包则解压内层压缩包
@@ -54,7 +54,7 @@ public class TestCommon {
 			}
 		}
 	}
-
+*/
 	public void testCatch2() {
 		testCatch();
 	}

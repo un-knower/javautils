@@ -289,13 +289,13 @@ public class FileUtilTest extends SupportTest {
         FileUtil.writeAppend(new File(path + "cfile2_UTF8.TXT"), ctemp, CharsetUtil.UTF_8);
     }
 
-	@Test
+	/*@Test
 	public void testUnzip() throws FileNotFoundException, ZipException, IOException {
 //		FileUtil.unzip("/Users/yp-tc-m-2684/Downloads/携程对账/成都航成都1201-04.zip", "/Users/yp-tc-m-2684/Downloads/携程对账/out",
 //				"GBK");
 		FileUtil.unzip("/Users/yp-tc-m-2684/soft/windown/kettle配置.zip", "/Users/yp-tc-m-2684/soft/windown/out",
 				"GBK");
 		
-	}
+	}*/
 
 }
