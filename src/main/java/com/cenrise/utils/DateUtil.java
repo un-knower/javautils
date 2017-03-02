@@ -1,12 +1,10 @@
 package com.cenrise.utils;
 
+import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.Locale;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -2564,6 +2562,27 @@ public class DateUtil {
 		return d;
 	}
 
+	/**
+	 * 返回前一天的整点信息
+	 *
+	 * @param date
+	 * @return 2014-3-3 00:00:00
+	 */
+	public static Date lastDayWholePointDate(Date date) {
+
+		GregorianCalendar gc = new GregorianCalendar();
+		gc.setTime(date);
+		if ((gc.get(gc.HOUR_OF_DAY) == 0) && (gc.get(gc.MINUTE) == 0)
+				&& (gc.get(gc.SECOND) == 0)) {
+			return new Date(date.getTime() - (24 * 60 * 60 * 1000));
+		} else {
+			Date date2 = new Date(date.getTime() - gc.get(gc.HOUR_OF_DAY) * 60 * 60
+					* 1000 - gc.get(gc.MINUTE) * 60 * 1000 - gc.get(gc.SECOND)
+					* 1000 - 24 * 60 * 60 * 1000);
+			return date2;
+		}
+	}
+
 	public static void main(String[] args) throws Exception {
 
 		// Calendar calendar = Calendar.getInstance();
@@ -2582,6 +2601,22 @@ public class DateUtil {
 		System.out.println(getDateValue);
 
 		System.out.println(getRemindTime(new Date(), 10, 0));
+
+		//通过System.currentTimeMillis获取当前时间毫秒数，然后转换为Timestamp格式时间。
+		long current = System.currentTimeMillis();//当前时间毫秒数
+		long zero = current / (1000 * 3600 * 24) * (1000 * 3600 * 24) - TimeZone.getDefault().getRawOffset();//今天零点零分零秒的毫秒数
+		long twelve = zero + 24 * 60 * 60 * 1000 - 1;//今天23点59分59秒的毫秒数
+		long yesterday = System.currentTimeMillis() - 24 * 60 * 60 * 1000;//昨天的这一时间的毫秒数
+		System.out.println(new Timestamp(current));//当前时间
+		System.out.println(new Timestamp(yesterday));//昨天这一时间点
+		System.out.println(new Timestamp(zero));//今天零点零分零秒
+		System.out.println(new Timestamp(twelve));//今天23点59分59秒
+
+
+		Date date = new Date();
+		System.out.println(date.toLocaleString());
+		date = DateUtil.lastDayWholePointDate(date);
+		System.out.println(date.toLocaleString());
 	}
 
 	/**
