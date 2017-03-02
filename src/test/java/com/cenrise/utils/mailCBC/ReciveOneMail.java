@@ -309,7 +309,7 @@ public class ReciveOneMail {
         props.put("mail.smtp.auth", "true");
         Session session = Session.getDefaultInstance(props, null);
         URLName urln = new URLName("pop3", "pop3.163.com", 110, null,
-                "jiadp2012", "2012@beijing");
+                "jiadp2012", "*******");
         Store store = session.getStore(urln);
         store.connect();
         Folder folder = store.getFolder("INBOX");

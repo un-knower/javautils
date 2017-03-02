@@ -70,7 +70,7 @@ public class CBCMailFetch {
         Session session = Session.getDefaultInstance(props, null);
 
         URLName urln = new URLName("pop3", "pop.yeepay.com", 995, null,
-                "dongpo.jia@yeepay.com", "2012@beijing");
+                "dongpo.jia@yeepay.com", "*******");
         Store store = session.getStore(urln);
         Folder inbox = null;
         try {

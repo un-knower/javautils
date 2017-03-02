@@ -31,7 +31,7 @@ public class Sender163 {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
                 //PasswordAuthentication是一个包装类,里面包含了用户名和密码
-                return new PasswordAuthentication("jiadp2012", "2012@beijing");
+                return new PasswordAuthentication("jiadp2012", "*******");
             }
         });
         session.setDebug(true);//允许调试,因此可以用getDebug()方法取调试信息,消息很多
