@@ -19,15 +19,15 @@ public class SysUtil {
     /**
      * JVM的版本
      */
-    public static final String JVM_VERSION     = ProUtil.key("java.version");
+    public static final String JVM_VERSION = ProUtil.key("java.version");
     /**
      * JVM的编码
      */
-    public static final String JVM_ENCODING    = ProUtil.key("file.encoding");
+    public static final String JVM_ENCODING = ProUtil.key("file.encoding");
     /**
      * JVM默认的临时目录
      */
-    public static final String JVM_TEMPDIR     = ProUtil.key("java.io.tmpdir");
+    public static final String JVM_TEMPDIR = ProUtil.key("java.io.tmpdir");
     public static final String HTTP_PROXY_HOST = "http.proxyHost";
     public static final String HTTP_PROXY_PORT = "http.proxyPort";
     ;
@@ -45,23 +45,23 @@ public class SysUtil {
     /**
      * 主机架构
      */
-    public static String OS_ARCH           = ProUtil.key("os.arch");
+    public static String OS_ARCH = ProUtil.key("os.arch");
     /**
      * 主机类型
      */
-    public static String OS_NAME           = ProUtil.key("os.name");
+    public static String OS_NAME = ProUtil.key("os.name");
     /**
      * 主机类型版本
      */
-    public static String OS_VERSION        = ProUtil.key("os.version");
+    public static String OS_VERSION = ProUtil.key("os.version");
     /**
      * 操作系统类型
      */
-    public static String SUN_DESKTOP       = ProUtil.key("sun.desktop");
+    public static String SUN_DESKTOP = ProUtil.key("sun.desktop");
     /**
      * 当前用户
      */
-    public static String CURRENT_USER      = ProUtil.key("user.name");
+    public static String CURRENT_USER = ProUtil.key("user.name");
     /**
      * 当前用户的家目录
      */
@@ -69,14 +69,14 @@ public class SysUtil {
     /**
      * 当用用户的工作目录
      */
-    public static String CURRENT_USER_DIR  = ProUtil.key("user.dir");
-    public static String FILE_SEPARATOR    = ProUtil.key("file.separator");
-    public static String PATH_SEPARATOR    = ProUtil.key("path.separator");
-    public static String LINE_SEPARATOR    = ProUtil.key("line.separator");
+    public static String CURRENT_USER_DIR = ProUtil.key("user.dir");
+    public static String FILE_SEPARATOR = ProUtil.key("file.separator");
+    public static String PATH_SEPARATOR = ProUtil.key("path.separator");
+    public static String LINE_SEPARATOR = ProUtil.key("line.separator");
     /**
      * 总的物理内存
      */
-    public static  long                  TotalMemorySize;
+    public static long TotalMemorySize;
     private static OperatingSystemMXBean osmxb;
     private static int kb = 1024;
 
@@ -128,7 +128,6 @@ public class SysUtil {
 
     /**
      * 获取JVM内存总量
-     *
      */
     public static long JVMtotalMem() {
         return Runtime.getRuntime().totalMemory() / kb;
@@ -136,7 +135,6 @@ public class SysUtil {
 
     /**
      * 虚拟机空闲内存量
-     *
      */
     public static long JVMfreeMem() {
         return Runtime.getRuntime().freeMemory() / kb;
@@ -144,7 +142,6 @@ public class SysUtil {
 
     /**
      * 虚拟机使用最大内存量
-     *
      */
     public static long JVMmaxMem() {
         return Runtime.getRuntime().maxMemory() / kb;
@@ -168,4 +165,28 @@ public class SysUtil {
         System.getProperties().put(HTTP_PROXY_PORT, port);
     }
 
+    /**
+     * 获取当前系统的换行符
+     * /r Mac
+     * /n Unix/Linux
+     * /r/n Windows
+     */
+    public static String lineSeparator() {
+        //注意在将流写入文件时，换行应根据操作系统的不同来决定。
+        //在程序我们应尽量使用System.getProperty("line.separator")来获取当前系统的换
+        //行符，而不是写/r/n或/n。
+        //这样写程序不够灵活
+        //当我们在java控制台输出的时候，/r和/n都能达到换行的效果。
+        if (System.getProperty("line.separator").equals("\r\n")) {
+            System.out.println("//r//n is for windows");
+            return "/r/n";
+        } else if (System.getProperty("line.separator").equals("\r")) {
+            System.out.println("//r is for Mac");
+            return "\r";
+        } else if (System.getProperty("line.separator").equals("\n")) {
+            System.out.println("//n is for Unix/Linux");
+            return "\n";
+        }
+        return "";
+    }
 }

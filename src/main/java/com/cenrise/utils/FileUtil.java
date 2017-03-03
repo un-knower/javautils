@@ -17,6 +17,8 @@ import java.util.zip.ZipException;
 //import java.util.zip.ZipException;
 //import java.util.zip.ZipFile;
 
+import com.cenrise.worktile.mailCBC.*;
+import com.cenrise.worktile.mailCBC.Const;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
@@ -982,7 +984,7 @@ public class FileUtil {
 
     /**
      * 传入压缩包路径，已传入字符集解压文件到相应文件目录(zip)
-     *
+     * 删了压缩文件
      * @param packagePath
      * @param outPath
      * @param characterSet
@@ -1083,6 +1085,110 @@ public class FileUtil {
 			deleteDir(new File(packagePath)); // 删除压缩包
 		}
 	}
+
+
+    /**
+     * 传入压缩包路径,解压,取里边名称包含det的文件,放在zip同目录,然后把解压后的文件夹删了。
+     * 这个不是工具方法。
+     *
+     * @param files
+     * @return
+     * @throws IOException
+     * @throws FileNotFoundException
+     * @throws ZipException
+     */
+    public static void unZipRedirect(List<File> files) throws IOException, FileNotFoundException, ZipException {
+        for (File file : files) {
+            String packagePath = file.getAbsolutePath();//压缩文件路径
+            String outPath = packagePath.substring(0, packagePath.length() - 4);
+            String characterSet = "GBK";
+
+            try {
+                BufferedInputStream bi;
+
+                if (characterSet == null) {
+                    characterSet = "GBK"; // 默认GBK
+                }
+
+                ZipFile zf = new ZipFile(packagePath, characterSet); // 支持中文
+
+                Enumeration e = zf.getEntries();
+                while (e.hasMoreElements()) {
+                    ZipEntry ze2 = (ZipEntry) e.nextElement();
+                    String entryName = ze2.getName();
+                    String path = outPath + "/" + entryName;
+                    if (ze2.isDirectory()) {
+                        System.out.println("正在创建解压目录 - " + entryName);
+                        File decompressDirFile = new File(path);
+                        if (!decompressDirFile.exists()) {
+                            decompressDirFile.mkdirs();
+                        }
+                    } else {
+                        System.out.println("正在创建解压文件 - " + entryName);
+                        String fileDir = path.substring(0, path.lastIndexOf("/"));
+                        File fileDirFile = new File(fileDir);
+                        if (!fileDirFile.exists()) {
+                            fileDirFile.mkdirs();
+                        }
+                        BufferedOutputStream bos = new BufferedOutputStream(
+                                new FileOutputStream(outPath + "/" + entryName));
+
+                        bi = new BufferedInputStream(zf.getInputStream(ze2));
+                        byte[] readContent = new byte[1024];
+                        int readCount = bi.read(readContent);
+                        while (readCount != -1) {
+                            bos.write(readContent, 0, readCount);
+                            readCount = bi.read(readContent);
+                        }
+                        bos.close();
+                    }
+                }
+                zf.close();
+
+                // 删除过滤所有 以__MACOSX,.DS_Store文件目录
+                File outFile = new File(outPath);
+                File[] inner1Files = outFile.listFiles();
+                if (inner1Files.length > 0) {
+                    for (File inner1File : inner1Files) {
+                        if (inner1File.getName().startsWith("__MACOSX") || inner1File.getName().startsWith(".DS_Store")) {
+                            deleteDir(inner1File);
+                        }
+
+                        if (inner1File.isDirectory()) {
+                            File[] inner2Files = inner1File.listFiles();
+                            if (inner2Files.length > 0) {
+                                for (File inner2File : inner2Files) {
+                                    if (inner2File.getName().startsWith("__MACOSX")
+                                            || inner2File.getName().startsWith(".DS_Store")) {
+                                        deleteDir(inner1File);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            } catch (Exception e) {
+                if (e.getMessage().equals("archive is not a ZIP archive")) {
+                    System.out.println("zip压缩文件[" + file.getAbsolutePath() + "]异常,文件不能解压!" + SysUtil.lineSeparator() + Const.getStackTracker(e));
+                    continue;
+                }
+                System.out.println("zip压缩文件[" + file.getAbsolutePath() + "]解压过程中发生异常!" + SysUtil.lineSeparator() + Const.getStackTracker(e));
+                continue;
+            } finally {
+                //deleteDir(new File(packagePath)); // 删除压缩包
+
+                //获取解压后的文件全路径
+                List<File> filedirs = com.cenrise.worktile.mailCBC.Const.searchFile(new File(outPath), ".det.");
+                for (File onefile : filedirs) {
+                    //移动文件到zip同级目录
+                    copy(onefile, file.getParent() + java.io.File.separator + onefile.getName());
+                }
+
+                //删除生成的目录
+                com.cenrise.worktile.mailCBC.Const.delFolder(outPath);
+            }
+        }
+    }
 
     /**
      * 传入压缩包路径，已传入字符集解压文件到相应文件目录(rar)

@@ -56,7 +56,7 @@ public class CBCMailFetch {
         Session session = Session.getDefaultInstance(props, null);
 
         URLName urln = new URLName("pop3", "pop.yeepay.com", 995, null,
-                "dongpo.jia@yeepay.com", "*******");
+                "dongpo.jia@yeepay.com", "2012@beijing");
         Store store = session.getStore(urln);
         Folder inbox = null;
         try {
@@ -94,11 +94,11 @@ public class CBCMailFetch {
                         System.out.println(attachmentName);
                         //SHOP.105584045110069.20161028.zip
                         String[] attachmentNames = attachmentName.split("\\.");
-                        System.out.println("第一个元素:" + attachmentNames[0] + "第二个元素:" + attachmentNames[1] + "第三个元素:" + attachmentNames[2] + "第四个元素:" + attachmentNames[3]);
-
-                        if (attachmentNames[1] == null || attachmentNames[2] == null) {
-                            throw new Exception("附件结构不符合,记录");
+                        if (attachmentNames.length != 4) {
+                            System.out.println(Arrays.toString(attachmentNames));
+                            continue;//结构不对
                         }
+                        System.out.println("第一个元素:" + attachmentNames[0] + "第二个元素:" + attachmentNames[1] + "第三个元素:" + attachmentNames[2] + "第四个元素:" + attachmentNames[3]);
 
                         //格式化日期
                         DateFormat format = new SimpleDateFormat("yyyyMMdd");
@@ -118,6 +118,9 @@ public class CBCMailFetch {
 //                        if (configFlag || yesterday) {
                         //105110054111509为建行豹子8011   //105584045110069建行斑马8010
                         File file = pmm.getOutFile(attachmentName);
+                        if (file.exists()) {//已存在的文件跳过
+                            continue;
+                        }
                         if (attachmentNames[1].equals("105110054111509") || attachmentNames[1].equals("105584045110069")) {
                             pmm.saveFile(file, part.getInputStream());
 
@@ -154,7 +157,6 @@ public class CBCMailFetch {
             }
         }
     }
-
 
     /**
      * 解压,通过vfs2的方式

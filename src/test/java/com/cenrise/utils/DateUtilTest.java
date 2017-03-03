@@ -6,6 +6,7 @@ import static org.junit.Assert.assertTrue;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import org.junit.Before;
@@ -268,4 +269,33 @@ public class DateUtilTest {
         assertEquals("计算有误", DateUtil.DateTime(DateUtil.calculate("2015-01-29 08:32:00", 3600 * 14, "08:00-21:00")), "2015-01-30 09:32:00");
 
     }
+
+    /**
+     * 定制时间日历
+     *
+     * @return
+     */
+    private Calendar getStartCalendar() {
+        Calendar calendar = Calendar.getInstance();
+        System.out.println("邮件发送截至时间：" + calendar.getTime());
+        int hour = calendar.get(Calendar.HOUR_OF_DAY);
+        if (hour <= 11) {
+            hour = 0;
+        } else {
+            hour -= 3;
+        }
+        calendar.set(Calendar.DATE, calendar.get(Calendar.DATE) - 1);
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        System.out.println("邮件发送开始时间：" + calendar.getTime());
+        return calendar;
+    }
+
+    @Test
+    public  void testStartCalendar(){
+        DateUtilTest dateUtilTest = new DateUtilTest();
+        System.out.println(dateUtilTest.getStartCalendar());
+    }
+
 }

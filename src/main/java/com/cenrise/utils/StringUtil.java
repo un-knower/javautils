@@ -4154,4 +4154,55 @@ public class StringUtil {
 		String ss = "&amp;";
 		System.out.println(str2TextXML(ss));
 	}
+
+	/*A simple string.Concat() is what you need.
+
+	string[] test = new string[2];
+
+	test[0] = "Hello ";
+	test[1] = "World!";
+
+	string result = string.Concat(test);
+	If you also need to add a seperator (space, comma etc) then, string.Join() should be used.
+
+	string[] test = new string[2];
+
+	test[0] = "Red";
+	test[1] = "Blue";
+
+	string result = string.Join(",", test);*/
+
+
+	/*Either use
+
+			Arrays.toString(sArray)
+	or:
+
+	StringBuilder builder = new StringBuilder();
+for(String s : arr) {
+		builder.append(s);
+	}
+return builder.toString();
+	You can modify the above depending on what characters, if any, you want in between strings.
+
+	You may also see near identical code to the above but using StringBuffer - StringBuilder is a newer class that's not thread-safe, but therefore has better performance in a single thread because it does away with unneeded synchronization. In short, you're better using StringBuilder in 99% of cases - functionality wise, the two are identical.
+
+			DON'T use a string and just append to it with += like some of the answers show here. This sends the GC through the roof because you're creating and throwing away as many string objects as you have items in your array. For small arrays you might not really notice the difference, but for large ones it can be orders of magnitude slower.*/
+
+	public static String ConvertStringArrayToString(String[] array)
+	{
+		StringBuilder strinbuilder = new StringBuilder();
+		for (String value: array)
+		{
+			strinbuilder.append(value);
+			strinbuilder.append(' ');
+		}
+		return strinbuilder.toString();
+	}
+
+	/*String[] test = new String[2];
+	test[0] = "Hello ";
+	test[1] = "World!";
+	string.Join("", test);*/
+
 }
