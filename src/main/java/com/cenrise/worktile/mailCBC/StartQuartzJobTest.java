@@ -31,7 +31,7 @@ public class StartQuartzJobTest {
                 .newTrigger()
                 .withIdentity("myTrigger", "group1")
                 .startNow()
-                .withSchedule(CronScheduleBuilder.cronSchedule("0/2 * * * * ?"))
+                .withSchedule(CronScheduleBuilder.cronSchedule("0 0/2 * * * ?"))
                 .build();
         sched.scheduleJob(job, trigger);
     }

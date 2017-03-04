@@ -25,6 +25,12 @@ import java.util.*;
  */
 public class CBCMailFetch {
     private MimeMessage mimeMessage;
+    //    private String receiveEmailAddress = "dongpo.jia@yeepay.com";
+//    private String receiveEmailPassword = "2012@beijing";
+    private String receiveEmailAddress = "ypduizhang@yeepay.com";
+    private String receiveEmailPassword = "Ww111111";
+    private String fromMailAddress = "dongpo.jia@yeepay.com";//发件人
+
 
     public CBCMailFetch() {
 
@@ -38,12 +44,19 @@ public class CBCMailFetch {
         //发送邮件
         CBCMailFetch cbcMailFetch = new CBCMailFetch();
         cbcMailFetch.fetchMail();
-        for (String str : cbcMailFetch.getSpecifiedDate()) {
-            System.out.println(str);
-        }
+//        for (String str : cbcMailFetch.getSpecifiedDate()) {
+//            System.out.println(str);
+//        }
     }
 
+    /**
+     * 处理email
+     *
+     * @throws Exception
+     */
+
     public void fetchMail() throws Exception {
+        System.out.println("===================fetchMail===================");
         Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
         final String SSL_FACTORY = "javax.net.ssl.SSLSocketFactory";
 
@@ -55,8 +68,8 @@ public class CBCMailFetch {
 
         Session session = Session.getDefaultInstance(props, null);
 
-        URLName urln = new URLName("pop3", "pop.yeepay.com", 995, null,
-                "dongpo.jia@yeepay.com", "2012@beijing");
+        URLName urln = new URLName("pop3", "pop3.yeepay.com", 995, null,
+                receiveEmailAddress, receiveEmailPassword);
         Store store = session.getStore(urln);
         Folder inbox = null;
         try {
@@ -69,7 +82,7 @@ public class CBCMailFetch {
             // 搜索发件人为”智联招聘“或主题包含”中国建设银行“的邮件
             //SearchTerm subjectTerm = new SubjectTerm("中国建设银行");//收件箱主题过滤
             //SearchTerm addressTerm = new FromTerm(new InternetAddress("295445156@qq.com"));//发件人地址
-            SearchTerm andTerm = new AndTerm(new FromStringTerm("min.hu@yeepay.com"), new SubjectTerm("中国建设银行"));
+            SearchTerm andTerm = new AndTerm(new FromStringTerm(fromMailAddress), new SubjectTerm("中国建设银行"));
             Message[] messages = inbox.search(andTerm);
 
 //            Message[] messages = inbox.getMessages();
@@ -157,6 +170,193 @@ public class CBCMailFetch {
             }
         }
     }
+
+    /**
+     * 处理email
+     *
+     * @throws Exception
+     */
+    public void fetchMail2() throws Exception {
+        System.out.println("===================fetchMail2===================");
+        Properties props = new Properties();
+        props.setProperty("mail.pop3.port", "995");
+        props.setProperty("mail.pop3.disabletop", "true");
+        props.setProperty("mail.pop3.ssl.enable", "true");
+        props.setProperty("mail.pop3.useStartTLS", "true");
+        props.setProperty("mail.pop3.host", "pop3.yeepay.com");
+        props.setProperty("mail.pop3.socketFactory.port", "995");
+        props.setProperty("mail.pop3.socketFactory.fallback", "false");
+        props.setProperty("mail.pop3.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+        Session session = Session.getInstance(props);
+        Folder inbox = null;
+        Store store = session.getStore("pop3");
+        try {
+            store.connect("pop3.yeepay.com", receiveEmailAddress, receiveEmailPassword);
+            Folder folder = store.getDefaultFolder();
+            if (folder == null) {
+                throw new MessagingException("读取邮箱失败。");
+            }
+            inbox = folder.getFolder("INBOX");
+            inbox.open(Folder.READ_ONLY);
+            System.out.println("连接成功，开始读取邮箱信息.");
+
+            FetchProfile profile = new FetchProfile();
+            profile.add(FetchProfile.Item.ENVELOPE);
+
+            // 搜索发件人为”智联招聘“或主题包含”中国建设银行“的邮件
+            //SearchTerm subjectTerm = new SubjectTerm("中国建设银行");//收件箱主题过滤
+            //SearchTerm addressTerm = new FromTerm(new InternetAddress("295445156@qq.com"));//发件人地址
+            SearchTerm andTerm = new AndTerm(new FromStringTerm(fromMailAddress), new SubjectTerm("中国建设银行"));
+            Message[] messages = inbox.search(andTerm);
+
+//            Message[] messages = inbox.getMessages();
+            inbox.fetch(messages, profile);
+            System.out.println("收件箱的邮件数：" + messages.length);
+            CBCMailFetch pmm = null;
+            for (int i = 0; i < messages.length; i++) {
+                //邮件发送者、邮件标题、邮件大小、邮件发送时间
+                String from = Const.decodeText(messages[i].getFrom()[0].toString());
+                InternetAddress ia = new InternetAddress(from);
+                System.out.println("邮件信息,发送者:[" + ia.getPersonal() + "],发件人邮箱地址:[" + (ia.getAddress()) + "],标题:[" + messages[i].getSubject() + "],邮件大小:[" + messages[i].getSize() + "],发送时间:[" + messages[i].getSentDate() + "]");
+
+                pmm = new CBCMailFetch((MimeMessage) messages[i]);
+
+                Message message = messages[i];
+                Multipart multipart = (Multipart) message.getContent();
+                for (int j = 0, n = multipart.getCount(); j < n; j++) {
+                    Part part = multipart.getBodyPart(j);
+                    String disposition = part.getDisposition();
+                    if (disposition != null && ((disposition.equals(Part.ATTACHMENT) || (disposition.equals(Part.INLINE))))) {
+                        String attachmentName = part.getFileName();
+                        System.out.println(attachmentName);
+                        //SHOP.105584045110069.20161028.zip
+                        String[] attachmentNames = attachmentName.split("\\.");
+                        if (attachmentNames.length != 4) {
+                            System.out.println(Arrays.toString(attachmentNames));
+                            continue;//结构不对
+                        }
+                        System.out.println("第一个元素:" + attachmentNames[0] + "第二个元素:" + attachmentNames[1] + "第三个元素:" + attachmentNames[2] + "第四个元素:" + attachmentNames[3]);
+
+                        //格式化日期
+                        DateFormat format = new SimpleDateFormat("yyyyMMdd");
+                        Date date = null;
+                        String str = null;
+                        try {
+                            date = format.parse(attachmentNames[2]);  // Thu Jan 18 00:00:00 CST 2007
+                        } catch (ParseException e) {
+                            System.out.println("日期格式化错误:" + e);
+                            e.printStackTrace();
+                        }
+
+                        //昨天到当前(昨天的0点,到当前时间点)的数据或指定的数据
+                        boolean configFlag = getSpecifiedDate().contains(attachmentNames[2]);
+                        boolean yesterday = date.after(Const.lastDayWholePointDate(new Date())) && date.before(new Date());
+                        //TODO 临时去掉,为了方便测试
+//                        if (configFlag || yesterday) {
+                        //105110054111509为建行豹子8011   //105584045110069建行斑马8010
+                        File file = pmm.getOutFile(attachmentName);
+                        if (file.exists()) {//已存在的文件跳过
+                            continue;
+                        }
+                        if (attachmentNames[1].equals("105110054111509") || attachmentNames[1].equals("105584045110069")) {
+                            pmm.saveFile(file, part.getInputStream());
+
+                            //解压
+                            String fileFullName = file.getAbsolutePath();
+                            String fileFullDirTmp = file.getParent() + "/tmp_" + attachmentName;
+                            fileFullDirTmp = fileFullDirTmp.substring(0, fileFullDirTmp.length() - 4);
+                            unzip(fileFullName, fileFullDirTmp);
+
+                            //获取解压后的文件全路径
+                            List<File> files = Const.searchFile(new File(fileFullDirTmp), ".det.");
+                            for (File onefile : files) {
+                                //发送到指定ftp,后删除生成的目录
+                                SFTPPUT sftpput = new SFTPPUT();
+                                String ftpRemote = "/apps/tomcat7-40-tomcat-air-ticket-merchant/logs" + "/" + onefile.getName();
+                                System.out.println("文件路径[" + onefile.getAbsolutePath() + "],上传至ftp路径[" + ftpRemote + "]");
+                                sftpput.put(onefile.getAbsolutePath(), ftpRemote);
+                                //删除生成的目录
+                                Const.delFolder(onefile.getParent());
+                            }
+                        }
+//                        }
+                    }
+                }
+            }
+        } finally {
+            try {
+                inbox.close(false);
+            } catch (Exception e) {
+            }
+            try {
+                store.close();
+            } catch (Exception e) {
+            }
+        }
+    }
+
+    /**
+     * @return
+     */
+    public Folder connectYeepay1() {
+        Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
+        final String SSL_FACTORY = "javax.net.ssl.SSLSocketFactory";
+        Properties props = System.getProperties();
+        props.setProperty("mail.pop3.socketFactory.class", SSL_FACTORY);
+        props.setProperty("mail.pop3.socketFactory.fallback", "false");
+        props.setProperty("mail.pop3.port", "995");
+        props.setProperty("mail.pop3.socketFactory.port", "995");
+        Session session = Session.getDefaultInstance(props, null);
+
+        URLName urln = new URLName("pop3", "pop.yeepay.com", 995, null,
+                receiveEmailAddress, receiveEmailPassword);
+        Folder inbox = null;
+        try {
+            Store store = session.getStore(urln);
+            store.connect();
+            inbox = store.getFolder("INBOX");
+            inbox.open(Folder.READ_ONLY);
+            System.out.println("连接成功，开始读取邮箱信息.");
+            return inbox;
+        } catch (NoSuchProviderException e) {
+            e.printStackTrace();
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+        return inbox;
+    }
+
+    public Folder connectYeepay2() {
+        Properties props = new Properties();
+        props.setProperty("mail.pop3.port", "995");
+        props.setProperty("mail.pop3.disabletop", "true");
+        props.setProperty("mail.pop3.ssl.enable", "true");
+        props.setProperty("mail.pop3.useStartTLS", "true");
+        props.setProperty("mail.pop3.host", "pop3.yeepay.com");
+        props.setProperty("mail.pop3.socketFactory.port", "995");
+        props.setProperty("mail.pop3.socketFactory.fallback", "false");
+        props.setProperty("mail.pop3.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+        Session session = Session.getInstance(props);
+        Folder popFolder = null;
+        try {
+            Store store = session.getStore("pop3");
+            store.connect("pop3.yeepay.com", receiveEmailAddress, receiveEmailPassword);
+            Folder folder = store.getDefaultFolder();
+            if (folder == null) {
+                throw new MessagingException("读取邮箱失败。");
+            }
+            popFolder = folder.getFolder("INBOX");
+            popFolder.open(Folder.READ_ONLY);
+            System.out.println("连接成功，开始读取邮箱信息.");
+            return popFolder;
+        } catch (NoSuchProviderException e) {
+            e.printStackTrace();
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+        return popFolder;
+    }
+
 
     /**
      * 解压,通过vfs2的方式
