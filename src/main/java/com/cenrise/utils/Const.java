@@ -1,39 +1,19 @@
 
 package com.cenrise.utils;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.text.StrBuilder;
-import org.apache.commons.vfs2.FileObject;
-import org.apache.commons.vfs2.FileSystemException;
-import org.apache.commons.vfs2.FileSystemManager;
-import org.apache.commons.vfs2.cache.WeakRefFilesCache;
-import org.apache.commons.vfs2.impl.DefaultFileSystemManager;
-import org.apache.commons.vfs2.impl.StandardFileSystemManager;
 
-import java.awt.Font;
-import java.awt.GraphicsEnvironment;
+import java.awt.*;
 import java.io.*;
 import java.math.BigDecimal;
-import java.net.InetAddress;
-import java.net.NetworkInterface;
-import java.net.SocketException;
-import java.net.URL;
-import java.net.URLClassLoader;
-import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
-import java.text.NumberFormat;
-import java.text.ParseException;
-import java.text.ParsePosition;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Enumeration;
+import java.net.*;
+import java.text.*;
+import java.util.*;
 import java.util.List;
-import java.util.Locale;
-import java.util.TimeZone;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -1568,7 +1548,7 @@ public class Const {
     }
 
     /**
-     * Returns a string of the stack trace of the specified exception
+     * 返回指定异常的堆栈信息
      */
     public static String getStackTracker(Throwable e) {
         return getClassicStackTrace(e);
@@ -1587,6 +1567,12 @@ public class Const {
         return string;
     }
 
+    /**
+     * 获取当前异常的堆栈
+     *
+     * @param aThrowable
+     * @return
+     */
     public static String getCustomStackTrace(Throwable aThrowable) {
         final StringBuilder result = new StringBuilder();
         String errorMessage = aThrowable.toString();
@@ -2280,6 +2266,80 @@ public class Const {
             return false;
         }
         return clazz.equals(superClass) || classIsOrExtends(clazz.getSuperclass(), superClass);
+    }
+
+    /**
+     * 交换List集合里的元素下标
+     *
+     * @param list
+     * @param index1
+     * @param index2
+     * @param <T>
+     * @return
+     */
+    public static <T> List<T> indexExChange(List<T> list, int index1, int index2) {
+        T t = list.get(index1);
+        list.set(index1, list.get(index2));
+        list.set(index2, t);
+        return list;
+    }
+
+    /**
+     * JSONArray转为List
+     *
+     * @param array json数组
+     * @return 转化后的List
+     */
+    public static List<Object> toList(JSONArray array) {
+        List<Object> list = new ArrayList<Object>();
+        for (int i = 0; i < array.size(); i++) {
+            Object value = array.get(i);
+            if (value instanceof JSONArray) {
+                value = toList((JSONArray) value);
+            } else if (value instanceof JSONObject) {
+                value = toMap((JSONObject) value);
+            }
+            list.add(value);
+        }
+        return list;
+    }
+
+    /**
+     * JSONObject转为map
+     *
+     * @param object json对象
+     * @return 转化后的Map
+     */
+    public static Map<String, Object> toMap(JSONObject object) {
+        Map<String, Object> map = new HashMap<String, Object>();
+
+        for (String key : object.keySet()) {
+            Object value = object.get(key);
+            if (value instanceof JSONArray) {
+                value = toList((JSONArray) value);
+            } else if (value instanceof JSONObject) {
+                value = toMap((JSONObject) value);
+            }
+            map.put(key, value);
+        }
+
+        return map;
+    }
+
+    public void testurl() {
+        //获取classpath路径
+        System.out.println("classpath路径： " + Const.class.getClassLoader().getResource("").getPath());
+
+        //获取当前类的加载路径
+        System.out.println("当前类加载路径： " + Const.class.getResource("").getPath());
+
+        // 读取文件resources目录中文件的若干种方法
+        // 方法一：从classpath路径出发读取
+//        readTxt(Demo1.class.getClassLoader().getResource("test/demo1.txt").getPath());
+        // 方法二：从类加载路径出发，相当于使用绝对路径
+//       readTxt(Const.class.getResource("/test/demo1.txt").getPath());
+        // 方法三：从类加载路径出发，相当于使用相对路径
+//       readTxt(Const.class.getResource("../../../test/demo1.txt").getPath());
     }
 
 }

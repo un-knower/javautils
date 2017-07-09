@@ -1,10 +1,15 @@
 package com.cenrise.utils;
 
+import org.apache.commons.lang3.time.DateFormatUtils;
+
 import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -48,6 +53,7 @@ public class DateUtil {
         }
         return df;
     }
+
 
     private static SimpleDateFormat DateInstance() {
         SimpleDateFormat df = ThreadDate.get();
@@ -2471,7 +2477,6 @@ public class DateUtil {
      * @return 2014-3-3 00:00:00
      */
     public static Date lastDayWholePointDate(Date date) {
-
         GregorianCalendar gc = new GregorianCalendar();
         gc.setTime(date);
         if ((gc.get(gc.HOUR_OF_DAY) == 0) && (gc.get(gc.MINUTE) == 0)
@@ -2485,41 +2490,27 @@ public class DateUtil {
         }
     }
 
-    public static void main(String[] args) throws Exception {
+    public static void date(Date date) {
+        // 快速获取当天0点0分0秒（00:00:00），23点59分59秒（23:59:59）
+        // 利用Apache lang包快速获取凌晨0点0分0秒，23点59分59秒字符串
+        System.out.println(DateFormatUtils.format(new Date(), "yyyy-MM-dd 00:00:00"));
+        System.out.println(DateFormatUtils.format(new Date(), "yyyy-MM-dd 23:59:59"));
 
-        // Calendar calendar = Calendar.getInstance();
-        // calendar.
+        // 获取当天凌晨0点0分0秒Date
+        Calendar calendar1 = Calendar.getInstance();
+        calendar1.set(calendar1.get(Calendar.YEAR), calendar1.get(Calendar.MONTH), calendar1.get(Calendar.DAY_OF_MONTH),
+                0, 0, 0);
+        Date beginOfDate = calendar1.getTime();
+        System.out.println(beginOfDate);
 
-        // GregorianCalendar gc = (GregorianCalendar) Calendar.getInstance();
-        //
-        // gc.set(2008, 04, 20);
-
-        // @SuppressWarnings("unused")
-        System.out.println(getIntevalDays(toDate("2010-01-13 23:59:59"),
-                toDate("2010-01-14 00:00:00")));
-
-        String datestr = "2014-12-2";
-        String getDateValue = getDayAfterNum(datestr, 60);
-        System.out.println(getDateValue);
-
-        System.out.println(getRemindTime(new Date(), 10, 0));
-
-        //通过System.currentTimeMillis获取当前时间毫秒数，然后转换为Timestamp格式时间。
-        long current = System.currentTimeMillis();//当前时间毫秒数
-        long zero = current / (1000 * 3600 * 24) * (1000 * 3600 * 24) - TimeZone.getDefault().getRawOffset();//今天零点零分零秒的毫秒数
-        long twelve = zero + 24 * 60 * 60 * 1000 - 1;//今天23点59分59秒的毫秒数
-        long yesterday = System.currentTimeMillis() - 24 * 60 * 60 * 1000;//昨天的这一时间的毫秒数
-        System.out.println(new Timestamp(current));//当前时间
-        System.out.println(new Timestamp(yesterday));//昨天这一时间点
-        System.out.println(new Timestamp(zero));//今天零点零分零秒
-        System.out.println(new Timestamp(twelve));//今天23点59分59秒
-
-
-        Date date = new Date();
-        System.out.println(date.toLocaleString());
-        date = DateUtil.lastDayWholePointDate(date);
-        System.out.println(date.toLocaleString());
+        // 获取当天23点59分59秒Date
+        Calendar calendar2 = Calendar.getInstance();
+        calendar1.set(calendar2.get(Calendar.YEAR), calendar2.get(Calendar.MONTH), calendar2.get(Calendar.DAY_OF_MONTH),
+                23, 59, 59);
+        Date endOfDate = calendar1.getTime();
+        System.out.println(endOfDate);
     }
+
 
     /**
      * 返回指定日期的Calendar实例
@@ -2718,6 +2709,50 @@ public class DateUtil {
     }
 
     /**
+     * 获取指定前几天的开始日间（2017-06-07 00:00:00）和结束时间（如：2017-06-07 23:59:59）
+     *
+     * @param beforeday，前几天，如昨天是1
+     * @param hour，几点
+     * @param minus，多少分
+     * @param second，多少秒
+     * @return
+     */
+    public static Calendar beforeDateTime(int beforeday, int hour, int minus, int second) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.DATE, calendar.get(Calendar.DATE) - beforeday);
+        calendar.set(Calendar.HOUR_OF_DAY, hour);//零点
+        calendar.set(Calendar.MINUTE, minus);
+        calendar.set(Calendar.SECOND, second);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String date = sdf.format(calendar.getTime());  //2017-06-07 00:00:00
+        System.out.println("时间date：" + date);
+        return calendar;
+    }
+
+    /**
+     * 获取指定前几天的开始日间（2017-06-07 00:00:00）和结束时间（如：2017-06-07 23:59:59）,返回的是Date
+     * 如果要long，可以date.getTime()获得，如果要字段串，可以如下：
+     * SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+     * String date = sdf.format(calendar.getTime());  //2017-06-07 00:00:00
+     *
+     * @param beforeday，前几天，如昨天是1
+     * @param hour，几点
+     * @param minus，多少分
+     * @param second，多少秒
+     * @return
+     */
+    public static Date beforeDateTime2(int beforeday, int hour, int minus, int second) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.DATE, calendar.get(Calendar.DATE) - beforeday);
+        calendar.set(Calendar.HOUR_OF_DAY, hour);//零点
+        calendar.set(Calendar.MINUTE, minus);
+        calendar.set(Calendar.SECOND, second);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return calendar.getTime();
+    }
+
+
+    /**
      * 默认以 yy-MM-dd HH:mm:ss 格式时间
      *
      * @param dateStr
@@ -2765,4 +2800,207 @@ public class DateUtil {
         cal2.setTime(d2);
         return cal1.get(0) == cal2.get(0) && cal1.get(1) == cal2.get(1) && cal1.get(6) == cal2.get(6);
     }
+
+    public static String timestampToString(long timeMillis) {
+        Timestamp ts = new Timestamp(timeMillis);
+        String tsStr = "";
+        DateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        try {
+            //方法一
+            tsStr = sdf.format(ts);
+            System.out.println(tsStr);
+            //方法二
+//            tsStr = ts.toString();
+//            System.out.println(tsStr);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return tsStr;
+    }
+
+    public static Long stringToTimestamp(String tsStr) {
+        Timestamp ts = new Timestamp(System.currentTimeMillis());
+//        String tsStr = "2011-05-09 11:49:45";
+        try {
+            ts = Timestamp.valueOf(tsStr);
+//            System.out.println(ts);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return ts.getTime();
+    }
+
+    public static void timestampToDate(String str) {
+        Timestamp ts = new Timestamp(System.currentTimeMillis());
+        Date date = new Date();
+        try {
+            date = ts;
+            System.out.println(date);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void dateToString(String datestr) {
+        String dateStr = "";
+        Date date = new Date();
+        //format的格式可以任意
+        DateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        DateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd HH/mm/ss");
+        try {
+            dateStr = sdf.format(date);
+            System.out.println(dateStr);
+            dateStr = sdf2.format(date);
+            System.out.println(dateStr);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 获得指定日期的前一天
+     *
+     * @param specifiedDay
+     * @return
+     * @throws Exception
+     */
+    public static String getSpecifiedDayBefore(String specifiedDay) {//可以用new Date().toLocalString()传递参数
+        Calendar c = Calendar.getInstance();
+        Date date = null;
+        try {
+            date = new SimpleDateFormat("yy-MM-dd").parse(specifiedDay);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        c.setTime(date);
+        int day = c.get(Calendar.DATE);
+        c.set(Calendar.DATE, day - 1);
+
+        String dayBefore = new SimpleDateFormat("yyyy-MM-dd").format(c
+                .getTime());
+        return dayBefore;
+    }
+
+    /**
+     * 获得指定日期的后一天
+     *
+     * @param specifiedDay
+     * @return
+     */
+    public static String getSpecifiedDayAfter(String specifiedDay) {
+        Calendar c = Calendar.getInstance();
+        Date date = null;
+        try {
+            date = new SimpleDateFormat("yy-MM-dd").parse(specifiedDay);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        c.setTime(date);
+        int day = c.get(Calendar.DATE);
+        c.set(Calendar.DATE, day + 1);
+
+        String dayAfter = new SimpleDateFormat("yyyy-MM-dd")
+                .format(c.getTime());
+        return dayAfter;
+    }
+
+    public void getdatesxxx() {
+//        java获取当前时间前一周、前一月、前一年的时间
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Calendar c = Calendar.getInstance();
+
+        //过去七天
+        c.setTime(new Date());
+        c.add(Calendar.DATE, -7);
+        Date d = c.getTime();
+        String day = format.format(d);
+        System.out.println("过去七天：" + day);
+
+        //过去一月
+        c.setTime(new Date());
+        c.add(Calendar.MONTH, -1);
+        Date m = c.getTime();
+        String mon = format.format(m);
+        System.out.println("过去一个月：" + mon);
+
+        //过去三个月
+        c.setTime(new Date());
+        c.add(Calendar.MONTH, -3);
+        Date m3 = c.getTime();
+        String mon3 = format.format(m3);
+        System.out.println("过去三个月：" + mon3);
+
+        //过去一年
+        c.setTime(new Date());
+        c.add(Calendar.YEAR, -1);
+        Date y = c.getTime();
+        String year = format.format(y);
+        System.out.println("过去一年：" + year);
+    }
+
+    public static void main(String[] args) throws Exception {
+
+        // Calendar calendar = Calendar.getInstance();
+        // calendar.
+
+        // GregorianCalendar gc = (GregorianCalendar) Calendar.getInstance();
+        //
+        // gc.set(2008, 04, 20);
+
+        // @SuppressWarnings("unused")
+//        System.out.println(getIntevalDays(toDate("2010-01-13 23:59:59"),
+//                toDate("2010-01-14 00:00:00")));
+//
+//        String datestr = "2014-12-2";
+//        String getDateValue = getDayAfterNum(datestr, 60);
+//        System.out.println(getDateValue);
+//
+//        System.out.println(getRemindTime(new Date(), 10, 0));
+//
+//        //通过System.currentTimeMillis获取当前时间毫秒数，然后转换为Timestamp格式时间。
+//        long current = System.currentTimeMillis();//当前时间毫秒数
+//        long zero = current / (1000 * 3600 * 24) * (1000 * 3600 * 24) - TimeZone.getDefault().getRawOffset();//今天零点零分零秒的毫秒数
+//        long twelve = zero + 24 * 60 * 60 * 1000 - 1;//今天23点59分59秒的毫秒数
+//        long yesterday = System.currentTimeMillis() - 24 * 60 * 60 * 1000;//昨天的这一时间的毫秒数
+//        System.out.println(new Timestamp(current));//当前时间
+//        System.out.println(new Timestamp(yesterday));//昨天这一时间点
+//        System.out.println(new Timestamp(zero));//今天零点零分零秒
+//        System.out.println(new Timestamp(twelve));//今天23点59分59秒
+//
+//
+//        Date date = new Date();
+//        System.out.println(date.toLocaleString());
+//        date = DateUtil.lastDayWholePointDate(date);
+//        System.out.println(date.toLocaleString());
+
+        timestampToString(1451606400000L);//今天23点59分59秒
+        timestampToString(1483228800000L);
+        timestampToString(1494500042494L);
+
+
+        System.out.println(stringToDate("2017-05-11 18:49:17").getTime());
+
+        System.out.println(stringToDate("2016-01-01 08:00:00").getTime());
+        System.out.println(stringToDate("2017-01-01 08:00:00").getTime());
+
+
+        //快速获取当天0点0分0秒（00:00:00），23点59分59秒（23:59:59）
+        // 利用Apache lang包快速获取凌晨0点0分0秒，23点59分59秒字符串
+        System.out.println(DateFormatUtils.format(new Date(), "yyyy-MM-dd 00:00:00"));
+        System.out.println(DateFormatUtils.format(new Date(), "yyyy-MM-dd 23:59:59"));
+
+        Date date1 = beforeDateTime2(1, 0, 0, 0); //昨天零点
+        Date date2 = beforeDateTime2(1, 23, 59, 59);//昨天23点59分59秒
+//        输出long
+        System.out.println(date1.getTime());
+        System.out.println(date2.getTime());
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String date11 = sdf.format(date1.getTime());  //2017-06-07 00:00:00
+        String date22 = sdf.format(date2.getTime());  //2017-06-07 00:00:00
+        System.out.println("时间date11：" + date11 + "时间date22：" + date22);
+
+    }
+
 }
