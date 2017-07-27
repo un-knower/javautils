@@ -10,8 +10,8 @@ import java.util.Properties;
 /**
  * 测试发送163邮箱
  */
-public class Sender163 {
-    private String receiver = "jiadp@cenrise.com";
+public class Sender163QiYe {
+    private String receiver = "295445156@qq.com";
     private String subject = "Hello,Test! Best Wishes!" + new Date();
     private String cc = "295445156@qq.com";
     private String mailContent = "Hello,popo! Coming" + new Date();
@@ -22,23 +22,22 @@ public class Sender163 {
         Properties props = new Properties();
         props.put("mail.smtp.auth", "true");
         //163服务器地址: POP3服务器: pop.163.com SMTP服务器: smtp.163.com IMAP服务器: imap.163.com
-        props.put("mail.smtp.host", "smtp.163.com");//没有开外网,程序就跑不动了,163邮箱
-        //腾讯企业邮 接收服务器： imap.exmail.qq.com(使用SSL，端口号993) 发送服务器：  smtp.exmail.qq.com(使用SSL，端口号465)
-        //props.put("mail.smtp.host", "imap.exmail.qq.com");//没有开外网,程序就跑不动了,腾讯企业邮
+//        props.put("mail.smtp.host", "smtp.163.com");//没有开外网,程序就跑不动了,163邮箱
+        props.put("mail.smtp.host", "smtp.qiye.163.com");//163邮箱企业
 
         //验证信息需要通过Session传给邮件服务器,其中Authenticator负责密码校验,如果不需要验证身份就用null或用单参数的getInstance()。
         session = Session.getDefaultInstance(props, new Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
-                //TODO 密码需要填写明文 PasswordAuthentication是一个包装类,里面包含了用户名和密码
-                return new PasswordAuthentication("jiadp2012", "*****");
+                //PasswordAuthentication是一个包装类,里面包含了用户名和密码
+                return new PasswordAuthentication("dc_mail@suixingpay.com", "DATAmail301512");
             }
         });
         session.setDebug(true);//允许调试,因此可以用getDebug()方法取调试信息,消息很多
         try {
             //创建了自己的Session对象后就可以发送消息了,这时需要用到Message消息类型。由于Message是一个抽象类,所以使用时必须使用一个具体的子类型。在大多数情况下,这个子类是javax.mail.internet.MimeMessage。一个MimeMessage是封装了MIME类型数据和报头的消息。消息的报头严格限制为只能使用US-ASCII字符,尽管非ASCII字符可以被编码到某些报头字段中。
             msg = new MimeMessage(session);
-            msg.setFrom(new InternetAddress("jiadp2012@163.com"));
+            msg.setFrom(new InternetAddress("dc_mail@suixingpay.com"));
             //一旦创建了会话和消息,并为消息填充了内容,就需要用Address类为信件标上地址。同Message类一样,Address类也是抽象类。可以使用javax.mail.internet.InternetAddress类。
             //
             InternetAddress toAddress = new InternetAddress(receiver);//收件人
@@ -60,7 +59,7 @@ public class Sender163 {
     }
 
     public static void main(String[] args) {
-        new Sender163().sendNow();
+        new Sender163QiYe().sendNow();
     }
 
 }

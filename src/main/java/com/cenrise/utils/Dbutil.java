@@ -26,14 +26,16 @@ public class Dbutil {
 	private Statement st;
 	private PreparedStatement pps;
 	private ResultSet rs;
-	public String url = "jdbc:oracle:thin:@localhost:1521:orcl";
-	private String user = "hyl";
-	private String password = "hyl";
+//	public String url = "jdbc:oracle:thin:@localhost:1521:orcl";
+	public String url = "jdbc:mysql://localhost:3306/dmp?useUnicode=true&characterEncoding=utf8&autoReconnect=false&auoReconnectForPools=false&yearIsDateType=false";
+	private String user = "root";
+	private String password = "root";
 
 	// 加载驱动、放在静态代码块中，保证驱动在整个项目中只加载一次，提高效率
 	static {
 		try {
-			Class.forName("oracle.jdbc.driver.OracleDriver");
+//			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Class.forName("com.mysql.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -286,4 +288,12 @@ public class Dbutil {
 		}
 	}
 
+	public static void main(String[] args) {
+		Dbutil db = new Dbutil();
+		try {
+			System.out.println(db.getConnection().getSchema());
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 }

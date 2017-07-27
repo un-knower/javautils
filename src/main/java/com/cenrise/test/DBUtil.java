@@ -48,4 +48,13 @@ public class DBUtil {
             conn.close();
         }
     }
+
+    public static void main(String[] args) {
+        try {
+            Connection conncection= DBUtil.openConnection();
+            System.out.println(conncection.getCatalog());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
