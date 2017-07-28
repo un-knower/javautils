@@ -6,6 +6,8 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by dongpo.jia on 2017/3/1.
@@ -143,6 +145,25 @@ public class Const {
             // is this really required?
         }
         return string;
+    }
+
+    /**
+     * java中判断字符串是否为数字的方法的几种方法
+     * @param str
+     * @return
+     */
+    public static boolean isNumeric(String str){
+        //匹配所有数字，包括负数
+        Pattern pattern = Pattern.compile("-?[0-9]+.?[0-9]+");
+        Matcher isNum = pattern.matcher(str);
+        if( !isNum.matches() ){
+            return false;
+        }
+        return true;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(isNumeric("-08/31/2006 21:08:00"));
     }
 
 }

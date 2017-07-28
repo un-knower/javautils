@@ -23,7 +23,7 @@ public class Sender163QiYe {
         props.put("mail.smtp.auth", "true");
         //163服务器地址: POP3服务器: pop.163.com SMTP服务器: smtp.163.com IMAP服务器: imap.163.com
 //        props.put("mail.smtp.host", "smtp.163.com");//没有开外网,程序就跑不动了,163邮箱
-        props.put("mail.smtp.host", "smtp.qiye.163.com");//163邮箱企业
+        props.put("mail.smtp.host", "smtphm.qiye.163.com");//163邮箱企业
 
         //验证信息需要通过Session传给邮件服务器,其中Authenticator负责密码校验,如果不需要验证身份就用null或用单参数的getInstance()。
         session = Session.getDefaultInstance(props, new Authenticator() {

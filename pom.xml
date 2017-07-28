@@ -260,6 +260,12 @@
             <artifactId>fastjson</artifactId>
             <version>1.1.15</version>
         </dependency>
+        <!--https://github.com/JSQLParser/JSqlParser/wiki-->
+        <dependency>
+            <groupId>com.github.jsqlparser</groupId>
+            <artifactId>jsqlparser</artifactId>
+            <version>1.1</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
