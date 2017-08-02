@@ -154,7 +154,7 @@ public class Const {
      */
     public static boolean isNumeric(String str){
         //匹配所有数字，包括负数
-        Pattern pattern = Pattern.compile("-?[0-9]+.?[0-9]+");
+        Pattern pattern = Pattern.compile("-?[0-9]+.?[0-9]*");
         Matcher isNum = pattern.matcher(str);
         if( !isNum.matches() ){
             return false;
@@ -163,7 +163,7 @@ public class Const {
     }
 
     public static void main(String[] args) {
-        System.out.println(isNumeric("-08/31/2006 21:08:00"));
+        System.out.println(isNumeric("0."));
     }
 
 }
