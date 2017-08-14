@@ -3,3 +3,5 @@
 .classpath
 .project
 *.iml
+.DS_Store
+files/

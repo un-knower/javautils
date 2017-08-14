@@ -17,15 +17,11 @@ import java.util.zip.ZipException;
 //import java.util.zip.ZipException;
 //import java.util.zip.ZipFile;
 
-import com.cenrise.worktile.mailCBC.*;
 import com.cenrise.worktile.mailCBC.Const;
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.apache.tools.zip.ZipEntry;
 import org.apache.tools.zip.ZipFile;
 
-import com.cenrise.utils.algorithm.FileImpl;
 import com.cenrise.utils.algorithm.FileTypeImpl;
 
 /**
@@ -512,36 +508,6 @@ public class FileUtil {
     public static void moveFolder(String oldPath, String newPath) {
         copyDir(oldPath, newPath);
         delFolder(oldPath);
-    }
-
-    /**
-     * 获取文件的编码(cpDetector)探测
-     *
-     * @param file 需要处理的文件
-     * @return 文件的编码
-     */
-    public static String cpdetector(File file) {
-        try {
-            return FileImpl.cpdetector(file.toURL());
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    /**
-     * 利用简单的文件头字节特征探测文件编码
-     *
-     * @param file 需要处理的文件
-     * @return UTF-8 Unicode UTF-16BE GBK
-     */
-    public static String simpleEncoding(String file) {
-        try {
-            return FileImpl.simpleEncoding(file);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
     }
 
     /**

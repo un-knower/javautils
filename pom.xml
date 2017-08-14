@@ -76,8 +76,6 @@
             <artifactId>javax.servlet-api</artifactId>
             <version>3.1.0</version>
         </dependency>
-        <!-- <dependency> <groupId>cpdetector</groupId> <artifactId>cpdetector</artifactId>
-            <version>1.0.7</version> </dependency> -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
@@ -162,15 +160,6 @@
             <version>2.4.1</version>
         </dependency>
 
-        <!-- database -->
-        <!--<dependency>-->
-            <!--<groupId>com.microsoft.sqlserver</groupId>-->
-            <!--<artifactId>sqljdbc4</artifactId>-->
-            <!--<version>4.0</version>-->
-        <!--</dependency>-->
-
-
-        <!--excel、csv解析 -->
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi</artifactId>
@@ -182,18 +171,19 @@
             <version>3.9</version>
         </dependency>
 
-        <!--<dependency>-->
-            <!--<groupId>net.sf.opencsv</groupId>-->
-            <!--<artifactId>opencsv</artifactId>-->
-            <!--<version>2.4</version>-->
-        <!--</dependency>-->
         <dependency>
             <groupId>org.apache.ant</groupId>
             <artifactId>ant</artifactId>
             <version>1.8.2</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-vfs2 -->
+        <dependency>
+            <groupId>com.opencsv</groupId>
+            <artifactId>opencsv</artifactId>
+            <version>4.0</version>
+        </dependency>
+
+
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-vfs2</artifactId>
@@ -205,20 +195,13 @@
             <artifactId>jsch</artifactId>
             <version>0.1.51</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/com.enterprisedt/edtFTPj 2.0.3 2.1.0-->
-        <!--<dependency>
-            <groupId>com.enterprisedt</groupId>
-            <artifactId>edtFTPj</artifactId>
-            <version>2.1.0</version>
-        </dependency>-->
 
-        <!-- https://mvnrepository.com/artifact/org.quartz-scheduler/quartz -->
+
         <dependency>
             <groupId>org.quartz-scheduler</groupId>
             <artifactId>quartz</artifactId>
             <version>2.2.1</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
@@ -230,7 +213,6 @@
             <artifactId>fastjson</artifactId>
             <version>1.2.33</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
@@ -260,12 +242,22 @@
             <artifactId>fastjson</artifactId>
             <version>1.1.15</version>
         </dependency>
-        <!--https://github.com/JSQLParser/JSqlParser/wiki-->
         <dependency>
             <groupId>com.github.jsqlparser</groupId>
             <artifactId>jsqlparser</artifactId>
             <version>1.1</version>
         </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>RELEASE</version>
+        </dependency>
+
     </dependencies>
     <build>
         <plugins>

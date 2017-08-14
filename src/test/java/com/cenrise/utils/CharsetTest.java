@@ -24,7 +24,6 @@ public class CharsetTest {
         System.out.println("JVM_ENCODING ->" + SysUtil.JVM_ENCODING);
         String str = "中文的字符串,编码结果会应项目的编译和JVM的运行环境不痛有所影响";
         System.out.println("str: " + str + "字符串的编码:" + StringUtil.SimpleEncoding(str));
-        System.out.println("str: " + str + "字符串的编码:" + StringUtil.cpDetector(str));
         String gbk = CharsetUtil.toGBK(str);
         System.out.println("转换成GBK码: " + gbk);
         String ascii = CharsetUtil.toASCII(str);

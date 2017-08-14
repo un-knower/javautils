@@ -183,9 +183,6 @@ public class FileUtilTest extends SupportTest {
     public void testSimpleEncoding() {
         System.out.println("简单的利用文件头进行文件的编码探测!");
         String path = System.getProperty("user.dir") + "/Junit/Resource/";
-        System.out.println(FileUtil.simpleEncoding(path + "GBK.txt"));
-        System.out.println("利用cpdetector进行文件编码探测");
-        System.out.println(FileUtil.cpdetector(new File(path + "GBK.txt")));
     }
 
     @Test
