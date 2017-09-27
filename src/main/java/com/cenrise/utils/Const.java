@@ -11,7 +11,9 @@ import java.awt.*;
 import java.io.*;
 import java.math.BigDecimal;
 import java.net.*;
+import java.sql.Timestamp;
 import java.text.*;
+import java.time.Instant;
 import java.util.*;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -19,6 +21,8 @@ import java.util.regex.Pattern;
 
 public class Const {
     private static Class<?> PKG = Const.class; // for i18n purposes, needed by Translator2!!
+
+
     /**
      * Copyright year
      */
@@ -2341,5 +2345,21 @@ public class Const {
         // 方法三：从类加载路径出发，相当于使用相对路径
 //       readTxt(Const.class.getResource("../../../test/demo1.txt").getPath());
     }
+
+    /**
+     * 获取服务器ip地址
+     *
+     * @return
+     */
+    public static String getlocalip() {
+        try {
+            return InetAddress.getLocalHost().getHostAddress().toString();
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
+
+
 
 }

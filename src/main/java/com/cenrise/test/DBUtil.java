@@ -1,6 +1,9 @@
 package com.cenrise.test;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Properties;
 
 import javax.sql.DataSource;
@@ -52,6 +55,16 @@ public class DBUtil {
     public static void main(String[] args) {
         try {
             Connection conncection= DBUtil.openConnection();
+            Connection conn = null;
+            PreparedStatement pre = null;
+            ResultSet rs = null;
+
+//            pre = conncection.prepareStatement("SELECT * FROM T_TIF_IF");
+            pre = conncection.prepareStatement("SELECT * FROM BD.T_TIF_IF");
+            rs = pre.executeQuery();
+            while (rs.next()) {
+                rs.getString(1);
+            }
             System.out.println(conncection.getCatalog());
         } catch (SQLException e) {
             e.printStackTrace();

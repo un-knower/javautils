@@ -6,10 +6,8 @@ import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.Locale;
+import java.time.Instant;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -17,6 +15,7 @@ import java.util.regex.Pattern;
  * @author:Neptune Description:DateUtil 提供一些常用的时间想法的方法
  */
 public class DateUtil {
+
 
     /**
      * ORA标准时间格式
@@ -2939,6 +2938,140 @@ public class DateUtil {
         System.out.println("过去一年：" + year);
     }
 
+
+    /**
+     * How to get current timestamps in Java
+     */
+    public static void getCurrentTimestamps() {
+        //method 1
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        System.out.println(timestamp);
+
+        //method 2 - via Date
+        Date date = new Date();
+        System.out.println(new Timestamp(date.getTime()));
+
+        //return number of milliseconds since January 1, 1970, 00:00:00 GMT
+        System.out.println(timestamp.getTime());
+
+        //format timestamp
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
+        System.out.println(sdf.format(timestamp));
+
+
+        //In Java 8, you can convert java.sql.Timestamp to the new java.time.Instant
+        Timestamp timestamp8 = new Timestamp(System.currentTimeMillis());
+        System.out.println(timestamp8);
+
+        //return number of milliseconds since January 1, 1970, 00:00:00 GMT
+        System.out.println(timestamp8.getTime());
+
+        // Convert timestamp to instant
+        Instant instant = timestamp8.toInstant();
+        System.out.println(instant);
+
+        //return number of milliseconds since the epoch of 1970-01-01T00:00:00Z
+        System.out.println(instant.toEpochMilli());
+
+        // Convert instant to timestamp
+        Timestamp tsFromInstant = Timestamp.from(instant);
+        System.out.println(tsFromInstant.getTime());
+
+
+    }
+
+    /**
+     * convert a UTC timestamp to local time?
+     * <p>
+     * has no timezone and internally stores in UTC. Only when a date is formatted is the timezone correction applies. When using a DateFormat, it defaults to the timezone of the JVM it's running in. Use setTimeZone to change it as necessary.
+     * <p>
+     * This prints 2012-08-15T15:56:02.038
+     * <p>
+     * Note that I left out the 'Z' in the PST format as it indicates UTC. If you just went with Z then the output would be 2012-08-15T15:56:02.038-0700
+     */
+    public static void utlTolocal() throws ParseException {
+        DateFormat utcFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+        utcFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
+
+        Date date = utcFormat.parse("2012-08-15T22:56:02.038Z");
+
+        DateFormat pstFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS");
+        pstFormat.setTimeZone(TimeZone.getTimeZone("PST"));
+
+        System.out.println(pstFormat.format(date));
+    }
+
+    public static long getLocalToUtcDelta() {
+        Calendar local = Calendar.getInstance();
+        local.clear();
+        local.set(1970, Calendar.JANUARY, 1, 0, 0, 0);
+        return local.getTimeInMillis();
+    }
+
+    public static long converLocalTimeToUtcTime(long timeSinceLocalEpoch) {
+        return timeSinceLocalEpoch + getLocalToUtcDelta();
+    }
+
+    public static Date convertLocalTimestamp(long millis) {
+        TimeZone tz = TimeZone.getDefault();
+        Calendar c = Calendar.getInstance(tz);
+        long localMillis = millis;
+        int offset, time;
+
+        c.set(1970, Calendar.JANUARY, 1, 0, 0, 0);
+
+        // Add milliseconds
+        while (localMillis > Integer.MAX_VALUE) {
+            c.add(Calendar.MILLISECOND, Integer.MAX_VALUE);
+            localMillis -= Integer.MAX_VALUE;
+        }
+        c.add(Calendar.MILLISECOND, (int) localMillis);
+
+        // Stupidly, the Calendar will give us the wrong result if we use getTime() directly.
+        // Instead, we calculate the offset and do the math ourselves.
+        time = c.get(Calendar.MILLISECOND);
+        time += c.get(Calendar.SECOND) * 1000;
+        time += c.get(Calendar.MINUTE) * 60 * 1000;
+        time += c.get(Calendar.HOUR_OF_DAY) * 60 * 60 * 1000;
+        offset = tz.getOffset(c.get(Calendar.ERA), c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH), c.get(Calendar.DAY_OF_WEEK), time);
+
+        return new Date(millis - offset);
+    }
+
+    /**
+     * Result
+     * <p>
+     * 2013-10-26 14:37:48 UTC
+     */
+    public void test3() {
+        final SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss z");
+        f.setTimeZone(TimeZone.getTimeZone("UTC"));
+        System.out.println(f.format(new Date()));
+
+    }
+
+    /**
+     * timestamp转utc
+     */
+    public static long toUTC(long timestamp) {
+        Calendar cal = Calendar.getInstance();
+        int offset = cal.getTimeZone().getOffset(timestamp);
+        return timestamp + offset;
+    }
+
+    public static Date utcLongToDate(long utcTimeLong) {
+//        Date estTime = new Date(utcTime.getTime() + TimeZone.getTimeZone("EST").getRawOffset());
+        Calendar c = Calendar.getInstance(TimeZone.getTimeZone("EST"));
+        c.setTimeInMillis(utcTimeLong);
+        Date date = c.getTime();
+        return date;
+    }
+
+    public static String dateToString2(Date date) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
+        return sdf.format(new Date());
+    }
+
     public static void main(String[] args) throws Exception {
 
         // Calendar calendar = Calendar.getInstance();
@@ -3001,6 +3134,119 @@ public class DateUtil {
         String date22 = sdf.format(date2.getTime());  //2017-06-07 00:00:00
         System.out.println("时间date11：" + date11 + "时间date22：" + date22);
 
+        //字符串转utc
+        Date startTime = sdf.parse("2017-08-29 00:00:00");
+        Date endTime = sdf.parse("2017-08-29 23:59:59");
+//        String startTimeLong = String.valueOf(startTime.getTime());
+//        String endTimeLong = String.valueOf(endTime.getTime());
+        System.out.println(String.valueOf(toUTC(startTime.getTime())));
+        System.out.println(String.valueOf(toUTC(endTime.getTime())));
+
+        //utc转字符串
+        SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss z");
+        f.setTimeZone(TimeZone.getTimeZone("UTC"));
+//        System.out.println(f.format(new Date()));
+//        System.out.println(f.format(stringToDate("2017-08-29 23:59:59").getTime()));
+
+
+        System.out.println(f.format(1503964800000L));
+        System.out.println(f.format(1504051199000L));
+
+        System.out.println(f.format(1504071730984L));
+        System.out.println(String.valueOf(toUTC(sdf.parse("2017-08-30 05:42:10").getTime())));
+
+        System.out.println("没有utc处理");
+        System.out.println(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss z").format(1504071730984L));
+        System.out.println(String.valueOf(sdf.parse("2017-08-30 05:42:10").getTime()));
+
+        System.out.println("========1388563200000<->2014-01-01 UTC==========");
+        SimpleDateFormat f4 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss z");
+        f4.setTimeZone(TimeZone.getTimeZone("UTC"));
+        System.out.println(f4.format(1388563200000L - 28800000L));
+        System.out.println("官方,2014-01-01的long值是：1388563200000,通过UTC方式获取过来的是：" + (DateUtil.toUTC(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse("2014-01-01 00:00:00").getTime()) + 28800000L));
+
+        System.out.println("========1672560000000<-> 2023-01-01 UTC==========");
+        SimpleDateFormat f2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss z");
+        f2.setTimeZone(TimeZone.getTimeZone("UTC"));
+        System.out.println(f2.format(1672560000000L - 28800000L));
+        System.out.println("官方,2022-01-01的long值是：1672560000000,通过UTC方式获取过来的是：" + (DateUtil.toUTC(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse("2023-01-01 00:00:00").getTime()) + 28800000L));
+
+        System.out.println("========1640995200000<-> 2022-01-01 UTC==========");
+        SimpleDateFormat f3 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss z");
+        f3.setTimeZone(TimeZone.getTimeZone("UTC"));
+        System.out.println(f3.format(1640995200000L - 28800000L));
+        System.out.println("官方,2022-01-01的long值是：1640995200000,通过UTC方式获取过来的是：" + (DateUtil.toUTC(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse("2022-01-01 00:00:00").getTime()) + 28800000L));
+
+        System.out.println("========1640995200000<-> 2022-01-01 UTC==========");
+        SimpleDateFormat f5 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss z");
+        f5.setTimeZone(TimeZone.getTimeZone("UTC"));
+//        System.out.println(f5.format(1640995200000L-28800000L));
+
+
+        Date date7 = DateUtil.hour(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse("2023-01-01 00:00:00"), 8);
+        System.out.println("官方,2023-01-01的long值是：,通过UTC方式获取过来的值加8小时后，与预期相比小时数：" + (DateUtil.toUTC(date7.getTime() - 1672560000000L) / 1000 / 60 / 60));
+
+
+        Date date8 = DateUtil.hour(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse("2022-01-01 00:00:00"), 8);
+        System.out.println("官方,2022-01-01的long值是：,通过UTC方式获取过来的值加8小时后，与预期相比小时数：" + (DateUtil.toUTC(date8.getTime() - 1640995200000L) / 1000 / 60 / 60));
+
+//        System.out.println("8小时对应的值："+(8 * 60 * 60 * 1000));
+
+//        System.out.println(("8小时："+(1641024000000L-1640995200000L)));
+
+        System.out.println(stringToDate("2022-01-01 00:00:00", "yyyy-MM-dd HH:mm:ss").getTime());
+
+        System.out.println("======================GMT======================");
+
+
+        SimpleDateFormat f10 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        f10.setTimeZone(TimeZone.getTimeZone("GMT"));
+        System.out.println(f10.format(1388563200000L));
+
+
+        SimpleDateFormat f11 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        f11.setTimeZone(TimeZone.getTimeZone("GMT"));
+        System.out.println(f11.format(1640995200000L));
+
+        SimpleDateFormat f12 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        f12.setTimeZone(TimeZone.getTimeZone("GMT"));
+        System.out.println(f12.format(1672560000000L));
+
+
+        System.out.println("===========auto获取的方式=============");
+        TimeOperation timeOperation = new TimeOperation();
+        String jobStartTime = timeOperation.getCurrentYearFirst();
+        SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
+        Date date2333 = sdf1.parse(jobStartTime);
+        String startTime2333 = sdf1.format(date2333);
+
+        String tim = startTime2333 + " " + "08:00:00";
+        System.out.println(tim);
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        Date startTime233322 = format.parse(tim);
+        System.out.println("auto:" + startTime233322.getTime());
+
+        System.out.println("===========auto获取的方式-字符=============");
+        String tim20140101 = "2014-01-01" + " " + "08:00:00";
+        Date date20140101 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").parse(tim20140101);
+        System.out.println(date20140101.getTime());
+
+        DateUtil.test();
+        System.out.println("结束");
     }
+
+    public static  void test(){
+        try{
+            String va = null;
+            System.out.println(va.equals(""));
+
+        }catch (Exception e){
+            throw e;
+        }
+
+    }
+
+
+
 
 }
