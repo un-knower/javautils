@@ -7,7 +7,11 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
-import java.util.*;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.Locale;
+import java.util.TimeZone;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -29,6 +33,7 @@ public class DateUtil {
             "yyyyMMddHHmmss");
     private static final SimpleDateFormat ORA_DATE_TIME_FORMAT_CHINEASE = new SimpleDateFormat(
             "yyyy年MM月dd日");
+
     private static final long ONE_DAY = 24 * 60 * 60 * 1000;
     private static final long ONE_HOUR = 60 * 60 * 1000;
     private static final long ONE_MIN = 60 * 1000;
@@ -3230,23 +3235,34 @@ public class DateUtil {
         String tim20140101 = "2014-01-01" + " " + "08:00:00";
         Date date20140101 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").parse(tim20140101);
         System.out.println(date20140101.getTime());
+        System.out.println("==========几天后===========");
+        DateFormat dateFormat2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date myDate2 = dateFormat2.parse("2017-08-27 00:00:00");
 
-        DateUtil.test();
+        System.out.println(DateUtil.getNDayAfter(myDate2, 7 * 12));//2017-11-19 00:00:00 周日
+        System.out.println(DateUtil.getNDayAfter(myDate2, 7 * 16));//2017-12-17 00:00:00 周日
+        System.out.println(DateUtil.getNDayAfter(myDate2, 7 * 4 * 10));//2018-06-3 00:00:00 周日
+
         System.out.println("结束");
     }
 
-    public static  void test(){
-        try{
-            String va = null;
-            System.out.println(va.equals(""));
-
-        }catch (Exception e){
-            throw e;
-        }
-
+    /**
+     * 从某一天开始的，几天后
+     *
+     * @param startDate 从这一天开始
+     * @param day       多少天后
+     * @return 日期
+     */
+    public static String getNDayAfter(Date startDate, int day) {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Calendar calendar = Calendar.getInstance();
+        //过去七天
+        calendar.setTime(startDate);
+        calendar.add(Calendar.DATE, day);
+        java.util.Date date = calendar.getTime();
+        String dateStr = simpleDateFormat.format(date);
+        return dateStr;
     }
-
-
 
 
 }
