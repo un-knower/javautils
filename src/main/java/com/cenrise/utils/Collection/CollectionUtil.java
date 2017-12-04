@@ -1,5 +1,7 @@
 package com.cenrise.utils.Collection;
 
+import com.cenrise.utils.ValidUtil;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -9,8 +11,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Queue;
 import java.util.Set;
-
-import com.cenrise.utils.ValidUtil;
 
 /**
  * 封装一些集合相关度工具类
@@ -263,4 +263,42 @@ public class CollectionUtil {
         }
         return result.toString();
     }
+
+    //根据value值获取到对应的一个key值
+    public static String getKey(HashMap<String, String> map, String value) {
+        String key = null;
+        //Map,HashMap并没有实现Iteratable接口.不能用于增强for循环.
+        for (String getKey : map.keySet()) {
+            if (map.get(getKey).equals(value)) {
+                key = getKey;
+            }
+        }
+        return key;
+        //这个key肯定是最后一个满足该条件的key.
+    }
+
+    //根据value值获取到对应的所有的key值
+    public static List<String> getKeyList(HashMap<String, String> map, String value) {
+        List<String> keyList = new ArrayList();
+        for (String getKey : map.keySet()) {
+            if (map.get(getKey).equals(value)) {
+                keyList.add(getKey);
+            }
+        }
+        return keyList;
+    }
+
+    public static void main(String[] args) {
+        HashMap<String, String> map = new HashMap();
+        map.put("CHINA", "中国");
+        map.put("CN", "中国");
+        map.put("AM", "美国");
+        //获取一个Key
+        System.out.println("通过value获取Key:" + getKey(map, "中国"));//输出"CN"
+        System.out.println("通过value获取Key:" + getKey(map, "美国"));//输出"AM"
+         //获得所有的key值
+        System.out.println("通过value获取所有的key值:" + getKeyList(map, "中国"));//输出"[CHINA, CN]"
+    }
+
+
 }
