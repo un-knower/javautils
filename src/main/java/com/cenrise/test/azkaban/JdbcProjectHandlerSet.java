@@ -298,12 +298,10 @@ class JdbcProjectHandlerSet {
         final String fileName = rs.getString(6);
         final byte[] md5 = rs.getBytes(7);
         final int numChunks = rs.getInt(8);
-        final String resourceId = rs.getString(9);
 
         final ProjectFileHandler handler =
             new ProjectFileHandler(projectId, version, uploadTime, uploader, fileType, fileName,
-                numChunks, md5,
-                resourceId);
+                numChunks, md5);
 
         handlers.add(handler);
       } while (rs.next());
