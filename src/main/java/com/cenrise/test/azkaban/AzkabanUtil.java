@@ -12,6 +12,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,23 +28,86 @@ public class AzkabanUtil {
         try {
             azkabanUtil.conn = DBUtil.openConnection();
 
-            List<Project> projectsList = azkabanUtil.queryProjects(6);
+            List<Project> projectsList = azkabanUtil.fetchAllActiveProjects();
+            for (Project project : projectsList) {
+                int projectId = project.getId();
+                int version = project.getVersion();
+                //依赖关系
+                List<Flow> flowList = azkabanUtil.queryProjectFlows(projectId, version);
+                for (Flow flow : flowList) {
+                    int projectId1 = flow.getProjectId();//6
+                    String flowId = flow.getId();//"end"
+                    int version1 = flow.getVersion();//e
+                    //获取到点到点的边信息queryProjectProperties
+                    Collection<Edge> edges = flow.getEdges();
+                    for (Edge edge : edges) {
+                        String sourceId = edge.getSourceId();
+                        String targetId = edge.getTargetId();
+                    }
+                    //查某个点的信息，如kettle文件路径
+                    Collection<Node> nodes = flow.getNodes();
+                    for (Node node : nodes) {
+                        String id = node.getId();
+                        String jobSource = node.getJobSource();//SYCH_RPT_TABLES.job
+                        String type = node.getType();//command
+                        int level = node.getLevel();//第几级
+                        //可读取到上传的转换信息，及依赖
+                        Map<String, Props> propsStrMap = azkabanUtil.queryProjectProperties(projectId1, version1, jobSource);
+                        for (Map.Entry<String, Props> propsMap : propsStrMap.entrySet()) {
+                            String propsMapKey = propsMap.getKey();
+                            Props propsMapValue = propsMap.getValue();
+                            String type1 = propsMapValue.get("type");//command
+                            String command = propsMapValue.get("command");//ss /home/appgroup/kettle/pdi-ce-5.0.1........kjb
+                            String dependencies = propsMapValue.get("dependencies");//sychend
 
-            //依赖关系
-            List<Flow> flowList = azkabanUtil.queryProjectFlows(6, 3, "end");
+                            //TODO 通过linux命令读取kettle文件，command
 
-            //可拿到上传的文件
-            File file = azkabanUtil.queryProjectFiles(6, 3);
+                        }
+                        System.out.println(propsStrMap.size());
+                    }
+                    //可拿到上传的文件
+                    File file = azkabanUtil.queryProjectFiles(projectId1, version1);
+                    System.out.println(file.getAbsolutePath());
 
-            //可读取到上传的转换信息，及依赖
-            Map<String, Props> propsStrMap = azkabanUtil.queryProjectProperties(6, 3);
-            System.out.println(propsStrMap.size());
+
+                }
+            }
+
 
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+
+    public static String SELECT_ALL_ACTIVE_PROJECTS =
+            "SELECT id, name, active, modified_time, create_time, version, last_modified_by, description, enc_type, settings_blob FROM projects WHERE active=true";
+    public static String SELECT_ACTIVE_PROJECT_BY_NAME =
+            "SELECT id, name, active, modified_time, create_time, version, last_modified_by, description, enc_type, settings_blob FROM projects WHERE name=? AND active=true";
+
+    /**
+     * 获取所有活跃的项目
+     *
+     * @return
+     * @throws Exception
+     */
+    public List<Project> fetchAllActiveProjects() throws Exception {
+        List<Project> objectsProject = null;
+        //取项目
+        try {
+            pre = conn.prepareStatement(SELECT_ALL_ACTIVE_PROJECTS);
+            rs = pre.executeQuery();
+            //项目级别
+            JdbcProjectHandlerSet.ProjectResultHandler projectResultHandler = new JdbcProjectHandlerSet.ProjectResultHandler();
+            objectsProject = projectResultHandler.handle(rs);
+
+            System.out.println(objectsProject.size());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return objectsProject;
     }
 
     /**
@@ -103,6 +167,56 @@ public class AzkabanUtil {
             throw new Exception("Error fetching properties", e);
         }
 
+    }
+
+    /**
+     * 获取project_properties信息
+     *
+     * @return
+     */
+    public Map<String, Props> queryProjectProperties(Integer projectId, Integer version, String name) throws Exception {
+        try {
+            JdbcProjectHandlerSet.ProjectPropertiesResultsHandler projectPropertiesResultsHandler = new JdbcProjectHandlerSet.ProjectPropertiesResultsHandler();
+
+            pre = conn.prepareStatement("SELECT project_id, version, name, modified_time, encoding_type, property FROM project_properties WHERE project_id=" + projectId + " AND version=" + version + " AND name='" + name + "'");
+            rs = pre.executeQuery();
+            List<Pair<String, Props>> properties = projectPropertiesResultsHandler.handle(rs);
+
+
+            if (properties == null || properties.isEmpty()) {
+                return null;
+            }
+            final HashMap<String, Props> props = new HashMap<>();
+            for (final Pair<String, Props> pair : properties) {
+                props.put(pair.getFirst(), pair.getSecond());
+            }
+            return props;
+        } catch (final SQLException e) {
+            logger.error("Error fetching properties, project id" + projectId + " version " + version, e);
+            throw new Exception("Error fetching properties", e);
+        }
+
+    }
+
+    public List<Flow> queryProjectFlows(Integer project_id, Integer version) {
+        List<Flow> objectsFlows = null;
+        try {
+            pre = conn.prepareStatement("SELECT project_id, version, flow_id, modified_time, encoding_type, json FROM project_flows WHERE project_id=" + project_id + " AND version=" + version);
+            rs = pre.executeQuery();
+            JdbcProjectHandlerSet.ProjectFlowsResultHandler projectFlowsResultHandler = new JdbcProjectHandlerSet.ProjectFlowsResultHandler();
+
+            objectsFlows = projectFlowsResultHandler.handle(rs);
+            System.out.println(objectsFlows.size());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            /*try {
+                DBUtil.closeConnection();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }*/
+        }
+        return objectsFlows;
     }
 
     public List<Flow> queryProjectFlows(Integer project_id, Integer version, String flow_id) {
