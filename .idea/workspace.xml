@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3448f280-db30-4551-83a4-99b27659929f" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/cenrise/test/azkaban/STARTDATE.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/cenrise/test/azkaban/AzkabanUtil.java" afterPath="$PROJECT_DIR$/src/main/java/com/cenrise/test/azkaban/AzkabanUtil.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/cenrise/test/azkaban/STARTDATE.xml" afterPath="$PROJECT_DIR$/src/main/java/com/cenrise/test/azkaban/STARTDATE.xml" />
     </list>
     <ignored path="javautils.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -41,7 +40,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="AzkabanUtil.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="AzkabanUtil.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/cenrise/test/azkaban/AzkabanUtil.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="277">
@@ -66,12 +65,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="STARTDATE.xml" pinned="false" current-in-tab="false">
+      <file leaf-file-name="STARTDATE.xml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/cenrise/test/azkaban/STARTDATE.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="210">
+              <caret line="114" column="15" lean-forward="false" selection-start-line="114" selection-start-column="15" selection-end-line="114" selection-end-column="15" />
+              <folding>
+                <element signature="n#connection#0;n#job#0;n#!!top" expanded="false" />
+                <element signature="n#connection#1;n#job#0;n#!!top" expanded="false" />
+                <element signature="n#slaveservers#0;n#job#0;n#!!top" expanded="false" />
+                <element signature="n#job-log-table#0;n#job#0;n#!!top" expanded="false" />
+                <element signature="n#jobentry-log-table#0;n#job#0;n#!!top" expanded="false" />
+                <element signature="n#channel-log-table#0;n#job#0;n#!!top" expanded="false" />
+                <element signature="n#entry#0;n#entries#0;n#job#0;n#!!top" expanded="false" />
+                <element signature="n#entry#1;n#entries#0;n#job#0;n#!!top" expanded="false" />
+                <element signature="n#entry#2;n#entries#0;n#job#0;n#!!top" expanded="false" />
+                <element signature="n#hop#0;n#hops#0;n#job#0;n#!!top" expanded="false" />
+                <element signature="n#hop#1;n#hops#0;n#job#0;n#!!top" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -189,6 +200,7 @@
         <option value="$PROJECT_DIR$/src/main/java/com/cenrise/test/azkaban/JdbcProjectHandlerSet.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/cenrise/test/azkaban/ProjectFileHandler.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/cenrise/test/azkaban/AzkabanUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/cenrise/test/azkaban/STARTDATE.xml" />
       </list>
     </option>
   </component>
@@ -860,7 +872,7 @@
       <workItem from="1512546048040" duration="2589000" />
       <workItem from="1512611726119" duration="2820000" />
       <workItem from="1512704868594" duration="248000" />
-      <workItem from="1512709021803" duration="5454000" />
+      <workItem from="1512709021803" duration="5679000" />
     </task>
     <task id="LOCAL-00001" summary="添加kylin的一些工具方式">
       <created>1506481526941</created>
@@ -890,11 +902,18 @@
       <option name="project" value="LOCAL" />
       <updated>1512467403010</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="azkaban全部项目解析完，得到路径。">
+      <created>1512718972621</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1512718972621</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="77259000" />
+    <option name="totallyTimeSpent" value="77484000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -928,7 +947,7 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27294686" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27294686" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Tool Output" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1007,7 +1026,8 @@
     <MESSAGE value="n周后的某一天" />
     <MESSAGE value="azkaban解析" />
     <MESSAGE value="azkaban解析，方式抽取" />
-    <option name="LAST_COMMIT_MESSAGE" value="azkaban解析，方式抽取" />
+    <MESSAGE value="azkaban全部项目解析完，得到路径。" />
+    <option name="LAST_COMMIT_MESSAGE" value="azkaban全部项目解析完，得到路径。" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1412,14 +1432,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cenrise/test/azkaban/STARTDATE.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/cenrise/test/azkaban/AzkabanUtil.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="277">
@@ -1439,6 +1451,26 @@
             <marker date="1512718938095" expanded="true" signature="9151:9340" ph="SELECT proje... project_flows" />
             <marker date="1512718938095" expanded="true" signature="11106:11312" ph="SELECT proje... " />
             <marker date="1512718938095" expanded="true" signature="12952:13143" ph="SELECT proje... project_versions" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cenrise/test/azkaban/STARTDATE.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="114" column="15" lean-forward="false" selection-start-line="114" selection-start-column="15" selection-end-line="114" selection-end-column="15" />
+          <folding>
+            <element signature="n#connection#0;n#job#0;n#!!top" expanded="false" />
+            <element signature="n#connection#1;n#job#0;n#!!top" expanded="false" />
+            <element signature="n#slaveservers#0;n#job#0;n#!!top" expanded="false" />
+            <element signature="n#job-log-table#0;n#job#0;n#!!top" expanded="false" />
+            <element signature="n#jobentry-log-table#0;n#job#0;n#!!top" expanded="false" />
+            <element signature="n#channel-log-table#0;n#job#0;n#!!top" expanded="false" />
+            <element signature="n#entry#0;n#entries#0;n#job#0;n#!!top" expanded="false" />
+            <element signature="n#entry#1;n#entries#0;n#job#0;n#!!top" expanded="false" />
+            <element signature="n#entry#2;n#entries#0;n#job#0;n#!!top" expanded="false" />
+            <element signature="n#hop#0;n#hops#0;n#job#0;n#!!top" expanded="false" />
+            <element signature="n#hop#1;n#hops#0;n#job#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
