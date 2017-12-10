@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<class>
+    <stu id="001">
+        <name>Allen</name>
+        <sex>男</sex>
+        <age>20</age>
+    </stu>
+    <stu id="002">
+        <name>namy</name>
+        <sex>女</sex>
+        <age>18</age>
+    </stu>
+    <stu id="003">
+        <name>lufy</name>
+        <sex>男</sex>
+        <age>18</age>
+    </stu>
+</class>
