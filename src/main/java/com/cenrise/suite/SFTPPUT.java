@@ -31,7 +31,7 @@ public class SFTPPUT {
     private static final String SEED = "0933910847463829827159347601486730416058";
     private static final int DEFAULT_PORT = 21;
 
-    String realSftpDirString = "/home/appgroup/kettle/pdi-ce-5.0.1.A-stable/data-integration/MyKtrs";
+    public String realSftpDirString = "/home/appgroup/kettle/pdi-ce-5.0.1.A-stable/data-integration/MyKtrs";
 
     public static void main(String[] args) {
         SFTPPUT sftpput = new SFTPPUT();
@@ -42,6 +42,14 @@ public class SFTPPUT {
         }
     }
 
+    /**
+     * 读取远程服务器上的文件 TODO 优化
+     *
+     * @param parentPath
+     * @param fileName
+     * @return
+     * @throws Exception
+     */
     public File queryElement(String parentPath, String fileName) throws Exception {
 
         SFTPClient sftpclient = null;
@@ -57,6 +65,121 @@ public class SFTPPUT {
             System.out.println(file.exists());
 
 
+            return file;
+        } catch (Exception e) {
+            System.out.println(Const.getStackTracker(e));
+            throw new Exception("从SFTP获取文件出错 \\: " + e);
+        } finally {
+            try {
+                if (sftpclient != null) sftpclient.disconnect();
+            } catch (Exception e) {
+                // just ignore this, makes no big difference
+            }
+
+            try {
+                if (TargetFolder != null) {
+                    TargetFolder.close();
+                    TargetFolder = null;
+                }
+            } catch (Exception e) {
+            }
+
+        }
+    }
+
+    /**
+     * 只连接，不切换
+     *
+     * @return
+     * @throws Exception
+     */
+    public SFTPClient queryElementConnServer() throws Exception {
+
+        SFTPClient sftpclient = null;
+        try {
+            sftpclient = new SFTPClient(InetAddress.getByName(serverName), toInt(serverPort, DEFAULT_PORT), username, realKeyFilename, realPassPhrase);
+            System.out.println("使用用户名 [" + username + "] 在端口 [" + serverPort + "] 上打开到服务器 [" + serverName + "] 的SFTP的连接");
+            sftpclient.login(password);
+            return sftpclient;
+
+        } catch (Exception e) {
+            System.out.println(Const.getStackTracker(e));
+            throw new Exception("从SFTP获取文件出错 \\: " + e);
+        } finally {
+            try {
+                if (sftpclient != null) sftpclient.disconnect();
+            } catch (Exception e) {
+                // just ignore this, makes no big difference
+            }
+
+            try {
+                if (TargetFolder != null) {
+                    TargetFolder.close();
+                    TargetFolder = null;
+                }
+            } catch (Exception e) {
+            }
+
+        }
+    }
+
+    /**
+     * 连接到指定目录
+     *
+     * @param parentPath
+     * @return
+     * @throws Exception
+     */
+    public SFTPClient queryElementConnServer(String parentPath) throws Exception {
+
+        SFTPClient sftpclient = null;
+        try {
+            sftpclient = new SFTPClient(InetAddress.getByName(serverName), toInt(serverPort, DEFAULT_PORT), username, realKeyFilename, realPassPhrase);
+            System.out.println("使用用户名 [" + username + "] 在端口 [" + serverPort + "] 上打开到服务器 [" + serverName + "] 的SFTP的连接");
+            sftpclient.login(password);
+
+            //切换目录
+            sftpclient.chdir(parentPath);
+            return sftpclient;
+
+        } catch (Exception e) {
+            System.out.println(Const.getStackTracker(e));
+            throw new Exception("从SFTP获取文件出错 \\: " + e);
+        } finally {
+            try {
+                if (sftpclient != null) sftpclient.disconnect();
+            } catch (Exception e) {
+                // just ignore this, makes no big difference
+            }
+
+            try {
+                if (TargetFolder != null) {
+                    TargetFolder.close();
+                    TargetFolder = null;
+                }
+            } catch (Exception e) {
+            }
+
+        }
+    }
+
+    /**
+     * 读取远程服务器上的文件
+     *
+     * @param sftpclient
+     * @param fileName
+     * @return
+     * @throws Exception
+     */
+    public File queryElementContent(SFTPClient sftpclient, String parentPath, String fileName) throws Exception {
+
+        try {
+            if (parentPath != null) {
+                //切换目录
+                sftpclient.chdir(parentPath);
+            }
+            File file = sftpclient.get(fileName);
+            System.out.println(file.exists());
             return file;
         } catch (Exception e) {
             System.out.println(Const.getStackTracker(e));

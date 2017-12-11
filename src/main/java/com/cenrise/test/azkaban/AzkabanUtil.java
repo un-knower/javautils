@@ -2,6 +2,7 @@ package com.cenrise.test.azkaban;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.cenrise.suite.SFTPClient;
 import com.cenrise.suite.SFTPPUT;
 import com.cenrise.utils.xml.sax.SaxService;
 import org.apache.commons.io.IOUtils;
@@ -31,6 +32,8 @@ public class AzkabanUtil {
     ResultSet rs = null;
 
     public static void main(String[] args) throws Exception {
+        SFTPPUT sftpput = new SFTPPUT();
+        SFTPClient sftpClient = sftpput.queryElementConnServer();
         AzkabanUtil azkabanUtil = new AzkabanUtil();
         try {
             azkabanUtil.conn = DBUtil.openConnection();
@@ -53,55 +56,58 @@ public class AzkabanUtil {
                         String targetId = edge.getTargetId();
                         //TODO 插入azkaban图
                         Connection connectionDPPro = DBUtilDPPro.openConnection();
-                        PreparedStatement preparedStatement = connectionDPPro.prepareStatement("INSERT INTO debug_azkaban_edge(source_id,target_id) VALUES (" + sourceId + "," + targetId + ")");
+                        String sql = "INSERT INTO debug_azkaban_edge(id,source_name,target_name) VALUES (UUID(),+'" + sourceId + "','" + targetId + "')";
+                        PreparedStatement preparedStatement = connectionDPPro.prepareStatement(sql);
                         boolean execute = preparedStatement.execute();
                         DBUtilDPPro.closeConnection();
-                    }
 
-                    //查某个点的信息，如kettle文件路径
-                    Collection<Node> nodes = flow.getNodes();
-                    for (Node node : nodes) {
-                        String id = node.getId();//SYCH_RPT_TABLES
-                        String jobSource = node.getJobSource();//SYCH_RPT_TABLES.job
-                        String type = node.getType();//command
-                        int level = node.getLevel();//第几级 3
+                        //查某个点的信息，如kettle文件路径
+                        Collection<Node> nodes = flow.getNodes();
 
-                        //可读取到上传的转换信息，及依赖
-                        Map<String, Props> propsStrMap = azkabanUtil.queryProjectProperties(projectId1, version1, jobSource);
-                        for (Map.Entry<String, Props> propsMap : propsStrMap.entrySet()) {
-                            String propsMapKey = propsMap.getKey();//SYCH_RPT_TABLES.job
-                            Props propsMapValue = propsMap.getValue();
-                            String type1 = propsMapValue.get("type");//command
-                            String command = propsMapValue.get("command");//ss /home/appgroup/kettle/pdi-ce-5.0.1........kjb
-                            String dependencies = propsMapValue.get("dependencies");//sychend
+                        for (Node node : nodes) {
+                            String id = node.getId();//SYCH_RPT_TABLES
+                            String jobSource = node.getJobSource();//SYCH_RPT_TABLES.job
+                            String type = node.getType();//command
+                            int level = node.getLevel();//第几级 3
 
-                            String filePath = command.split(" ")[3];
-                            File file = new File(filePath);
+                            //可读取到上传的转换信息，及依赖
+                            Map<String, Props> propsStrMap = azkabanUtil.queryProjectProperties(projectId1, version1, jobSource);
+                            for (Map.Entry<String, Props> propsMap : propsStrMap.entrySet()) {
+                                String propsMapKey = propsMap.getKey();//SYCH_RPT_TABLES.job
+                                Props propsMapValue = propsMap.getValue();
+                                String type1 = propsMapValue.get("type");//command
+                                String command = propsMapValue.get("command");//ss /home/appgroup/kettle/pdi-ce-5.0.1........kjb
+                                String dependencies = propsMapValue.get("dependencies");//sychend
 
-                            //登陆ftp，查找文件，这个需要登陆，TODO 优化一下
-                            SFTPPUT sftpput = new SFTPPUT();
-                            File fileEle = sftpput.queryElement(file.getParent(), file.getName());
+                                String filePath = command.split(" ")[3];
+                                File file = new File(filePath);
+                                //登陆ftp，查找文件，这个需要登陆，TODO 优化一下
 
-                            //策略是只读sql执行器组件和存储过程，其它的只记录转换名
-                            ArrayList<Map<String, String>> entryList = (ArrayList<Map<String, String>>) SaxService.ReadXML(fileEle.getAbsolutePath(), "entry");
-                            ArrayList<Map<String, String>> hopList = (ArrayList<Map<String, String>>) SaxService.ReadXML(fileEle.getAbsolutePath(), "hop");
-                            ArrayList<Map<String, String>> stepList = (ArrayList<Map<String, String>>) SaxService.ReadXML(fileEle.getAbsolutePath(), "step");
+                                File fileEle = sftpput.queryElementContent(sftpClient, file.getParent(), file.getName());
 
-                            //kettle文件内部的顺序关系
-                            for (Map<String, String> hopMap : hopList) {
-                                String from = hopMap.get("from");
-                                String to = hopMap.get("to");
-                                Map<String, String> entryMapFrom = azkabanUtil.queryEntry(entryList, from);
-                                Map<String, String> entryMapTo = azkabanUtil.queryEntry(entryList, to);
-                                //这里考虑到需要记录上下节点，且必须为转换时记录，所以采用记录上下节点的方式，如果上节点不为空，添加到下节点，然后插入数据后，清空节点。
-                                azkabanUtil.exeKettle(entryMapFrom, stepList);
-                                azkabanUtil.exeKettle(entryMapTo, stepList);
+                                //策略是只读sql执行器组件和存储过程，其它的只记录转换名
+                                ArrayList<Map<String, String>> entryList = (ArrayList<Map<String, String>>) SaxService.ReadXML(fileEle.getAbsolutePath(), "entry");
+                                ArrayList<Map<String, String>> hopList = (ArrayList<Map<String, String>>) SaxService.ReadXML(fileEle.getAbsolutePath(), "hop");
+                                ArrayList<Map<String, String>> stepList = (ArrayList<Map<String, String>>) SaxService.ReadXML(fileEle.getAbsolutePath(), "step");
+
+                                //kettle文件内部的顺序关系
+                                for (Map<String, String> hopMap : hopList) {
+                                    String from = hopMap.get("from");
+                                    String to = hopMap.get("to");
+                                    Map<String, String> entryMapFrom = azkabanUtil.queryEntry(entryList, from);
+                                    Map<String, String> entryMapTo = azkabanUtil.queryEntry(entryList, to);
+                                    //这里考虑到需要记录上下节点，且必须为转换时记录，所以采用记录上下节点的方式，如果上节点不为空，添加到下节点，然后插入数据后，清空节点。
+                                    azkabanUtil.exeKettle(entryMapFrom, stepList);
+                                    azkabanUtil.exeKettle(entryMapTo, stepList);
+
+                                }
 
                             }
 
                         }
-
                     }
+
+
                 }
             }
         } catch (SQLException e) {
@@ -160,9 +166,9 @@ public class AzkabanUtil {
 
             //<transname>STARTDATE.ktr</transname>
             // <directory>${Internal.Job.Filename.Directory}</directory>
-            String transname = entryMap.get("transname");
-            String directory = entryMap.get("directory");
-            kettleNode(transname, null, null, null, null);
+//            String transname = entryMap.get("transname");
+//            String directory = entryMap.get("directory");
+//            kettleNode(transname, null, null, null, null);
         } else if (fileType.equals("JOB")) {
             //${Internal.Job.Filename.Directory}/Totalamount.kjb
             String filename = entryMap.get("filename");
@@ -554,13 +560,16 @@ public class AzkabanUtil {
             jsonObject.put("table_connect", tableConnect);
         }
 
-        JSONArray jsonArray = new JSONArray();
-        for (String str : tableNameSet) {
-            jsonArray.add(str);
+        if (tableNameSet != null) {
+            JSONArray jsonArray = new JSONArray();
+            for (String str : tableNameSet) {
+                jsonArray.add(str);
+            }
+            if (jsonArray != null && jsonArray.size() != 0) {
+                jsonObject.put("table_names", jsonArray);
+            }
         }
-        if (jsonArray != null && jsonArray.size() != 0) {
-            jsonObject.put("table_names", jsonArray);
-        }
+
         return jsonObject;
     }
 

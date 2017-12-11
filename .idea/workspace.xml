@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3448f280-db30-4551-83a4-99b27659929f" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/cenrise/test/azkaban/DBUtilDPPro.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/dbcp_dppro.properties" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/cenrise/suite/FtpVFS.java" afterPath="$PROJECT_DIR$/src/main/java/com/cenrise/suite/FtpVFS.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/cenrise/suite/SFTPClient.java" afterPath="$PROJECT_DIR$/src/main/java/com/cenrise/suite/SFTPClient.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/cenrise/suite/SFTPPUT.java" afterPath="$PROJECT_DIR$/src/main/java/com/cenrise/suite/SFTPPUT.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/cenrise/test/azkaban/AzkabanUtil.java" afterPath="$PROJECT_DIR$/src/main/java/com/cenrise/test/azkaban/AzkabanUtil.java" />
     </list>
@@ -60,25 +56,28 @@
       <file leaf-file-name="AzkabanUtil.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/cenrise/test/azkaban/AzkabanUtil.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2074">
-              <caret line="167" column="32" lean-forward="false" selection-start-line="167" selection-start-column="32" selection-end-line="167" selection-end-column="32" />
+            <state relative-caret-position="200">
+              <caret line="118" column="5" lean-forward="true" selection-start-line="118" selection-start-column="5" selection-end-line="118" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#7191#7199#0" expanded="true" />
-                <marker date="1512982642054" expanded="true" signature="2143:2237" ph="INSERT INTO debug_azkaban_edge... " />
-                <marker date="1512982642054" expanded="true" signature="11742:11890" ph="SELECT id, n... projects" />
-                <marker date="1512982642054" expanded="true" signature="11963:12122" ph="SELECT id, n... projects" />
-                <marker date="1512982642054" expanded="true" signature="13087:13228" ph="SELECT id, n... projects" />
-                <marker date="1512982642054" expanded="true" signature="14057:14171" ph="SELECT proje... project_properties" />
-                <marker date="1512982642054" expanded="true" signature="14057:14201" ph="SELECT proje... project_properties" />
-                <marker date="1512982642054" expanded="true" signature="15322:15466" ph="SELECT proje... project_properties" />
-                <marker date="1512982642054" expanded="true" signature="15322:15491" ph="SELECT proje... project_properties" />
-                <marker date="1512982642054" expanded="true" signature="15322:15505" ph="SELECT proje... project_properties" />
-                <marker date="1512982642054" expanded="true" signature="16384:16523" ph="SELECT proje... project_flows" />
-                <marker date="1512982642054" expanded="true" signature="16384:16534" ph="SELECT proje... project_flows" />
-                <marker date="1512982642054" expanded="true" signature="17140:17329" ph="SELECT proje... project_flows" />
-                <marker date="1512982642054" expanded="true" signature="18921:19127" ph="SELECT proje... " />
-                <marker date="1512982642054" expanded="true" signature="20767:20958" ph="SELECT proje... project_versions" />
+                <element signature="e#7497#7505#0" expanded="true" />
+                <marker date="1512986675308" expanded="true" signature="2229:2296" ph="INSERT INTO debug_azkaban_edge... " />
+                <marker date="1512986675308" expanded="true" signature="2229:2302" ph="INSERT INTO debug_azkaban_edge... " />
+                <marker date="1512986675308" expanded="true" signature="2229:2321" ph="INSERT INTO debug_azkaban_edge... " />
+                <marker date="1512986675308" expanded="true" signature="2229:2342" ph="INSERT INTO debug_azkaban_edge... " />
+                <marker date="1512986675308" expanded="true" signature="12054:12202" ph="SELECT id, n... projects" />
+                <marker date="1512986675308" expanded="true" signature="12275:12434" ph="SELECT id, n... projects" />
+                <marker date="1512986675308" expanded="true" signature="13399:13540" ph="SELECT id, n... projects" />
+                <marker date="1512986675308" expanded="true" signature="14369:14483" ph="SELECT proje... project_properties" />
+                <marker date="1512986675308" expanded="true" signature="14369:14513" ph="SELECT proje... project_properties" />
+                <marker date="1512986675308" expanded="true" signature="15634:15778" ph="SELECT proje... project_properties" />
+                <marker date="1512986675308" expanded="true" signature="15634:15803" ph="SELECT proje... project_properties" />
+                <marker date="1512986675308" expanded="true" signature="15634:15817" ph="SELECT proje... project_properties" />
+                <marker date="1512986675308" expanded="true" signature="16696:16835" ph="SELECT proje... project_flows" />
+                <marker date="1512986675308" expanded="true" signature="16696:16846" ph="SELECT proje... project_flows" />
+                <marker date="1512986675308" expanded="true" signature="17452:17641" ph="SELECT proje... project_flows" />
+                <marker date="1512986675308" expanded="true" signature="19233:19439" ph="SELECT proje... " />
+                <marker date="1512986675308" expanded="true" signature="21079:21270" ph="SELECT proje... project_versions" />
               </folding>
             </state>
           </provider>
@@ -110,8 +109,8 @@
       <file leaf-file-name="SFTPPUT.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/cenrise/suite/SFTPPUT.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="660">
-              <caret line="44" column="83" lean-forward="false" selection-start-line="44" selection-start-column="83" selection-end-line="44" selection-end-column="83" />
+            <state relative-caret-position="309">
+              <caret line="177" column="22" lean-forward="true" selection-start-line="177" selection-start-column="22" selection-end-line="177" selection-end-column="22" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -130,8 +129,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>SimpleDateFormat</find>
-      <find>通过value</find>
       <find>flowFromObject</find>
       <find>objectsProject</find>
       <find>handleProjects</find>
@@ -153,13 +150,15 @@
       <find>realSftpDirString</find>
       <find>sourcefilefolder</find>
       <find>stepList</find>
-      <find>queryElement</find>
       <find>entryMapFrom</find>
       <find>dbpro</find>
       <find>DBUtilDPPro</find>
-      <find>kettleNode</find>
       <find>saveToDB</find>
       <find>placeNode</find>
+      <find>tableNameSet</find>
+      <find>kettleNode</find>
+      <find>queryElement</find>
+      <find>sftpClient</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -229,9 +228,9 @@
         <option value="$PROJECT_DIR$/src/main/java/com/cenrise/utils/xml/sax/XmlSaxTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/cenrise/suite/SFTPClient.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/cenrise/suite/FtpVFS.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/cenrise/suite/SFTPPUT.java" />
         <option value="$PROJECT_DIR$/src/main/resources/dbcp_dppro.properties" />
         <option value="$PROJECT_DIR$/src/main/java/com/cenrise/test/azkaban/DBUtilDPPro.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/cenrise/suite/SFTPPUT.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/cenrise/test/azkaban/AzkabanUtil.java" />
       </list>
     </option>
@@ -868,7 +867,7 @@
       <workItem from="1512908174028" duration="114000" />
       <workItem from="1512929173723" duration="50000" />
       <workItem from="1512955829858" duration="9506000" />
-      <workItem from="1512970524646" duration="9598000" />
+      <workItem from="1512970524646" duration="12650000" />
     </task>
     <task id="LOCAL-00001" summary="添加kylin的一些工具方式">
       <created>1506481526941</created>
@@ -919,11 +918,18 @@
       <option name="project" value="LOCAL" />
       <updated>1512908262846</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="azkaban与kettle配置分析初步，未测试">
+      <created>1512982705860</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1512982705860</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="103517000" />
+    <option name="totallyTimeSpent" value="106569000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -956,7 +962,7 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27228916" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.34057972" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Tool Output" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -996,7 +1002,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27228916" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.34057972" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298969" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3253012" sideWeight="0.5" order="17" side_tool="false" content_ui="tabs" />
@@ -1038,7 +1044,8 @@
     <MESSAGE value="azkaban解析，方式抽取" />
     <MESSAGE value="azkaban全部项目解析完，得到路径。" />
     <MESSAGE value="sax解析" />
-    <option name="LAST_COMMIT_MESSAGE" value="sax解析" />
+    <MESSAGE value="azkaban与kettle配置分析初步，未测试" />
+    <option name="LAST_COMMIT_MESSAGE" value="azkaban与kettle配置分析初步，未测试" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1057,39 +1064,51 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/cenrise/test/azkaban/AzkabanUtil.java</url>
-          <line>106</line>
+          <line>112</line>
           <properties />
           <option name="timeStamp" value="25" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/cenrise/test/azkaban/AzkabanUtil.java</url>
-          <line>340</line>
+          <line>346</line>
           <properties />
           <option name="timeStamp" value="26" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/cenrise/suite/SFTPPUT.java</url>
-          <line>96</line>
+          <line>219</line>
           <properties />
           <option name="timeStamp" value="50" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/cenrise/test/azkaban/AzkabanUtil.java</url>
-          <line>61</line>
+          <line>280</line>
           <properties />
-          <option name="timeStamp" value="55" />
+          <option name="timeStamp" value="57" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/cenrise/test/azkaban/AzkabanUtil.java</url>
+          <line>555</line>
+          <properties />
+          <option name="timeStamp" value="60" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/cenrise/test/azkaban/AzkabanUtil.java</url>
           <line>85</line>
           <properties />
-          <option name="timeStamp" value="56" />
+          <option name="timeStamp" value="62" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/cenrise/test/azkaban/AzkabanUtil.java</url>
-          <line>274</line>
+          <line>88</line>
           <properties />
-          <option name="timeStamp" value="57" />
+          <option name="timeStamp" value="63" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/cenrise/test/azkaban/AzkabanUtil.java</url>
+          <line>66</line>
+          <properties />
+          <option name="timeStamp" value="65" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/com/cenrise/test/DBUtil.java</url>
@@ -1100,7 +1119,7 @@
           <option name="timeStamp" value="6" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="58" />
+      <option name="time" value="66" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1109,14 +1128,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cenrise/test/azkaban/ProjectLoader.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cenrise/test/azkaban/PropsUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1630">
-          <caret line="227" column="42" lean-forward="false" selection-start-line="227" selection-start-column="32" selection-end-line="227" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/cenrise/test/azkaban/JdbcProjectImpl.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/cenrise/test/azkaban/Utils.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -1419,16 +1430,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cenrise/suite/SFTPPUT.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="660">
-          <caret line="44" column="83" lean-forward="false" selection-start-line="44" selection-start-column="83" selection-end-line="44" selection-end-column="83" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/dbcp.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1494,27 +1495,59 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cenrise/test/azkaban/AzkabanUtil.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cenrise/utils/Const.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2074">
-          <caret line="167" column="32" lean-forward="false" selection-start-line="167" selection-start-column="32" selection-end-line="167" selection-end-column="32" />
+        <state relative-caret-position="75">
+          <caret line="21" column="13" lean-forward="false" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cenrise/suite/SFTPPUT.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="309">
+          <caret line="177" column="22" lean-forward="true" selection-start-line="177" selection-start-column="22" selection-end-line="177" selection-end-column="22" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#7191#7199#0" expanded="true" />
-            <marker date="1512982642054" expanded="true" signature="2143:2237" ph="INSERT INTO debug_azkaban_edge... " />
-            <marker date="1512982642054" expanded="true" signature="11742:11890" ph="SELECT id, n... projects" />
-            <marker date="1512982642054" expanded="true" signature="11963:12122" ph="SELECT id, n... projects" />
-            <marker date="1512982642054" expanded="true" signature="13087:13228" ph="SELECT id, n... projects" />
-            <marker date="1512982642054" expanded="true" signature="14057:14171" ph="SELECT proje... project_properties" />
-            <marker date="1512982642054" expanded="true" signature="14057:14201" ph="SELECT proje... project_properties" />
-            <marker date="1512982642054" expanded="true" signature="15322:15466" ph="SELECT proje... project_properties" />
-            <marker date="1512982642054" expanded="true" signature="15322:15491" ph="SELECT proje... project_properties" />
-            <marker date="1512982642054" expanded="true" signature="15322:15505" ph="SELECT proje... project_properties" />
-            <marker date="1512982642054" expanded="true" signature="16384:16523" ph="SELECT proje... project_flows" />
-            <marker date="1512982642054" expanded="true" signature="16384:16534" ph="SELECT proje... project_flows" />
-            <marker date="1512982642054" expanded="true" signature="17140:17329" ph="SELECT proje... project_flows" />
-            <marker date="1512982642054" expanded="true" signature="18921:19127" ph="SELECT proje... " />
-            <marker date="1512982642054" expanded="true" signature="20767:20958" ph="SELECT proje... project_versions" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cenrise/test/azkaban/Flow.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="274" column="28" lean-forward="false" selection-start-line="274" selection-start-column="28" selection-end-line="274" selection-end-column="28" />
+          <folding>
+            <element signature="e#8652#8653#0" expanded="true" />
+            <element signature="e#8694#8695#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cenrise/test/azkaban/AzkabanUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="118" column="5" lean-forward="true" selection-start-line="118" selection-start-column="5" selection-end-line="118" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#7497#7505#0" expanded="true" />
+            <marker date="1512986675308" expanded="true" signature="2229:2296" ph="INSERT INTO debug_azkaban_edge... " />
+            <marker date="1512986675308" expanded="true" signature="2229:2302" ph="INSERT INTO debug_azkaban_edge... " />
+            <marker date="1512986675308" expanded="true" signature="2229:2321" ph="INSERT INTO debug_azkaban_edge... " />
+            <marker date="1512986675308" expanded="true" signature="2229:2342" ph="INSERT INTO debug_azkaban_edge... " />
+            <marker date="1512986675308" expanded="true" signature="12054:12202" ph="SELECT id, n... projects" />
+            <marker date="1512986675308" expanded="true" signature="12275:12434" ph="SELECT id, n... projects" />
+            <marker date="1512986675308" expanded="true" signature="13399:13540" ph="SELECT id, n... projects" />
+            <marker date="1512986675308" expanded="true" signature="14369:14483" ph="SELECT proje... project_properties" />
+            <marker date="1512986675308" expanded="true" signature="14369:14513" ph="SELECT proje... project_properties" />
+            <marker date="1512986675308" expanded="true" signature="15634:15778" ph="SELECT proje... project_properties" />
+            <marker date="1512986675308" expanded="true" signature="15634:15803" ph="SELECT proje... project_properties" />
+            <marker date="1512986675308" expanded="true" signature="15634:15817" ph="SELECT proje... project_properties" />
+            <marker date="1512986675308" expanded="true" signature="16696:16835" ph="SELECT proje... project_flows" />
+            <marker date="1512986675308" expanded="true" signature="16696:16846" ph="SELECT proje... project_flows" />
+            <marker date="1512986675308" expanded="true" signature="17452:17641" ph="SELECT proje... project_flows" />
+            <marker date="1512986675308" expanded="true" signature="19233:19439" ph="SELECT proje... " />
+            <marker date="1512986675308" expanded="true" signature="21079:21270" ph="SELECT proje... project_versions" />
           </folding>
         </state>
       </provider>
