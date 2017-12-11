@@ -1,13 +1,17 @@
 package com.cenrise.suite;
 
 import com.cenrise.utils.Const;
+import com.cenrise.utils.xml.sax.SaxService;
 import org.apache.commons.vfs2.FileObject;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.math.BigInteger;
 import java.net.InetAddress;
+import java.util.ArrayList;
+import java.util.Map;
 
 /**
  * 连接ftp,及业务处理
@@ -15,63 +19,88 @@ import java.net.InetAddress;
 public class SFTPPUT {
 
     // String substitution..
-    String serverName = "10.151.30.10";//服务器
+    String serverName = "10.1.11.53";//服务器
     String serverPort = "22";//端口设计
-    String username = "ci";//用户名
-    //    String realPassword = decryptPasswordOptionallyEncrypted("Zj4xyBkgjd");
-    String password = "Zj4xyBkgjd";
-    String realSftpDirString = "/apps/tomcat7-40-tomcat-air-ticket-merchant/logs";
+    String username = "root";//用户名
+    String password = "123456";
     String realKeyFilename = null;
     String realPassPhrase = null;
     FileObject TargetFolder = null;
-    /**
-     * The word that is put before a password to indicate an encrypted form.  If this word is not present, the password is considered to be NOT encrypted
-     */
     public static final String PASSWORD_ENCRYPTED_PREFIX = "Encrypted ";
     private static final int RADIX = 16;
     private static final String SEED = "0933910847463829827159347601486730416058";
     private static final int DEFAULT_PORT = 21;
 
+    String realSftpDirString = "/home/appgroup/kettle/pdi-ce-5.0.1.A-stable/data-integration/MyKtrs";
+
     public static void main(String[] args) {
         SFTPPUT sftpput = new SFTPPUT();
         try {
-            sftpput.testsftp();
+            sftpput.testsftp("/home/appgroup/kettle/pdi-ce-5.0.1.A-stable/data-integration/MyKtrs/", "hive.ktr", "field");
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void testsftp() throws Exception {
+    public File queryElement(String parentPath, String fileName) throws Exception {
 
         SFTPClient sftpclient = null;
         try {
-            // Create sftp client to host ...
             sftpclient = new SFTPClient(InetAddress.getByName(serverName), toInt(serverPort, DEFAULT_PORT), username, realKeyFilename, realPassPhrase);
             System.out.println("使用用户名 [" + username + "] 在端口 [" + serverPort + "] 上打开到服务器 [" + serverName + "] 的SFTP的连接");
-            // login to ftp host ...
             sftpclient.login(password);
 
-            // Get all the files in the current directory...
-            String[] filelist = sftpclient.dir();
-            if (filelist == null) {
-                throw new Exception("在远程目录上发现0个目录");
-            }
+            //切换目录
+            sftpclient.chdir(parentPath);
 
-            //下载文件
-//            sftpclient.get("/Users/yp-tc-m-2684/jiadp","/apps/tomcat7-40-tomcat-air-ticket-merchant/logs/catalina.out");
-
-            ///apps/tomcat7-40-tomcat-air-ticket-merchant/logs/提交成功.jpeg
-            FileObject fileObject = SFTPClientVFS.getFileObject("/Users/yp-tc-m-2684/Downloads/json2.txt");
-            sftpclient.put(fileObject, "/apps/tomcat7-40-tomcat-air-ticket-merchant/logs/北京天安门.txt");
-            ///Users/yp-tc-m-2684/Downloads/json2.txt
-            //郑州地铁.gif
+            File file = sftpclient.get(fileName);
+            System.out.println(file.exists());
 
 
+            return file;
         } catch (Exception e) {
             System.out.println(Const.getStackTracker(e));
             throw new Exception("从SFTP获取文件出错 \\: " + e);
         } finally {
-            // close connection, if possible
+            try {
+                if (sftpclient != null) sftpclient.disconnect();
+            } catch (Exception e) {
+                // just ignore this, makes no big difference
+            }
+
+            try {
+                if (TargetFolder != null) {
+                    TargetFolder.close();
+                    TargetFolder = null;
+                }
+            } catch (Exception e) {
+            }
+
+        }
+    }
+
+    public void testsftp(String parentPath, String fileName, String findName) throws Exception {
+
+        SFTPClient sftpclient = null;
+        try {
+            sftpclient = new SFTPClient(InetAddress.getByName(serverName), toInt(serverPort, DEFAULT_PORT), username, realKeyFilename, realPassPhrase);
+            System.out.println("使用用户名 [" + username + "] 在端口 [" + serverPort + "] 上打开到服务器 [" + serverName + "] 的SFTP的连接");
+            sftpclient.login(password);
+
+            //切换目录
+            sftpclient.chdir(parentPath);
+
+            File file = sftpclient.get(fileName);
+            System.out.println(file.exists());
+
+            ArrayList<Map<String, String>> entryList = (ArrayList<Map<String, String>>) SaxService.ReadXML(file.getPath(), findName);
+            for (Map<String, String> entryMap : entryList) {
+
+            }
+        } catch (Exception e) {
+            System.out.println(Const.getStackTracker(e));
+            throw new Exception("从SFTP获取文件出错 \\: " + e);
+        } finally {
             try {
                 if (sftpclient != null) sftpclient.disconnect();
             } catch (Exception e) {
@@ -163,4 +192,6 @@ public class SFTPPUT {
         } // is this really required?
         return string;
     }
+
+
 }

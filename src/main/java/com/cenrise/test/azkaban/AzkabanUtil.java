@@ -1,5 +1,9 @@
 package com.cenrise.test.azkaban;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.cenrise.suite.SFTPPUT;
+import com.cenrise.utils.xml.sax.SaxService;
 import org.apache.commons.io.IOUtils;
 import org.apache.log4j.Logger;
 
@@ -11,11 +15,14 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class AzkabanUtil {
     private Logger logger = Logger.getLogger(AzkabanUtil.class);
@@ -23,7 +30,7 @@ public class AzkabanUtil {
     PreparedStatement pre = null;
     ResultSet rs = null;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         AzkabanUtil azkabanUtil = new AzkabanUtil();
         try {
             azkabanUtil.conn = DBUtil.openConnection();
@@ -38,49 +45,237 @@ public class AzkabanUtil {
                     int projectId1 = flow.getProjectId();//6
                     String flowId = flow.getId();//"end"
                     int version1 = flow.getVersion();//e
+
                     //获取到点到点的边信息queryProjectProperties
                     Collection<Edge> edges = flow.getEdges();
                     for (Edge edge : edges) {
                         String sourceId = edge.getSourceId();
                         String targetId = edge.getTargetId();
+                        //TODO 插入azkaban图
+                        Connection connectionDPPro = DBUtilDPPro.openConnection();
+                        PreparedStatement preparedStatement = connectionDPPro.prepareStatement("INSERT INTO debug_azkaban_edge(source_id,target_id) VALUES (" + sourceId + "," + targetId + ")");
+                        boolean execute = preparedStatement.execute();
+                        DBUtilDPPro.closeConnection();
                     }
+
                     //查某个点的信息，如kettle文件路径
                     Collection<Node> nodes = flow.getNodes();
                     for (Node node : nodes) {
-                        String id = node.getId();
+                        String id = node.getId();//SYCH_RPT_TABLES
                         String jobSource = node.getJobSource();//SYCH_RPT_TABLES.job
                         String type = node.getType();//command
-                        int level = node.getLevel();//第几级
+                        int level = node.getLevel();//第几级 3
+
                         //可读取到上传的转换信息，及依赖
                         Map<String, Props> propsStrMap = azkabanUtil.queryProjectProperties(projectId1, version1, jobSource);
                         for (Map.Entry<String, Props> propsMap : propsStrMap.entrySet()) {
-                            String propsMapKey = propsMap.getKey();
+                            String propsMapKey = propsMap.getKey();//SYCH_RPT_TABLES.job
                             Props propsMapValue = propsMap.getValue();
                             String type1 = propsMapValue.get("type");//command
                             String command = propsMapValue.get("command");//ss /home/appgroup/kettle/pdi-ce-5.0.1........kjb
                             String dependencies = propsMapValue.get("dependencies");//sychend
 
-                            //TODO 通过linux命令读取kettle文件，command
+                            String filePath = command.split(" ")[3];
+                            File file = new File(filePath);
+
+                            //登陆ftp，查找文件，这个需要登陆，TODO 优化一下
+                            SFTPPUT sftpput = new SFTPPUT();
+                            File fileEle = sftpput.queryElement(file.getParent(), file.getName());
+
+                            //策略是只读sql执行器组件和存储过程，其它的只记录转换名
+                            ArrayList<Map<String, String>> entryList = (ArrayList<Map<String, String>>) SaxService.ReadXML(fileEle.getAbsolutePath(), "entry");
+                            ArrayList<Map<String, String>> hopList = (ArrayList<Map<String, String>>) SaxService.ReadXML(fileEle.getAbsolutePath(), "hop");
+                            ArrayList<Map<String, String>> stepList = (ArrayList<Map<String, String>>) SaxService.ReadXML(fileEle.getAbsolutePath(), "step");
+
+                            //kettle文件内部的顺序关系
+                            for (Map<String, String> hopMap : hopList) {
+                                String from = hopMap.get("from");
+                                String to = hopMap.get("to");
+                                Map<String, String> entryMapFrom = azkabanUtil.queryEntry(entryList, from);
+                                Map<String, String> entryMapTo = azkabanUtil.queryEntry(entryList, to);
+                                //这里考虑到需要记录上下节点，且必须为转换时记录，所以采用记录上下节点的方式，如果上节点不为空，添加到下节点，然后插入数据后，清空节点。
+                                azkabanUtil.exeKettle(entryMapFrom, stepList);
+                                azkabanUtil.exeKettle(entryMapTo, stepList);
+
+                            }
 
                         }
-                        System.out.println(propsStrMap.size());
+
                     }
-                    //可拿到上传的文件
-                    File file = azkabanUtil.queryProjectFiles(projectId1, version1);
-                    System.out.println(file.getAbsolutePath());
-
-
                 }
             }
-
-
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
         }
+
     }
 
+    //上下节点，临时数据
+    JSONObject jsonbjectCurrentData;
+    JSONObject jsonbjectNextData;
+
+    /**
+     * 处理kettle文件的上下节点
+     *
+     * @param entryMap
+     * @param stepList
+     */
+    public void exeKettle(Map<String, String> entryMap, ArrayList<Map<String, String>> stepList) throws SQLException {
+        //开始，转换类型
+        String fileType = entryMap.get("type");
+        if (fileType.equals("SPECIAL")) {
+            //特殊类型 TODO 直接记录点
+            JSONObject jsonObject = kettleNode("SPECIAL", null, null, null, null);
+            placeNode(jsonObject);
+        } else if (fileType.equals("TRANS")) {
+            //TODO 转换类型，直接记录点
+            //表示不是sql或存储过程
+            if (stepList == null || stepList.size() == 0) {
+                for (Map<String, String> stepMap : stepList) {
+                    String stepType = stepMap.get("type");
+                    if (stepType.equals("DBProc")) {
+                        //执行存储过程组件没有transname和directory
+                        String name = entryMap.get("name");//用DB存储过程
+                        String connection = entryMap.get("connection");//163生产查询
+                        String procedure = entryMap.get("procedure");//proc_miantableName_PrevNext
+                        JSONObject jsonObject = kettleNode(name, null, null, procedure, connection);
+                        placeNode(jsonObject);
+
+                    } else if (stepType.equals("ExecSQL")) {
+                        //sql执行器
+                        String name = entryMap.get("name");//执行SQL脚本
+                        String type = entryMap.get("type");//ExecSQL
+                        String connection = entryMap.get("connection");//生产123
+                        String sql = entryMap.get("sql");//select * from dual
+                        Set<String> setStr = new HashSet<String>();
+                        setStr.add(sql);
+                        JSONObject jsonObject = kettleNode(name, connection, setStr, null, null);
+                        placeNode(jsonObject);
+                    }
+
+                }
+            }
+
+            //<transname>STARTDATE.ktr</transname>
+            // <directory>${Internal.Job.Filename.Directory}</directory>
+            String transname = entryMap.get("transname");
+            String directory = entryMap.get("directory");
+            kettleNode(transname, null, null, null, null);
+        } else if (fileType.equals("JOB")) {
+            //${Internal.Job.Filename.Directory}/Totalamount.kjb
+            String filename = entryMap.get("filename");
+            //TODO 需要处理一些变量的转换的情况，当前路径都传过来，需要继续读取，任务里的文件，下到转换为止
+        }
+    }
+
+    /**
+     * 处理节点逻辑，上下节点，先放前边的节点，再放后面的，放后面的节点的同时即表示两点一线，保存清空
+     *
+     * @param jsonObject
+     * @throws SQLException
+     */
+    private void placeNode(JSONObject jsonObject) throws SQLException {
+        if (jsonbjectCurrentData == null) {
+            jsonbjectCurrentData = jsonObject;
+        } else if (jsonbjectNextData == null) {
+            jsonbjectNextData = jsonObject;
+            //持久化到数据库
+            saveToDB(jsonbjectCurrentData, jsonbjectNextData);
+            //清空
+            jsonbjectCurrentData = null;
+            jsonbjectNextData = null;
+        }
+    }
+
+    /**
+     * 持久化kettle的文件信息
+     *
+     * @param jsonbjectCurrentData
+     * @param jsonbjectNextData
+     */
+    private void saveToDB(JSONObject jsonbjectCurrentData, JSONObject jsonbjectNextData) throws SQLException {
+        StringBuilder sqlKey = new StringBuilder();
+        StringBuilder sqlValue = new StringBuilder();
+
+        Object nameCurrent = jsonbjectCurrentData.get("name");
+        Object tableConnectCurrent = jsonbjectCurrentData.get("table_connect");
+        Object tableNamesCurrent = jsonbjectCurrentData.get("table_names");
+        Object procConnCurrent = jsonbjectCurrentData.get("proc_conn");
+        Object procNameCurrent = jsonbjectCurrentData.get("proc_name");
+
+        if (nameCurrent != null) {
+            sqlKey.append("source_name");
+            sqlValue.append(nameCurrent);
+        }
+
+        if (tableConnectCurrent != null) {
+            sqlKey.append("source_table_conn");
+            sqlValue.append(tableConnectCurrent);
+        }
+
+        if (tableNamesCurrent != null) {
+            JSONArray jsonArray = JSONArray.parseArray(String.valueOf(tableNamesCurrent));
+            sqlKey.append("source_table_tables");
+            sqlValue.append(jsonArray.toJSONString());
+        }
+
+        if (procConnCurrent != null) {
+            sqlKey.append("source_proc_conn");
+            sqlValue.append(procConnCurrent);
+        }
+
+        if (procNameCurrent != null) {
+            sqlKey.append("source_proc_name");
+            sqlValue.append(procNameCurrent);
+        }
+
+        Object nameNext = jsonbjectNextData.get("name");
+        Object tableConnectNext = jsonbjectNextData.get("table_connect");
+        Object tableNamesNext = jsonbjectNextData.get("table_names");
+        Object procConnNext = jsonbjectNextData.get("proc_conn");
+        Object procNameNext = jsonbjectNextData.get("proc_name");
+
+        if (nameNext != null) {
+            sqlKey.append("target_name");
+            sqlValue.append(nameNext);
+        }
+
+        if (tableConnectNext != null) {
+            sqlKey.append("target_table_conn");
+            sqlValue.append(tableConnectNext);
+        }
+
+        if (tableNamesNext != null) {
+            JSONArray jsonArray = JSONArray.parseArray(String.valueOf(tableNamesNext));
+            sqlKey.append("target_table_tables");
+            sqlValue.append(jsonArray.toJSONString());
+        }
+
+        if (procConnNext != null) {
+            sqlKey.append("target_proc_conn");
+            sqlValue.append(procConnNext);
+        }
+
+        if (procNameNext != null) {
+            sqlKey.append("target_proc_name");
+            sqlValue.append(procNameNext);
+        }
+
+        StringBuilder sql = new StringBuilder();
+        sql.append("INSERT INTO debug_kettle (");
+        sql.append(sqlKey);
+        sql.append(") VALUES (");
+        sql.append(sqlValue);
+        sql.append(")");
+
+        Connection connectionDPPro = DBUtilDPPro.openConnection();
+        PreparedStatement preparedStatement = connectionDPPro.prepareStatement(sql.toString());
+        preparedStatement.executeUpdate();
+        DBUtilDPPro.closeConnection();
+
+    }
 
     public static String SELECT_ALL_ACTIVE_PROJECTS =
             "SELECT id, name, active, modified_time, create_time, version, last_modified_by, description, enc_type, settings_blob FROM projects WHERE active=true";
@@ -129,12 +324,6 @@ public class AzkabanUtil {
             System.out.println(objectsProject.size());
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-            /*try {
-                DBUtil.closeConnection();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }*/
         }
         return objectsProject;
 
@@ -209,12 +398,6 @@ public class AzkabanUtil {
             System.out.println(objectsFlows.size());
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-            /*try {
-                DBUtil.closeConnection();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }*/
         }
         return objectsFlows;
     }
@@ -230,12 +413,6 @@ public class AzkabanUtil {
             System.out.println(objectsFlows.size());
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-            /*try {
-                DBUtil.closeConnection();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }*/
         }
         return objectsFlows;
     }
@@ -346,6 +523,56 @@ public class AzkabanUtil {
         }
 
 
+    }
+
+
+    /**
+     * 读取kettle时，上下节点的记录
+     *
+     * @param name         转换的名字
+     * @param tableNameSet 如果是sql执行器，里边涉及的表集体
+     * @param procName     如果是存储过程，记录存储过程的名字
+     * @param connectName  数据库连接名称
+     * @return
+     */
+    public static JSONObject kettleNode(String name, String tableConnect, Set<String> tableNameSet, String procName, String connectName) {
+        if (name == null) {
+            //TODO 错误
+        }
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("name", name);
+
+        if (procName != null) {
+            jsonObject.put("proc_name", procName);
+        }
+
+        if (connectName != null) {
+            jsonObject.put("proc_conn", connectName);
+        }
+
+        if (tableConnect != null) {
+            jsonObject.put("table_connect", tableConnect);
+        }
+
+        JSONArray jsonArray = new JSONArray();
+        for (String str : tableNameSet) {
+            jsonArray.add(str);
+        }
+        if (jsonArray != null && jsonArray.size() != 0) {
+            jsonObject.put("table_names", jsonArray);
+        }
+        return jsonObject;
+    }
+
+
+    public Map<String, String> queryEntry(ArrayList<Map<String, String>> entryList, String entryName) {
+        for (Map<String, String> entryMap : entryList) {
+            String name = entryMap.get("name");
+            if (name.equals(entryName)) {
+                return entryMap;
+            }
+        }
+        return null;
     }
 
 }

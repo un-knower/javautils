@@ -1,29 +1,28 @@
 package com.cenrise.suite;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.InetAddress;
-
-
 import com.jcraft.jsch.Channel;
 import com.jcraft.jsch.ChannelSftp;
+import com.jcraft.jsch.ChannelSftp.LsEntry;
 import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.JSchException;
 import com.jcraft.jsch.Proxy;
 import com.jcraft.jsch.ProxyHTTP;
 import com.jcraft.jsch.ProxySOCKS5;
-
 import com.jcraft.jsch.Session;
-import com.jcraft.jsch.SftpException;
-import com.jcraft.jsch.ChannelSftp.LsEntry;
 import com.jcraft.jsch.SftpATTRS;
-
+import com.jcraft.jsch.SftpException;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.vfs2.FileContent;
 import org.apache.commons.vfs2.FileObject;
 import org.apache.commons.vfs2.FileSystemException;
 import org.apache.commons.vfs2.FileType;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.InetAddress;
 
 /**
  * sftp实现的工具类
@@ -190,6 +189,25 @@ public class SFTPClient {
         int mode = ChannelSftp.OVERWRITE;
         try {
             c.get(remoteFile, localFilePath, null, mode);
+        } catch (SftpException e) {
+            throw new Exception(e);
+        }
+    }
+
+    /**
+     * 从ftp获取指定文件
+     *
+     * @param remoteFile 远程文件路径
+     * @throws Exception
+     */
+    public File get(String remoteFile) throws Exception {
+        int mode = ChannelSftp.OVERWRITE;
+        File file = new File(remoteFile);
+        try {
+            InputStream inputStream = c.get(remoteFile);
+            inputstreamtofile(inputStream, file);
+
+            return file;
         } catch (SftpException e) {
             throw new Exception(e);
         }
@@ -391,5 +409,20 @@ public class SFTPClient {
             retval = def;
         }
         return retval;
+    }
+
+    public static void inputstreamtofile(InputStream ins, File file) {
+        try {
+            OutputStream os = new FileOutputStream(file);
+            int bytesRead = 0;
+            byte[] buffer = new byte[8192];
+            while ((bytesRead = ins.read(buffer, 0, 8192)) != -1) {
+                os.write(buffer, 0, bytesRead);
+            }
+            os.close();
+            ins.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

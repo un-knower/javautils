@@ -1,11 +1,17 @@
 package com.cenrise.suite;
 
-import org.apache.commons.vfs2.*;
+import org.apache.commons.vfs2.FileContent;
+import org.apache.commons.vfs2.FileObject;
+import org.apache.commons.vfs2.FileSystemException;
+import org.apache.commons.vfs2.FileSystemManager;
+import org.apache.commons.vfs2.FileSystemOptions;
+import org.apache.commons.vfs2.FileType;
+import org.apache.commons.vfs2.Selectors;
+import org.apache.commons.vfs2.VFS;
 import org.apache.commons.vfs2.provider.sftp.SftpFileSystemConfigBuilder;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.net.InetAddress;
 
 /**
  * 通过vfs2连接ftp的方法,测试
@@ -25,6 +31,7 @@ public class FtpVFS {
 
     /**
      * 测试末通过
+     *
      * @throws Exception
      */
     public void testsftp() throws Exception {
