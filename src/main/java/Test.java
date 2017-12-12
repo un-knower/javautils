@@ -27,5 +27,9 @@ public class Test {
 //        System.out.println("得到的是当前的classpath的绝对URI路径。:\n"+ TestSystemproperty.class.getResource("/"));
 
 
+        String str = "/home/appgroup/kettle/pdi-ce-5.0.1.A-stable/data-integration/MyKtrs/";
+        String strOne = "/home/appgroup/kettle/pdi-ce-5.0.1.A-stable/data-integration/MyKtrs/fdsafda/fsafdsa2231";
+
+        System.out.println(strOne.replaceAll(str,""));
     }
 }

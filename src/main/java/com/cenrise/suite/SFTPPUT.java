@@ -123,6 +123,42 @@ public class SFTPPUT {
         }
     }
 
+    public File queryFile(String parentPath, String fileName) throws Exception {
+
+        SFTPClient sftpclient = null;
+        try {
+            sftpclient = new SFTPClient(InetAddress.getByName(serverName), toInt(serverPort, DEFAULT_PORT), username, realKeyFilename, realPassPhrase);
+            System.out.println("使用用户名 [" + username + "] 在端口 [" + serverPort + "] 上打开到服务器 [" + serverName + "] 的SFTP的连接");
+            sftpclient.login(password);
+
+            //切换目录
+            sftpclient.chdir(parentPath);
+
+            File file = sftpclient.get(fileName);
+            System.out.println(file.exists());
+
+            return file;
+        } catch (Exception e) {
+            System.out.println(Const.getStackTracker(e));
+            throw new Exception("从SFTP获取文件出错 \\: " + e);
+        } finally {
+            try {
+                if (sftpclient != null) sftpclient.disconnect();
+            } catch (Exception e) {
+                // just ignore this, makes no big difference
+            }
+
+            try {
+                if (TargetFolder != null) {
+                    TargetFolder.close();
+                    TargetFolder = null;
+                }
+            } catch (Exception e) {
+            }
+
+        }
+    }
+
     /**
      * 连接到指定目录
      *

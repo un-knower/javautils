@@ -1,10 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3448f280-db30-4551-83a4-99b27659929f" name="Default" comment="">
+    <list default="true" id="3448f280-db30-4551-83a4-99b27659929f" name="Default" comment="azkaban与kettle配置分析初步，未测试.优化">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Junit/Resource/temp/test.zip" afterPath="$PROJECT_DIR$/Junit/Resource/temp/test.zip" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Junit/Resource/EnglishWrite.txt" afterPath="$PROJECT_DIR$/Junit/Resource/EnglishWrite.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Junit/Resource/GBKWrite.txt" afterPath="$PROJECT_DIR$/Junit/Resource/GBKWrite.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Junit/Resource/UTF8Write.txt" afterPath="$PROJECT_DIR$/Junit/Resource/UTF8Write.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Junit/Resource/temp/cfile2.TXT" afterPath="$PROJECT_DIR$/Junit/Resource/temp/cfile2.TXT" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Junit/Resource/temp/cfile2_UTF8.TXT" afterPath="$PROJECT_DIR$/Junit/Resource/temp/cfile2_UTF8.TXT" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Junit/Resource/temp/efile2.TXT" afterPath="$PROJECT_DIR$/Junit/Resource/temp/efile2.TXT" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Junit/Resource/temp/efile2_UTF8.TXT" afterPath="$PROJECT_DIR$/Junit/Resource/temp/efile2_UTF8.TXT" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Test.java" afterPath="$PROJECT_DIR$/src/main/java/Test.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/cenrise/suite/SFTPPUT.java" afterPath="$PROJECT_DIR$/src/main/java/com/cenrise/suite/SFTPPUT.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/cenrise/test/azkaban/AzkabanUtil.java" afterPath="$PROJECT_DIR$/src/main/java/com/cenrise/test/azkaban/AzkabanUtil.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/cenrise/utils/xml/sax/SaxService.java" afterPath="$PROJECT_DIR$/src/main/java/com/cenrise/utils/xml/sax/SaxService.java" />
     </list>
     <ignored path="javautils.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -44,8 +54,8 @@
       <file leaf-file-name="XmlSaxTest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/cenrise/utils/xml/sax/XmlSaxTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1455">
-              <caret line="97" column="5" lean-forward="true" selection-start-line="89" selection-start-column="3" selection-end-line="97" selection-end-column="5" />
+            <state relative-caret-position="280">
+              <caret line="28" column="98" lean-forward="true" selection-start-line="28" selection-start-column="98" selection-end-line="28" selection-end-column="98" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -56,29 +66,38 @@
       <file leaf-file-name="AzkabanUtil.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/cenrise/test/azkaban/AzkabanUtil.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="200">
-              <caret line="118" column="5" lean-forward="true" selection-start-line="118" selection-start-column="5" selection-end-line="118" selection-end-column="5" />
+            <state relative-caret-position="274">
+              <caret line="228" column="62" lean-forward="true" selection-start-line="228" selection-start-column="62" selection-end-line="228" selection-end-column="62" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#7497#7505#0" expanded="true" />
-                <marker date="1512986675308" expanded="true" signature="2229:2296" ph="INSERT INTO debug_azkaban_edge... " />
-                <marker date="1512986675308" expanded="true" signature="2229:2302" ph="INSERT INTO debug_azkaban_edge... " />
-                <marker date="1512986675308" expanded="true" signature="2229:2321" ph="INSERT INTO debug_azkaban_edge... " />
-                <marker date="1512986675308" expanded="true" signature="2229:2342" ph="INSERT INTO debug_azkaban_edge... " />
-                <marker date="1512986675308" expanded="true" signature="12054:12202" ph="SELECT id, n... projects" />
-                <marker date="1512986675308" expanded="true" signature="12275:12434" ph="SELECT id, n... projects" />
-                <marker date="1512986675308" expanded="true" signature="13399:13540" ph="SELECT id, n... projects" />
-                <marker date="1512986675308" expanded="true" signature="14369:14483" ph="SELECT proje... project_properties" />
-                <marker date="1512986675308" expanded="true" signature="14369:14513" ph="SELECT proje... project_properties" />
-                <marker date="1512986675308" expanded="true" signature="15634:15778" ph="SELECT proje... project_properties" />
-                <marker date="1512986675308" expanded="true" signature="15634:15803" ph="SELECT proje... project_properties" />
-                <marker date="1512986675308" expanded="true" signature="15634:15817" ph="SELECT proje... project_properties" />
-                <marker date="1512986675308" expanded="true" signature="16696:16835" ph="SELECT proje... project_flows" />
-                <marker date="1512986675308" expanded="true" signature="16696:16846" ph="SELECT proje... project_flows" />
-                <marker date="1512986675308" expanded="true" signature="17452:17641" ph="SELECT proje... project_flows" />
-                <marker date="1512986675308" expanded="true" signature="19233:19439" ph="SELECT proje... " />
-                <marker date="1512986675308" expanded="true" signature="21079:21270" ph="SELECT proje... project_versions" />
+                <marker date="1513057680511" expanded="true" signature="2434:2501" ph="INSERT INTO debug_azkaban_edge... " />
+                <marker date="1513057680511" expanded="true" signature="2434:2507" ph="INSERT INTO debug_azkaban_edge... " />
+                <marker date="1513057680511" expanded="true" signature="2434:2525" ph="INSERT INTO debug_azkaban_edge... " />
+                <marker date="1513057680511" expanded="true" signature="2434:2546" ph="INSERT INTO debug_azkaban_edge... " />
+                <marker date="1513057680511" expanded="true" signature="14602:14750" ph="SELECT id, n... projects" />
+                <marker date="1513057680511" expanded="true" signature="14823:14982" ph="SELECT id, n... projects" />
+                <marker date="1513057680511" expanded="true" signature="15947:16088" ph="SELECT id, n... projects" />
+                <marker date="1513057680511" expanded="true" signature="16917:17031" ph="SELECT proje... project_properties" />
+                <marker date="1513057680511" expanded="true" signature="16917:17061" ph="SELECT proje... project_properties" />
+                <marker date="1513057680511" expanded="true" signature="18182:18326" ph="SELECT proje... project_properties" />
+                <marker date="1513057680511" expanded="true" signature="18182:18351" ph="SELECT proje... project_properties" />
+                <marker date="1513057680511" expanded="true" signature="18182:18365" ph="SELECT proje... project_properties" />
+                <marker date="1513057680511" expanded="true" signature="19244:19383" ph="SELECT proje... project_flows" />
+                <marker date="1513057680511" expanded="true" signature="19244:19394" ph="SELECT proje... project_flows" />
+                <marker date="1513057680511" expanded="true" signature="20000:20189" ph="SELECT proje... project_flows" />
+                <marker date="1513057680511" expanded="true" signature="21781:21987" ph="SELECT proje... " />
+                <marker date="1513057680511" expanded="true" signature="23627:23818" ph="SELECT proje... project_versions" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Test.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/Test.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="480">
+              <caret line="32" column="52" lean-forward="false" selection-start-line="32" selection-start-column="27" selection-end-line="32" selection-end-column="52" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -86,7 +105,7 @@
       <file leaf-file-name="DBUtilDPPro.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/cenrise/test/azkaban/DBUtilDPPro.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="249">
+            <state relative-caret-position="900">
               <caret line="72" column="51" lean-forward="false" selection-start-line="72" selection-start-column="40" selection-end-line="72" selection-end-column="51" />
               <folding>
                 <marker date="1512975837256" expanded="true" signature="1781:1923" ph="SELECT id, n... projects" />
@@ -99,7 +118,7 @@
       <file leaf-file-name="DateUtil.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/cenrise/utils/DateUtil.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="463">
+            <state relative-caret-position="181">
               <caret line="3253" column="17" lean-forward="false" selection-start-line="3253" selection-start-column="17" selection-end-line="3253" selection-end-column="17" />
               <folding />
             </state>
@@ -109,11 +128,21 @@
       <file leaf-file-name="SFTPPUT.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/cenrise/suite/SFTPPUT.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="309">
-              <caret line="177" column="22" lean-forward="true" selection-start-line="177" selection-start-column="22" selection-end-line="177" selection-end-column="22" />
+            <state relative-caret-position="1185">
+              <caret line="135" column="0" lean-forward="true" selection-start-line="135" selection-start-column="0" selection-end-line="135" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SFTPClient.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/cenrise/suite/SFTPClient.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="202">
+              <caret line="148" column="15" lean-forward="true" selection-start-line="148" selection-start-column="15" selection-end-line="148" selection-end-column="15" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -127,17 +156,11 @@
       </list>
     </option>
   </component>
+  <component name="FindBugs-IDEA-Workspace">
+    <toolWindowEditorPreview>false</toolWindowEditorPreview>
+  </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>flowFromObject</find>
-      <find>objectsProject</find>
-      <find>handleProjects</find>
-      <find>handleFlows</find>
-      <find>objectsFlows</find>
-      <find>logger</find>
-      <find>queryProjectFiles</find>
-      <find>resourceId</find>
-      <find>project_properties</find>
       <find>fetchProjectMetaData</find>
       <find>mysql</find>
       <find>SAXParserFactory</find>
@@ -147,7 +170,6 @@
       <find>System.out.println</find>
       <find>repository</find>
       <find>transname</find>
-      <find>realSftpDirString</find>
       <find>sourcefilefolder</find>
       <find>stepList</find>
       <find>entryMapFrom</find>
@@ -158,7 +180,17 @@
       <find>tableNameSet</find>
       <find>kettleNode</find>
       <find>queryElement</find>
+      <find>queryNode</find>
+      <find>process</find>
+      <find>queryElementConnServer</find>
       <find>sftpClient</find>
+      <find>realSftpDirString</find>
+      <find>queryElementContent</find>
+      <find>SPECIAL</find>
+      <find>UUID</find>
+      <find>sftpclient</find>
+      <find>UUID()</find>
+      <find>exeKettle</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -181,7 +213,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/cenrise/utils/Collection/MapUtilTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/cenrise/utils/kylin/KylinUtil.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/cenrise/utils/DateUtil.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/cenrise/utils/Collection/CollectionUtil.java" />
@@ -224,13 +255,14 @@
         <option value="$PROJECT_DIR$/src/main/java/com/cenrise/utils/xml/sax/test1/Main.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/cenrise/utils/xml/sax/test1/SAXParser.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/cenrise/utils/xml/sax/Saxhandler.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/cenrise/utils/xml/sax/SaxService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/cenrise/utils/xml/sax/XmlSaxTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/cenrise/suite/SFTPClient.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/cenrise/suite/FtpVFS.java" />
         <option value="$PROJECT_DIR$/src/main/resources/dbcp_dppro.properties" />
         <option value="$PROJECT_DIR$/src/main/java/com/cenrise/test/azkaban/DBUtilDPPro.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Test.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/cenrise/suite/SFTPPUT.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/cenrise/utils/xml/sax/XmlSaxTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/cenrise/utils/xml/sax/SaxService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/cenrise/test/azkaban/AzkabanUtil.java" />
       </list>
     </option>
@@ -278,9 +310,9 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="21" />
-    <option name="y" value="23" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="36" />
+    <option name="y" value="60" />
     <option name="width" value="1680" />
     <option name="height" value="946" />
   </component>
@@ -354,6 +386,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -365,9 +398,8 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="Scratches" />
-      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="AndroidView" />
     </panes>
   </component>
@@ -379,7 +411,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="SearchEverywhereHistoryKey" value="dbutil&#9;PSI&#9;JAVA://com.cenrise.utils.Dbutil&#10;dateutil&#9;PSI&#9;JAVA://com.cenrise.utils.DateUtil&#10;vfs&#9;PSI&#9;JAVA://com.cenrise.suite.FtpVFS&#10;azka&#9;FILE&#9;file:///Users/jiadongpo/Workspaces/GithubJiadongpo/javautils/src/main/java/com/cenrise/test/azkaban/AzkabanUtil.java&#10;trim&#9;FILE&#9;file:///Users/jiadongpo/Workspaces/GithubJiadongpo/javautils/src/main/java/com/cenrise/utils/common/Trim.java&#10;xml&#9;PSI&#9;JAVA://com.cenrise.utils.XMLUtil&#10;Utils&#9;FILE&#9;file:///Users/jiadongpo/Workspaces/GithubJiadongpo/javautils/src/main/java/com/cenrise/test/azkaban/Utils.java&#10;Permission&#9;FILE&#9;file:///Users/jiadongpo/Workspaces/GithubJiadongpo/javautils/src/main/java/com/cenrise/test/azkaban/Permission.java&#10;edge&#9;PSI&#9;JAVA://com.sun.javafx.geom.Edge&#10;cou&#9;PSI&#9;JAVA://com.cenrise.utils.Collection.CollectionUtil&#10;maputil.java&#9;FILE&#9;jar:///Users/jiadongpo/ProgramFiles/repository/commons-collections/commons-collections/3.2.1/commons-collections-3.2.1-sources.jar!/org/apache/commons/collections/MapUtils.java&#10;log4j&#9;FILE&#9;file:///Users/jiadongpo/Workspaces/GithubJiadongpo/javautils/src/main/java/log4j.properties&#10;mapu&#9;PSI&#9;JAVA://com.cenrise.utils.Collection.MapUtilTest&#10;maputil&#9;RUN_CONFIGURATION&#9;MapUtilTest&#10;maputi&#9;RUN_CONFIGURATION&#9;MapUtilTest&#10;stringutil&#9;FILE&#9;file:///Users/jiadongpo/Workspaces/GithubJiadongpo/javautils/src/main/java/com/cenrise/utils/StringUtil.java&#10;kylinre&#9;FILE&#9;file:///Users/jiadongpo/Workspaces/GithubJiadongpo/javautils/src/test/java/com/cenrise/utils/kylin/KylinRESTfulMethodMain.java&#10;kylinut&#9;FILE&#9;file:///Users/jiadongpo/Workspaces/GithubJiadongpo/javautils/src/test/java/com/cenrise/utils/kylin/KylinUtil.java&#10;json&#9;PSI&#9;JAVA://com.cenrise.utils.FastJsonUtil&#10;maput&#9;PSI&#9;JAVA://com.cenrise.utils.Collection.MapUtilTest&#10;dateut&#9;PSI&#9;JAVA://com.cenrise.utils.DateUtil&#10;Run&#9;ACTION&#9;ActivateRunToolWindow&#10;colle&#9;PSI&#9;JAVA://com.cenrise.utils.Collection.CollectionUtil" />
+    <property name="SearchEverywhereHistoryKey" value="Test.java&#9;FILE&#9;file:///Users/jiadongpo/Workspaces/GithubJiadongpo/javautils/src/main/java/Test.java&#10;dbutil&#9;PSI&#9;JAVA://com.cenrise.utils.Dbutil&#10;dateutil&#9;PSI&#9;JAVA://com.cenrise.utils.DateUtil&#10;vfs&#9;PSI&#9;JAVA://com.cenrise.suite.FtpVFS&#10;azka&#9;FILE&#9;file:///Users/jiadongpo/Workspaces/GithubJiadongpo/javautils/src/main/java/com/cenrise/test/azkaban/AzkabanUtil.java&#10;trim&#9;FILE&#9;file:///Users/jiadongpo/Workspaces/GithubJiadongpo/javautils/src/main/java/com/cenrise/utils/common/Trim.java&#10;xml&#9;PSI&#9;JAVA://com.cenrise.utils.XMLUtil&#10;Utils&#9;FILE&#9;file:///Users/jiadongpo/Workspaces/GithubJiadongpo/javautils/src/main/java/com/cenrise/test/azkaban/Utils.java&#10;Permission&#9;FILE&#9;file:///Users/jiadongpo/Workspaces/GithubJiadongpo/javautils/src/main/java/com/cenrise/test/azkaban/Permission.java&#10;edge&#9;PSI&#9;JAVA://com.sun.javafx.geom.Edge&#10;cou&#9;PSI&#9;JAVA://com.cenrise.utils.Collection.CollectionUtil&#10;maputil.java&#9;FILE&#9;jar:///Users/jiadongpo/ProgramFiles/repository/commons-collections/commons-collections/3.2.1/commons-collections-3.2.1-sources.jar!/org/apache/commons/collections/MapUtils.java&#10;log4j&#9;FILE&#9;file:///Users/jiadongpo/Workspaces/GithubJiadongpo/javautils/src/main/java/log4j.properties&#10;mapu&#9;PSI&#9;JAVA://com.cenrise.utils.Collection.MapUtilTest&#10;maputil&#9;RUN_CONFIGURATION&#9;MapUtilTest&#10;maputi&#9;RUN_CONFIGURATION&#9;MapUtilTest&#10;stringutil&#9;FILE&#9;file:///Users/jiadongpo/Workspaces/GithubJiadongpo/javautils/src/main/java/com/cenrise/utils/StringUtil.java&#10;kylinre&#9;FILE&#9;file:///Users/jiadongpo/Workspaces/GithubJiadongpo/javautils/src/test/java/com/cenrise/utils/kylin/KylinRESTfulMethodMain.java&#10;kylinut&#9;FILE&#9;file:///Users/jiadongpo/Workspaces/GithubJiadongpo/javautils/src/test/java/com/cenrise/utils/kylin/KylinUtil.java&#10;json&#9;PSI&#9;JAVA://com.cenrise.utils.FastJsonUtil&#10;maput&#9;PSI&#9;JAVA://com.cenrise.utils.Collection.MapUtilTest&#10;dateut&#9;PSI&#9;JAVA://com.cenrise.utils.DateUtil&#10;Run&#9;ACTION&#9;ActivateRunToolWindow&#10;colle&#9;PSI&#9;JAVA://com.cenrise.utils.Collection.CollectionUtil" />
     <property name="recentsLimit" value="5" />
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="options.splitter.details.proportions" value="0.2" />
@@ -505,14 +537,9 @@
       <module name="javautils" />
       <envs />
     </configuration>
-    <configuration name="Trim" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="com.cenrise.utils.common.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="MAIN_CLASS_NAME" value="com.cenrise.utils.common.Trim" />
+    <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" value="Test" />
       <option name="VM_PARAMETERS" value="" />
       <option name="PROGRAM_PARAMETERS" value="" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
@@ -798,19 +825,19 @@
     </configuration>
     <list size="6">
       <item index="0" class="java.lang.String" itemvalue="Application.HoldIOMain" />
-      <item index="1" class="java.lang.String" itemvalue="Application.Trim" />
-      <item index="2" class="java.lang.String" itemvalue="Application.AzkabanUtil" />
-      <item index="3" class="java.lang.String" itemvalue="Application.XmlSaxTest" />
-      <item index="4" class="java.lang.String" itemvalue="Application.SFTPPUT" />
-      <item index="5" class="java.lang.String" itemvalue="Application.DateUtil" />
+      <item index="1" class="java.lang.String" itemvalue="Application.AzkabanUtil" />
+      <item index="2" class="java.lang.String" itemvalue="Application.XmlSaxTest" />
+      <item index="3" class="java.lang.String" itemvalue="Application.SFTPPUT" />
+      <item index="4" class="java.lang.String" itemvalue="Application.DateUtil" />
+      <item index="5" class="java.lang.String" itemvalue="Application.Test" />
     </list>
     <recent_temporary>
       <list size="5">
         <item index="0" class="java.lang.String" itemvalue="Application.AzkabanUtil" />
-        <item index="1" class="java.lang.String" itemvalue="Application.DateUtil" />
+        <item index="1" class="java.lang.String" itemvalue="Application.XmlSaxTest" />
         <item index="2" class="java.lang.String" itemvalue="Application.SFTPPUT" />
-        <item index="3" class="java.lang.String" itemvalue="Application.XmlSaxTest" />
-        <item index="4" class="java.lang.String" itemvalue="Application.Trim" />
+        <item index="3" class="java.lang.String" itemvalue="Application.Test" />
+        <item index="4" class="java.lang.String" itemvalue="Application.DateUtil" />
       </list>
     </recent_temporary>
   </component>
@@ -867,7 +894,8 @@
       <workItem from="1512908174028" duration="114000" />
       <workItem from="1512929173723" duration="50000" />
       <workItem from="1512955829858" duration="9506000" />
-      <workItem from="1512970524646" duration="12650000" />
+      <workItem from="1512970524646" duration="12820000" />
+      <workItem from="1513043012690" duration="8645000" />
     </task>
     <task id="LOCAL-00001" summary="添加kylin的一些工具方式">
       <created>1506481526941</created>
@@ -925,11 +953,18 @@
       <option name="project" value="LOCAL" />
       <updated>1512982705860</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="azkaban与kettle配置分析初步，未测试.优化">
+      <created>1512986803496</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1512986803496</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="106569000" />
+    <option name="totallyTimeSpent" value="115384000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -941,28 +976,28 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="21" y="23" width="1680" height="946" extended-state="0" />
+    <frame x="0" y="25" width="1680" height="946" extended-state="6" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298969" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="FindBugs-IDEA" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="16" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3253012" sideWeight="0.5" order="17" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32487923" sideWeight="0.5" order="17" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1923077" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1923077" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32125604" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26809016" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2657005" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="CheckStyle" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293124" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33053893" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23443224" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23687424" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32967034" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="BPMNPalette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.34057972" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24033816" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Tool Output" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1002,20 +1037,20 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.34057972" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24033816" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298969" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3253012" sideWeight="0.5" order="17" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32487923" sideWeight="0.5" order="17" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32125604" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26809016" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2669082" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32967034" sideWeight="0.5" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="CheckStyle" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293124" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33053893" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23443224" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23687424" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
       <window_info id="BPMNPalette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32893157" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1045,81 +1080,53 @@
     <MESSAGE value="azkaban全部项目解析完，得到路径。" />
     <MESSAGE value="sax解析" />
     <MESSAGE value="azkaban与kettle配置分析初步，未测试" />
-    <option name="LAST_COMMIT_MESSAGE" value="azkaban与kettle配置分析初步，未测试" />
+    <MESSAGE value="azkaban与kettle配置分析初步，未测试.优化" />
+    <option name="LAST_COMMIT_MESSAGE" value="azkaban与kettle配置分析初步，未测试.优化" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/cenrise/test/DBUtil.java</url>
-          <line>68</line>
-          <properties />
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/cenrise/test/DBUtil.java</url>
-          <line>66</line>
-          <properties />
-          <option name="timeStamp" value="10" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/cenrise/test/azkaban/AzkabanUtil.java</url>
-          <line>112</line>
-          <properties />
-          <option name="timeStamp" value="25" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/cenrise/test/azkaban/AzkabanUtil.java</url>
-          <line>346</line>
-          <properties />
-          <option name="timeStamp" value="26" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/cenrise/suite/SFTPPUT.java</url>
-          <line>219</line>
+          <line>214</line>
           <properties />
-          <option name="timeStamp" value="50" />
+          <option name="timeStamp" value="70" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/cenrise/test/azkaban/AzkabanUtil.java</url>
-          <line>280</line>
+          <line>138</line>
           <properties />
-          <option name="timeStamp" value="57" />
+          <option name="timeStamp" value="86" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/cenrise/test/azkaban/AzkabanUtil.java</url>
-          <line>555</line>
+          <line>223</line>
           <properties />
-          <option name="timeStamp" value="60" />
+          <option name="timeStamp" value="88" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/cenrise/utils/xml/sax/XmlSaxTest.java</url>
+          <line>28</line>
+          <properties />
+          <option name="timeStamp" value="90" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/cenrise/test/azkaban/AzkabanUtil.java</url>
-          <line>85</line>
+          <line>376</line>
           <properties />
-          <option name="timeStamp" value="62" />
+          <option name="timeStamp" value="92" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/cenrise/test/azkaban/AzkabanUtil.java</url>
-          <line>88</line>
+          <line>213</line>
           <properties />
-          <option name="timeStamp" value="63" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/cenrise/test/azkaban/AzkabanUtil.java</url>
-          <line>66</line>
-          <properties />
-          <option name="timeStamp" value="65" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/main/java/com/cenrise/test/DBUtil.java</url>
-          <line>71</line>
-          <properties class="com.cenrise.test.DBUtil">
-            <option name="EMULATED" value="true" />
-          </properties>
-          <option name="timeStamp" value="6" />
+          <option name="timeStamp" value="94" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="66" />
+      <breakpoints-dialog>
+        <breakpoints-dialog />
+      </breakpoints-dialog>
+      <option name="time" value="96" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1128,7 +1135,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cenrise/test/azkaban/JdbcProjectImpl.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/cenrise/test/azkaban/Utils.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
@@ -1221,13 +1227,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_111.jdk/Contents/Home/src.zip!/javax/xml/parsers/SAXParser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
-          <caret line="266" column="16" lean-forward="false" selection-start-line="266" selection-start-column="16" selection-end-line="266" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/cenrise/utils/xml/sax/test1/model/Item.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1290,16 +1289,6 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cenrise/utils/xml/sax/SaxService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="18" column="44" lean-forward="false" selection-start-line="18" selection-start-column="44" selection-end-line="18" selection-end-column="44" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1385,23 +1374,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$USER_HOME$/ProgramFiles/repository/com/jcraft/jsch/0.1.51/jsch-0.1.51.jar!/com/jcraft/jsch/ChannelSftp.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret line="998" column="37" lean-forward="false" selection-start-line="998" selection-start-column="34" selection-end-line="998" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cenrise/suite/SFTPClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="31" column="52" lean-forward="false" selection-start-line="31" selection-start-column="52" selection-end-line="31" selection-end-column="52" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/cenrise/suite/FtpVFS.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
@@ -1420,21 +1392,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cenrise/utils/xml/sax/XmlSaxTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1455">
-          <caret line="97" column="5" lean-forward="true" selection-start-line="89" selection-start-column="3" selection-end-line="97" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/dbcp.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1442,7 +1403,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
           <caret line="9" column="15" lean-forward="false" selection-start-line="9" selection-start-column="15" selection-end-line="9" selection-end-column="15" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1461,21 +1421,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2790">
           <caret line="22" column="13" lean-forward="false" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cenrise/utils/DateUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="463">
-          <caret line="3253" column="17" lean-forward="false" selection-start-line="3253" selection-start-column="17" selection-end-line="3253" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/cenrise/test/azkaban/DBUtilDPPro.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="249">
+        <state relative-caret-position="900">
           <caret line="72" column="51" lean-forward="false" selection-start-line="72" selection-start-column="40" selection-end-line="72" selection-end-column="51" />
           <folding>
             <marker date="1512975837256" expanded="true" signature="1781:1923" ph="SELECT id, n... projects" />
@@ -1488,10 +1439,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="626">
           <caret line="94" column="40" lean-forward="true" selection-start-line="94" selection-start-column="40" selection-end-line="94" selection-end-column="40" />
-          <folding>
-            <element signature="e#1837#1838#0" expanded="true" />
-            <element signature="e#1877#1878#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1503,51 +1450,108 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cenrise/suite/SFTPPUT.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="309">
-          <caret line="177" column="22" lean-forward="true" selection-start-line="177" selection-start-column="22" selection-end-line="177" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/cenrise/test/azkaban/Flow.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="266">
           <caret line="274" column="28" lean-forward="false" selection-start-line="274" selection-start-column="28" selection-end-line="274" selection-end-column="28" />
           <folding>
-            <element signature="e#8652#8653#0" expanded="true" />
-            <element signature="e#8694#8695#0" expanded="true" />
+            <element signature="e#8652#8653#0" expanded="false" />
+            <element signature="e#8694#8695#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cenrise/utils/DateUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="181">
+          <caret line="3253" column="17" lean-forward="false" selection-start-line="3253" selection-start-column="17" selection-end-line="3253" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="32" column="52" lean-forward="false" selection-start-line="32" selection-start-column="27" selection-end-line="32" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/ProgramFiles/repository/com/jcraft/jsch/0.1.51/jsch-0.1.51.jar!/com/jcraft/jsch/ChannelSftp.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="142">
+          <caret line="219" column="0" lean-forward="false" selection-start-line="219" selection-start-column="0" selection-end-line="219" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cenrise/suite/SFTPClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="148" column="15" lean-forward="true" selection-start-line="148" selection-start-column="15" selection-end-line="148" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_111.jdk/Contents/Home/src.zip!/javax/xml/parsers/SAXParser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="193">
+          <caret line="378" column="55" lean-forward="false" selection-start-line="378" selection-start-column="53" selection-end-line="378" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cenrise/suite/SFTPPUT.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1185">
+          <caret line="135" column="0" lean-forward="true" selection-start-line="135" selection-start-column="0" selection-end-line="135" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cenrise/utils/xml/sax/XmlSaxTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="28" column="98" lean-forward="true" selection-start-line="28" selection-start-column="98" selection-end-line="28" selection-end-column="98" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cenrise/utils/xml/sax/SaxService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/cenrise/test/azkaban/AzkabanUtil.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="118" column="5" lean-forward="true" selection-start-line="118" selection-start-column="5" selection-end-line="118" selection-end-column="5" />
+        <state relative-caret-position="274">
+          <caret line="228" column="62" lean-forward="true" selection-start-line="228" selection-start-column="62" selection-end-line="228" selection-end-column="62" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#7497#7505#0" expanded="true" />
-            <marker date="1512986675308" expanded="true" signature="2229:2296" ph="INSERT INTO debug_azkaban_edge... " />
-            <marker date="1512986675308" expanded="true" signature="2229:2302" ph="INSERT INTO debug_azkaban_edge... " />
-            <marker date="1512986675308" expanded="true" signature="2229:2321" ph="INSERT INTO debug_azkaban_edge... " />
-            <marker date="1512986675308" expanded="true" signature="2229:2342" ph="INSERT INTO debug_azkaban_edge... " />
-            <marker date="1512986675308" expanded="true" signature="12054:12202" ph="SELECT id, n... projects" />
-            <marker date="1512986675308" expanded="true" signature="12275:12434" ph="SELECT id, n... projects" />
-            <marker date="1512986675308" expanded="true" signature="13399:13540" ph="SELECT id, n... projects" />
-            <marker date="1512986675308" expanded="true" signature="14369:14483" ph="SELECT proje... project_properties" />
-            <marker date="1512986675308" expanded="true" signature="14369:14513" ph="SELECT proje... project_properties" />
-            <marker date="1512986675308" expanded="true" signature="15634:15778" ph="SELECT proje... project_properties" />
-            <marker date="1512986675308" expanded="true" signature="15634:15803" ph="SELECT proje... project_properties" />
-            <marker date="1512986675308" expanded="true" signature="15634:15817" ph="SELECT proje... project_properties" />
-            <marker date="1512986675308" expanded="true" signature="16696:16835" ph="SELECT proje... project_flows" />
-            <marker date="1512986675308" expanded="true" signature="16696:16846" ph="SELECT proje... project_flows" />
-            <marker date="1512986675308" expanded="true" signature="17452:17641" ph="SELECT proje... project_flows" />
-            <marker date="1512986675308" expanded="true" signature="19233:19439" ph="SELECT proje... " />
-            <marker date="1512986675308" expanded="true" signature="21079:21270" ph="SELECT proje... project_versions" />
+            <marker date="1513057680511" expanded="true" signature="2434:2501" ph="INSERT INTO debug_azkaban_edge... " />
+            <marker date="1513057680511" expanded="true" signature="2434:2507" ph="INSERT INTO debug_azkaban_edge... " />
+            <marker date="1513057680511" expanded="true" signature="2434:2525" ph="INSERT INTO debug_azkaban_edge... " />
+            <marker date="1513057680511" expanded="true" signature="2434:2546" ph="INSERT INTO debug_azkaban_edge... " />
+            <marker date="1513057680511" expanded="true" signature="14602:14750" ph="SELECT id, n... projects" />
+            <marker date="1513057680511" expanded="true" signature="14823:14982" ph="SELECT id, n... projects" />
+            <marker date="1513057680511" expanded="true" signature="15947:16088" ph="SELECT id, n... projects" />
+            <marker date="1513057680511" expanded="true" signature="16917:17031" ph="SELECT proje... project_properties" />
+            <marker date="1513057680511" expanded="true" signature="16917:17061" ph="SELECT proje... project_properties" />
+            <marker date="1513057680511" expanded="true" signature="18182:18326" ph="SELECT proje... project_properties" />
+            <marker date="1513057680511" expanded="true" signature="18182:18351" ph="SELECT proje... project_properties" />
+            <marker date="1513057680511" expanded="true" signature="18182:18365" ph="SELECT proje... project_properties" />
+            <marker date="1513057680511" expanded="true" signature="19244:19383" ph="SELECT proje... project_flows" />
+            <marker date="1513057680511" expanded="true" signature="19244:19394" ph="SELECT proje... project_flows" />
+            <marker date="1513057680511" expanded="true" signature="20000:20189" ph="SELECT proje... project_flows" />
+            <marker date="1513057680511" expanded="true" signature="21781:21987" ph="SELECT proje... " />
+            <marker date="1513057680511" expanded="true" signature="23627:23818" ph="SELECT proje... project_versions" />
           </folding>
         </state>
       </provider>
