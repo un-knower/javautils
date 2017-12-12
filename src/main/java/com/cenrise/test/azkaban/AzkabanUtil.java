@@ -2,6 +2,7 @@ package com.cenrise.test.azkaban;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.cenrise.suite.SFTPClient;
 import com.cenrise.suite.SFTPPUT;
 import com.cenrise.utils.xml.sax.SaxService;
 import org.apache.commons.io.IOUtils;
@@ -30,10 +31,13 @@ public class AzkabanUtil {
     PreparedStatement pre = null;
     ResultSet rs = null;
     public static String realSftpDirString = "/home/appgroup/kettle/pdi-ce-5.0.1.A-stable/data-integration/MyKtrs/";
+    //上下节点，临时数据
+    JSONObject jsonbjectCurrentData;
+    JSONObject jsonbjectNextData;
 
     public static void main(String[] args) throws Exception {
         SFTPPUT sftpput = new SFTPPUT();
-//        SFTPClient sftpClient = sftpput.queryElementConnServer(realSftpDirString);
+        SFTPClient sftpClient = sftpput.queryConnServer(realSftpDirString);
         AzkabanUtil azkabanUtil = new AzkabanUtil();
         try {
             azkabanUtil.conn = DBUtil.openConnection();
@@ -56,7 +60,7 @@ public class AzkabanUtil {
                     for (Edge edge : edges) {
                         String sourceId = edge.getSourceId();
                         String targetId = edge.getTargetId();
-                        //TODO 插入azkaban图
+
                         Connection connectionDPPro = DBUtilDPPro.openConnection();
                         String sql = "INSERT INTO debug_azkaban_edge(id,source_name,target_name) VALUES (UUID(),'" + sourceId + "','" + targetId + "')";
                         PreparedStatement preparedStatement = connectionDPPro.prepareStatement(sql);
@@ -67,8 +71,8 @@ public class AzkabanUtil {
                         Node nodeTarget = queryNode(nodes, targetId);
 
                         //处理源和目的节点
-                        process(projectId1, version1, nodeSource, azkabanUtil);
-                        process(projectId1, version1, nodeTarget, azkabanUtil);
+                        azkabanUtil.process(projectId1, version1, nodeSource, azkabanUtil, sftpClient);
+                        azkabanUtil.process(projectId1, version1, nodeTarget, azkabanUtil, sftpClient);
                     }
                 }
             }
@@ -76,6 +80,12 @@ public class AzkabanUtil {
             e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            try {
+                if (sftpClient != null) sftpClient.disconnect();
+            } catch (Exception e) {
+                // just ignore this, makes no big difference
+            }
         }
 
     }
@@ -89,8 +99,8 @@ public class AzkabanUtil {
      * @param azkabanUtil
      * @throws Exception
      */
-    private static void process(int projectId1, int version1, Node node, AzkabanUtil azkabanUtil) throws Exception {
-        SFTPPUT sftpput = new SFTPPUT();
+    private void process(int projectId1, int version1, Node node, AzkabanUtil azkabanUtil, SFTPClient sftpClient) throws Exception {
+
         //String id = node.getId();//SYCH_RPT_TABLES
         String jobSource = node.getJobSource();//SYCH_RPT_TABLES.job
         // String type = node.getType();//command
@@ -115,35 +125,59 @@ public class AzkabanUtil {
             }
 
             File file = new File(filePath);
-            String parentPath = file.getParent();
-            //parentPath.replaceAll(realSftpDirString,"")
-
-            //登陆ftp，查找文件
-            //File fileEle = sftpput.queryElementContent(sftpClient, parentPath, file.getName());
-            File fileEle = sftpput.queryFile(parentPath, file.getName());
-
-            //策略是只读sql执行器组件和存储过程，其它的只记录转换名
-
-            //读取指定文件中的指定节点
-            ArrayList<Map<String, String>> entryList = (ArrayList<Map<String, String>>) SaxService.ReadXML(fileEle.getAbsolutePath(), "entry");
-            ArrayList<Map<String, String>> hopList = (ArrayList<Map<String, String>>) SaxService.ReadXML(fileEle.getAbsolutePath(), "hop");
-            ArrayList<Map<String, String>> stepList = (ArrayList<Map<String, String>>) SaxService.ReadXML(fileEle.getAbsolutePath(), "step");
-
-            //kettle文件内部的顺序关系
-            for (Map<String, String> hopMap : hopList) {
-                String from = hopMap.get("from");
-                String to = hopMap.get("to");
-                Map<String, String> entryMapFrom = azkabanUtil.queryEntry(entryList, from);
-                Map<String, String> entryMapTo = azkabanUtil.queryEntry(entryList, to);
-                //这里考虑到需要记录上下节点，且必须为转换时记录，所以采用记录上下节点的方式，如果上节点不为空，添加到下节点，然后插入数据后，清空节点。
-                azkabanUtil.exeKettle(entryMapFrom, stepList);
-                azkabanUtil.exeKettle(entryMapTo, stepList);
-
-            }
+            processOneFile(file, sftpClient, azkabanUtil);
 
         }
 
     }
+
+    /**
+     * 解析一个文件，ktr或kjb文件，抽象用于递归处理
+     *
+     * @param file
+     * @param sftpClient
+     * @param azkabanUtil
+     * @throws Exception
+     */
+    private void processOneFile(File file, SFTPClient sftpClient, AzkabanUtil azkabanUtil) throws Exception {
+        SFTPPUT sftpput = new SFTPPUT();
+        String parentPath = file.getParent();
+        String fileName = file.getName();
+        System.out.println("处理一个文件processOneFile[" + file.getAbsolutePath() + "]");
+        //登陆ftp，查找文件
+        File fileEle = sftpput.queryContent(sftpClient, parentPath, fileName);
+//            File fileEle = sftpput.queryFile(parentPath, file.getName());
+
+        if (fileEle == null || !fileEle.exists()) {
+            return;
+        }
+
+        System.out.println("当前正在处理的文件为：" + fileEle.getAbsolutePath());
+        
+        //策略是只读sql执行器组件和存储过程，其它的只记录转换名
+
+        //读取指定文件中的指定节点
+        ArrayList<Map<String, String>> entryList = (ArrayList<Map<String, String>>) SaxService.ReadXML(fileEle.getAbsolutePath(), "entry");
+        ArrayList<Map<String, String>> hopList = (ArrayList<Map<String, String>>) SaxService.ReadXML(fileEle.getAbsolutePath(), "hop");
+        ArrayList<Map<String, String>> stepList = (ArrayList<Map<String, String>>) SaxService.ReadXML(fileEle.getAbsolutePath(), "step");
+
+        //kettle文件内部的顺序关系
+        for (Map<String, String> hopMap : hopList) {
+            String from = hopMap.get("from");
+            String to = hopMap.get("to");
+            Map<String, String> entryMapFrom = azkabanUtil.queryEntry(entryList, from);
+            Map<String, String> entryMapTo = azkabanUtil.queryEntry(entryList, to);
+            //这里考虑到需要记录上下节点，且必须为转换时记录，所以采用记录上下节点的方式，如果上节点不为空，添加到下节点，然后插入数据后，清空节点。
+            azkabanUtil.exeKettle(entryMapFrom, stepList, fileEle, sftpClient, azkabanUtil);
+            azkabanUtil.exeKettle(entryMapTo, stepList, fileEle, sftpClient, azkabanUtil);
+        }
+
+        if (fileEle != null && fileEle.exists()) {
+            fileEle.delete();
+        }
+
+    }
+
 
     /**
      * 通过边查到源点和目标点的节点
@@ -166,65 +200,75 @@ public class AzkabanUtil {
         return null;
     }
 
-    //上下节点，临时数据
-    JSONObject jsonbjectCurrentData;
-    JSONObject jsonbjectNextData;
-
     /**
      * 处理kettle文件的上下节点
      *
      * @param entryMap
      * @param stepList
      */
-    public void exeKettle(Map<String, String> entryMap, ArrayList<Map<String, String>> stepList) throws SQLException {
+    public void exeKettle(Map<String, String> entryMap, ArrayList<Map<String, String>> stepList, File fileEle, SFTPClient sftpClient, AzkabanUtil azkabanUtil) throws Exception {
+
+        SFTPPUT sftpput = new SFTPPUT();
         //开始，转换类型
         String fileType = entryMap.get("type");
         if (fileType.equals("SPECIAL")) {
             //特殊类型 TODO 直接记录点
             JSONObject jsonObject = kettleNode("SPECIAL", null, null, null, null);
             placeNode(jsonObject);
+        } else if (fileType.equals("DBProc")) {
+            //执行存储过程组件没有transname和directory
+            String name = entryMap.get("name");//用DB存储过程
+            String connection = entryMap.get("connection");//163生产查询
+            String procedure = entryMap.get("procedure");//proc_miantableName_PrevNext
+            JSONObject jsonObject = kettleNode(name, null, null, procedure, connection);
+            placeNode(jsonObject);
+
+        } else if (fileType.equals("ExecSQL")) {
+            //sql执行器
+            String name = entryMap.get("name");//执行SQL脚本
+            //String type = entryMap.get("type");//ExecSQL
+            String connection = entryMap.get("connection");//生产123
+            String sql = entryMap.get("sql");//select * from dual
+            Set<String> setStr = new HashSet<String>();
+            setStr.add(sql);
+            JSONObject jsonObject = kettleNode(name, connection, setStr, null, null);
+            placeNode(jsonObject);
         } else if (fileType.equals("TRANS")) {
-            //TODO 转换类型，直接记录点
-            //表示不是sql或存储过程
-            if (stepList != null && stepList.size() != 0) {
-                for (Map<String, String> stepMap : stepList) {
-                    String stepType = stepMap.get("type");
-                    if (stepType.equals("DBProc")) {
-                        //执行存储过程组件没有transname和directory
-                        String name = entryMap.get("name");//用DB存储过程
-                        String connection = entryMap.get("connection");//163生产查询
-                        String procedure = entryMap.get("procedure");//proc_miantableName_PrevNext
-                        JSONObject jsonObject = kettleNode(name, null, null, procedure, connection);
-                        placeNode(jsonObject);
-
-                    } else if (stepType.equals("ExecSQL")) {
-                        //sql执行器
-                        String name = entryMap.get("name");//执行SQL脚本
-                        //String type = entryMap.get("type");//ExecSQL
-                        String connection = entryMap.get("connection");//生产123
-                        String sql = entryMap.get("sql");//select * from dual
-                        Set<String> setStr = new HashSet<String>();
-                        setStr.add(sql);
-                        JSONObject jsonObject = kettleNode(name, connection, setStr, null, null);
-                        placeNode(jsonObject);
-                    }
-
-                }
-            } else {
-                String name = entryMap.get("name");
-                JSONObject jsonObject = kettleNode(name, null, null, null, null);
-
-                placeNode(jsonObject);
-
+            //TODO 如果是转换，读取转换文件
+            //<transname>存储过程执行</transname>
+            //<directory>/执行顺序</directory>
+            String transname = entryMap.get("transname");
+            String directory = entryMap.get("directory");
+            if (transname == null || directory == null) {
+                return;
             }
+            String parent = fileEle.getParent();
+            String dir = parent + "/" + directory;
 
-
+            //根据文件名和路径获取文件
+            File fileKtr = sftpput.queryContent(sftpClient, dir, transname + ".ktr");
+            processOneFile(fileKtr, sftpClient, azkabanUtil);
         } else if (fileType.equals("JOB")) {
+            //TODO 如果是任务，读取job文件
+            //<jobname>job_sub_file_1</jobname>
+            //<directory>/执行顺序</directory>
+            String jobname = entryMap.get("jobname");
+            String directory = entryMap.get("directory");
+            if (jobname == null || directory == null) {
+                return;
+            }
             //${Internal.Job.Filename.Directory}/Totalamount.kjb
-            String filename = entryMap.get("filename");
-            //TODO 需要处理一些变量的转换的情况，当前路径都传过来，需要继续读取，任务里的文件，下到转换为止
-            JSONObject jsonObject = kettleNode(filename, null, null, null, null);
+            String parent = fileEle.getParent();
+            String dir = parent + "/" + directory;
 
+            //根据文件名和路径获取文件
+            File fileKtr = sftpput.queryContent(sftpClient, dir, jobname + ".kjb");
+            processOneFile(fileKtr, sftpClient, azkabanUtil);
+
+        } else {
+            //应该是各类转换
+            String name = entryMap.get("name");
+            JSONObject jsonObject = kettleNode(name, null, null, null, null);
             placeNode(jsonObject);
         }
     }
@@ -404,7 +448,7 @@ public class AzkabanUtil {
             JdbcProjectHandlerSet.ProjectResultHandler projectResultHandler = new JdbcProjectHandlerSet.ProjectResultHandler();
             objectsProject = projectResultHandler.handle(rs);
 
-            System.out.println(objectsProject.size());
+//            System.out.println(objectsProject.size());
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -427,7 +471,7 @@ public class AzkabanUtil {
             JdbcProjectHandlerSet.ProjectResultHandler projectResultHandler = new JdbcProjectHandlerSet.ProjectResultHandler();
             objectsProject = projectResultHandler.handle(rs);
 
-            System.out.println(objectsProject.size());
+//            System.out.println(objectsProject.size());
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -501,7 +545,7 @@ public class AzkabanUtil {
             JdbcProjectHandlerSet.ProjectFlowsResultHandler projectFlowsResultHandler = new JdbcProjectHandlerSet.ProjectFlowsResultHandler();
 
             objectsFlows = projectFlowsResultHandler.handle(rs);
-            System.out.println(objectsFlows.size());
+//            System.out.println(objectsFlows.size());
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -516,7 +560,7 @@ public class AzkabanUtil {
             JdbcProjectHandlerSet.ProjectFlowsResultHandler projectFlowsResultHandler = new JdbcProjectHandlerSet.ProjectFlowsResultHandler();
 
             objectsFlows = projectFlowsResultHandler.handle(rs);
-            System.out.println(objectsFlows.size());
+//            System.out.println(objectsFlows.size());
         } catch (SQLException e) {
             e.printStackTrace();
         }

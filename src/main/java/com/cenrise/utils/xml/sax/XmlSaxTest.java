@@ -26,6 +26,9 @@ public class XmlSaxTest {
         }*/
 
         //策略是只读sql执行器组件和存储过程，其它的只记录转换名
+        ArrayList<Map<String, String>> entryListTmp = (ArrayList<Map<String, String>>) SaxService.ReadXML("STARTDATE2.xml", "entry");
+
+
         ArrayList<Map<String, String>> entryList = (ArrayList<Map<String, String>>) SaxService.ReadXML("STARTDATE.xml", "entry");
         ArrayList<Map<String, String>> hopList = (ArrayList<Map<String, String>>) SaxService.ReadXML("STARTDATE.xml", "hop");
 

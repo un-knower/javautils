@@ -1,7 +1,6 @@
 package com.cenrise.suite;
 
 import com.cenrise.utils.Const;
-import com.cenrise.utils.xml.sax.SaxService;
 import org.apache.commons.vfs2.FileObject;
 
 import java.io.File;
@@ -10,8 +9,6 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.math.BigInteger;
 import java.net.InetAddress;
-import java.util.ArrayList;
-import java.util.Map;
 
 /**
  * 连接ftp,及业务处理
@@ -36,7 +33,14 @@ public class SFTPPUT {
     public static void main(String[] args) {
         SFTPPUT sftpput = new SFTPPUT();
         try {
-            sftpput.testsftp("/home/appgroup/kettle/pdi-ce-5.0.1.A-stable/data-integration/MyKtrs/", "hive.ktr", "field");
+//            File testFile = sftpput.testsftp("/home/appgroup/kettle/pdi-ce-5.0.1.A-stable/data-integration/MyKtrs/", "hive.ktr");
+//            System.out.println(testFile.getName());
+
+            SFTPClient sftpClient = sftpput.queryConnServer("/home/appgroup/kettle/pdi-ce-5.0.1.A-stable/data-integration/MyKtrs/");
+            File file = sftpput.queryContent(sftpClient, "/home/appgroup/kettle/pdi-ce-5.0.1.A-stable/data-integration/MyKtrs/smsa/total", "setVar.ktr");
+            if (file != null) {
+                System.out.println(file.getAbsolutePath());
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -166,7 +170,7 @@ public class SFTPPUT {
      * @return
      * @throws Exception
      */
-    public SFTPClient queryElementConnServer(String parentPath) throws Exception {
+    public SFTPClient queryConnServer(String parentPath) throws Exception {
 
         SFTPClient sftpclient = null;
         try {
@@ -181,7 +185,7 @@ public class SFTPPUT {
         } catch (Exception e) {
             System.out.println(Const.getStackTracker(e));
             throw new Exception("从SFTP获取文件出错 \\: " + e);
-        } finally {
+        } /*finally {
             try {
                 if (sftpclient != null) sftpclient.disconnect();
             } catch (Exception e) {
@@ -196,7 +200,7 @@ public class SFTPPUT {
             } catch (Exception e) {
             }
 
-        }
+        }*/
     }
 
     /**
@@ -207,7 +211,7 @@ public class SFTPPUT {
      * @return
      * @throws Exception
      */
-    public File queryElementContent(SFTPClient sftpclient, String parentPath, String fileName) throws Exception {
+    public File queryContent(SFTPClient sftpclient, String parentPath, String fileName) throws Exception {
 
         try {
             if (parentPath != null) {
@@ -215,12 +219,12 @@ public class SFTPPUT {
                 sftpclient.chdir(parentPath);
             }
             File file = sftpclient.get(fileName);
-            System.out.println(file.exists());
             return file;
         } catch (Exception e) {
             System.out.println(Const.getStackTracker(e));
-            throw new Exception("从SFTP获取文件出错 \\: " + e);
-        } finally {
+            return null;
+//            throw new Exception("从SFTP获取文件出错 \\: " + e);
+        } /*finally {
             try {
                 if (sftpclient != null) sftpclient.disconnect();
             } catch (Exception e) {
@@ -235,10 +239,10 @@ public class SFTPPUT {
             } catch (Exception e) {
             }
 
-        }
+        }*/
     }
 
-    public void testsftp(String parentPath, String fileName, String findName) throws Exception {
+    public File testsftp(String parentPath, String fileName) throws Exception {
 
         SFTPClient sftpclient = null;
         try {
@@ -251,11 +255,11 @@ public class SFTPPUT {
 
             File file = sftpclient.get(fileName);
             System.out.println(file.exists());
-
-            ArrayList<Map<String, String>> entryList = (ArrayList<Map<String, String>>) SaxService.ReadXML(file.getPath(), findName);
-            for (Map<String, String> entryMap : entryList) {
-
-            }
+            return file;
+//            ArrayList<Map<String, String>> entryList = (ArrayList<Map<String, String>>) SaxService.ReadXML(file.getPath(), findName);
+//            for (Map<String, String> entryMap : entryList) {
+//
+//            }
         } catch (Exception e) {
             System.out.println(Const.getStackTracker(e));
             throw new Exception("从SFTP获取文件出错 \\: " + e);

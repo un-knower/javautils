@@ -113,6 +113,7 @@ public class SFTPClient {
                 );
             }
             s = jsch.getSession(userName, serverIP.getHostAddress(), serverPort);
+
         } catch (IOException e) {
             throw new Exception(e);
         } catch (JSchException e) {
@@ -139,6 +140,9 @@ public class SFTPClient {
             Channel channel = s.openChannel("sftp");
             channel.connect();
             c = (ChannelSftp) channel;
+
+            //设置一个编辑，控制中文乱码问题
+//            c.setFilenameEncoding("GBK");
         } catch (JSchException e) {
             throw new Exception(e);
         }
@@ -148,6 +152,7 @@ public class SFTPClient {
         try {
             c.cd(dirToChangeTo);
         } catch (SftpException e) {
+            System.out.println(dirToChangeTo);
             throw new Exception(e);
         }
     }
