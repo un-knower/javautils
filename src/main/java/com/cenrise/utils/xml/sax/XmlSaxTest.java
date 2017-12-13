@@ -25,8 +25,12 @@ public class XmlSaxTest {
         }
         }*/
 
+        String url = "/Users/jiadongpo/Downloads/SychAddData.xml";
+        String url2 = "/Users/jiadongpo/Documents/VbillRepo/increment/T_SES_PAY_ORD_OPT_HIS/SychAddData.kjb";
+
         //策略是只读sql执行器组件和存储过程，其它的只记录转换名
-        ArrayList<Map<String, String>> entryListTmp = (ArrayList<Map<String, String>>) SaxService.ReadXML("STARTDATE2.xml", "entry");
+        ArrayList<Map<String, String>> entryListTmp = (ArrayList<Map<String, String>>) SaxService.ReadXML(url, "entry");
+//        ArrayList<Map<String, String>> entryListTmp = (ArrayList<Map<String, String>>) SaxService.ReadXML("STARTDATE2.xml", "entry");
 
 
         ArrayList<Map<String, String>> entryList = (ArrayList<Map<String, String>>) SaxService.ReadXML("STARTDATE.xml", "entry");
@@ -99,4 +103,6 @@ public class XmlSaxTest {
         }
         return null;
     }
+
+
 }

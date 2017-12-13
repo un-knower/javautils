@@ -243,6 +243,8 @@ public class AzkabanUtilLocal {
                 return;
             }
             String parent = fileEle.getParent();
+            //转换一下
+            directory.replace("${Internal.Job.Filename.Directory}","");
             String dir = parent + "/" + directory;
 
             //根据文件名和路径获取文件

@@ -2360,6 +2360,29 @@ public class Const {
         return "";
     }
 
+    /**
+     * 转义ncr字符,如&#dddd;&#xhhhh;
+     *
+     * @param sourceString
+     * @return
+     */
+    public static String transNCR(String sourceString) {
+        //定义正则表达式来搜索中文字符的转义符号
+        Pattern compile = Pattern.compile("&#.*?;");
+        Matcher matcher = compile.matcher(sourceString);
+        //循环搜索并转换替换
+        while (matcher.find()) {
+            String group = matcher.group();
+            //获得16进制的码
+            String hexcode = "0" + group.replaceAll("(&#|;)", "");
+            //字符串形式的16进制码转成int并转成char并替换到源串中
+            sourceString = sourceString.replaceAll(group, (char) Integer.decode(hexcode).intValue() + "");
+        }
+        return sourceString;
+    }
 
-
+    public static void main(String[] args) {
+        System.out.println(Const.transNCR("&#x589e;&#x91cf;&#x540c;&#x6b65;&#x7684;&#x8868;&#x5217;&#x8868;"));
+        System.out.println(Const.transNCR("&#x5927;&#x589e;&#x91cf;&#x540c;&#x6b65;&#x5931;&#x8d25;"));
+    }
 }
