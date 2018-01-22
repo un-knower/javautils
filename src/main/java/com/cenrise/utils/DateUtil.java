@@ -3077,6 +3077,87 @@ public class DateUtil {
         return sdf.format(new Date());
     }
 
+    /**
+     * 将秒数转换为日时分秒，
+     *
+     * @param second
+     * @return
+     */
+    public static String secondToTime(long second) {
+        long days = second / 86400;            //转换天数
+        second = second % 86400;            //剩余秒数
+        long hours = second / 3600;            //转换小时
+        second = second % 3600;                //剩余秒数
+        long minutes = second / 60;            //转换分钟
+        second = second % 60;                //剩余秒数
+        if (days > 0) {
+            return days + "天" + hours + "小时" + minutes + "分" + second + "秒";
+        } else {
+            return hours + "小时" + minutes + "分" + second + "秒";
+        }
+    }
+
+    /**
+     * 将秒数转换为日时分秒，
+     *
+     * @param second
+     * @return
+     */
+    public static String secondToTimeStr(long second) {
+        long days = second / 86400;            //转换天数
+        second = second % 86400;            //剩余秒数
+        long hours = second / 3600;            //转换小时
+        second = second % 3600;                //剩余秒数
+        long minutes = second / 60;            //转换分钟
+        second = second % 60;                //剩余秒数
+        StringBuilder sb = new StringBuilder();
+        if (days > 0) {
+            sb.append(days + "天");
+        }
+
+        if (hours > 0) {
+            sb.append(hours + "小时");
+        }
+        if (minutes > 0) {
+            sb.append(minutes + "分");
+        }
+        if (second > 0) {
+            sb.append(second + "秒");
+        }
+        return sb.toString();
+    }
+
+    /**
+     * 将日期转换为日时分秒
+     *
+     * @param date
+     * @return
+     */
+    public static String dateToTime(String date, String dateStyle) {
+        SimpleDateFormat format = new SimpleDateFormat(dateStyle);
+        try {
+            Date oldDate = format.parse(date);
+            long time = oldDate.getTime();                    //输入日期转换为毫秒数
+            long nowTime = System.currentTimeMillis();        //当前时间毫秒数
+            long second = nowTime - time;                    //二者相差多少毫秒
+            second = second / 1000;                            //毫秒转换为妙
+            long days = second / 86400;
+            second = second % 86400;
+            long hours = second / 3600;
+            second = second % 3600;
+            long minutes = second / 60;
+            second = second % 60;
+            if (days > 0) {
+                return days + "天" + hours + "小时" + minutes + "分" + second + "秒";
+            } else {
+                return hours + "小时" + minutes + "分" + second + "秒";
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public static void main(String[] args) throws Exception {
 
         // Calendar calendar = Calendar.getInstance();
@@ -3243,7 +3324,19 @@ public class DateUtil {
         System.out.println(DateUtil.getNDayAfter(myDate2, 7 * 16));//2017-12-17 00:00:00 周日
         System.out.println(DateUtil.getNDayAfter(myDate2, 7 * 4 * 10));//2018-06-3 00:00:00 周日
 
+        String time1 = secondToTime(85959);
+        String time3 = secondToTimeStr(85959);
+        String time2 = dateToTime("2017/10/25 16:42:46", "yyyy/MM/dd HH:mm:ss");
+        System.out.println(time1);
+        System.out.println(time2);
+        System.out.println(time3);
+
+        //取整
+        System.out.println( Math.round(432124312/1000));
         System.out.println("结束");
+
+
+
     }
 
     /**

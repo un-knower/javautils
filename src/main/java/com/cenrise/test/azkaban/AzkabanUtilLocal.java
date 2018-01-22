@@ -131,7 +131,7 @@ public class AzkabanUtilLocal {
      */
     private String transPath(String filePath) {
         String realSftpDirString = "/home/appgroup/kettle/pdi-ce-5.0.1.A-stable/data-integration/MyKtrs";
-        String realSftpDirStringLocal = "/Users/jiadongpo/Documents/VbillRepo";
+        String realSftpDirStringLocal = "/Users/jiadongpo/Documents/VbillRepo_20171225";
         return filePath.replace(realSftpDirString, realSftpDirStringLocal);
     }
 

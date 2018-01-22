@@ -60,7 +60,7 @@ public class DBUtil {
             ResultSet rs = null;
 
 //            pre = conncection.prepareStatement("SELECT * FROM T_TIF_IF");
-            pre = conncection.prepareStatement("SELECT * FROM BD.T_TIF_IF");
+            pre = conncection.prepareStatement("SELECT * FROM azkaban.active_sla");
             rs = pre.executeQuery();
             while (rs.next()) {
                 rs.getString(1);
