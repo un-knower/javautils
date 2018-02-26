@@ -45,9 +45,9 @@ public class ZipCipherUtil {
         long l1 = System.currentTimeMillis();
 
         //加密
-//      new ZipCipherUtil().encryptZip("d:\\test\\111.jpg", "d:\\test\\photo.zip", "12345");
+//        new ZipCipherUtil().encryptZip("sunflower.jpg", "/Users/jiadongpo/Workspaces/GithubJiadongpo/javautils/src/main/resources/sunflower.zip", "123456");
         //解密
-        new ZipCipherUtil().decryptUnzip("d:\\test\\photo.zip", "d:\\test\\111_1.jpg", "12345");
+        new ZipCipherUtil().decryptUnzip("/Users/jiadongpo/Workspaces/GithubJiadongpo/javautils/src/main/resources/sunflower.zip", "/Users/jiadongpo/Workspaces/GithubJiadongpo/javautils/src/main/resources/sunflower2.jpg", "123456");
 
         long l2 = System.currentTimeMillis();
         System.out.println((l2 - l1) + "毫秒.");
