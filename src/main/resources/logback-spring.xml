@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--debug="false"关闭logback内部监控 -->
+<configuration debug="false" scan="true" scanPeriod="30 seconds">
+    <property name="LOG_PATH" value="${APP_HOME:-.}/logs"/><!-- 日志保存路径，默认值为./logs -->
+    <property name="LOG_FILE_NAME" value="dp-pro"/><!-- 日志文件名，默认值为server -->
+    <property name="MAX_FILE_SIZE" value="100MB"/><!-- 文件分隔大小，可选设置，默认值为100MB， -->
+    <!-- 引用公共配置 -->
+    <include resource="com/suixingpay/takin/logback/base.xml"/>
+    <jmxConfigurator/>
+    <!--开发环境配置 -->
+    <springProfile name="default,dev">
+        <logger name="org.springframework.web" level="ERROR"/>
+        <logger name="org.springboot.sample" level="ERROR"/>
+        <logger name="com.jarvis" level="TRACE"/>
+        <logger name="com.suixingpay.takin.cache" level="TRACE"/>
+        <root level="INFO">
+            <appender-ref ref="CONSOLE"/>
+            <appender-ref ref="FILE"/>
+            <appender-ref ref="ERROR"/>
+        </root>
+    </springProfile>
+
+    <!--test环境配置 -->
+    <springProfile name="test">
+        <root level="INFO">
+            <appender-ref ref="FILE"/>
+            <appender-ref ref="ERROR"/>
+        </root>
+    </springProfile>
+
+    <!--rc环境配置 -->
+    <springProfile name="rc">
+        <root level="INFO">
+            <appender-ref ref="FILE"/>
+            <appender-ref ref="ERROR"/>
+        </root>
+    </springProfile>
+
+    <!--prod环境配置 -->
+    <springProfile name="prod">
+        <root level="ERROR">
+            <appender-ref ref="FILE"/>
+            <appender-ref ref="ERROR"/>
+        </root>
+    </springProfile>
+</configuration>
